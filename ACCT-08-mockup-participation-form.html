@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>[ACCT-08] Mockup — Participation (Create / Update Contact)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--o-enterprise-color:#714B67;--o-brand-odoo:#714B67;--o-brand-primary:#714B67;--o-action:#017e84;--o-gray-100:#F9FAFB;--o-gray-200:#e7e9ed;--o-gray-300:#d8dadd;--o-gray-400:#9a9ca5;--o-gray-500:#7c7f89;--o-gray-600:#5f636f;--o-gray-700:#374151;--o-gray-800:#1F2937;--o-gray-900:#111827;--o-success:#28a745;--o-info:#17a2b8;--o-warning:#ffac00;--o-danger:#dc3545;--o-border-radius:4px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,"Noto Sans",Arial,sans-serif;font-size:14px;line-height:1.5;color:var(--o-gray-900);background:#f0f0f0;padding:0 0 24px;}
+.mockup-page{position:relative;width:1040px;margin:0 auto;background:var(--o-gray-100);border-radius:6px;padding-bottom:20px;}
+.o_control_panel{display:flex;flex-direction:column;gap:12px;padding:12px 16px;}
+.breadcrumb{display:flex;list-style:none;padding:0;margin:0;font-size:15px;color:var(--o-gray-700);}
+.breadcrumb-item a{color:var(--o-gray-600);text-decoration:none;}
+.breadcrumb-item+.breadcrumb-item::before{content:">";padding:0 6px;color:var(--o-gray-400);}
+.breadcrumb-item.active{font-weight:600;color:var(--o-gray-900);}
+.o_form_statusbar{display:flex;justify-content:space-between;align-items:center;padding:6px 16px 10px;gap:8px;flex-wrap:wrap;}
+.o_statusbar_buttons{display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:var(--o-border-radius);font-size:13px;font-weight:500;border:1px solid transparent;cursor:default;white-space:nowrap;}
+.btn-primary{background:var(--o-brand-primary);color:#fff;border-color:var(--o-brand-primary);}
+.btn-secondary{background:var(--o-gray-200);color:var(--o-gray-900);border-color:var(--o-gray-300);}
+.btn-disabled{background:var(--o-gray-100);color:var(--o-gray-400);border-color:var(--o-gray-200);cursor:not-allowed;}
+.o_statusbar_status{display:flex;align-items:center;}
+.o_arrow_button{padding:5px 20px 5px 28px;font-size:12px;font-weight:500;color:var(--o-gray-500);background:#fff;border:1px solid var(--o-gray-300);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%,10px 50%);margin-left:-10px;}
+.o_arrow_button.o_first{clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%);margin-left:0;border-radius:var(--o-border-radius) 0 0 var(--o-border-radius);padding-left:16px;}
+.o_arrow_button.o_last{clip-path:polygon(0 0,100% 0,100% 100%,0 100%,10px 50%);border-radius:0 var(--o-border-radius) var(--o-border-radius) 0;padding-right:16px;}
+.o_arrow_button_current{background:var(--o-action);color:#fff;border-color:var(--o-action);}
+.o_form_sheet_bg{padding:0 16px;}
+.o_form_sheet{background:#fff;border-radius:var(--o-border-radius);box-shadow:0 1px 4px rgba(48,48,48,.12);padding:20px 24px 28px;position:relative;}
+.o_group{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;}
+.o_inner_group{display:flex;flex-direction:column;gap:12px;}
+.o_cell{display:flex;align-items:baseline;gap:12px;}
+.o_form_label,.field-label{font-weight:600;font-size:13px;color:var(--o-gray-800);min-width:130px;flex-shrink:0;}
+.o_field_widget{font-size:14px;color:var(--o-gray-900);}
+.o_field_widget a{color:var(--o-action);text-decoration:none;}
+.o_input{border:1px solid var(--o-gray-300);padding:5px 8px;border-radius:var(--o-border-radius);font-size:14px;background:#fff;display:inline-flex;align-items:center;gap:6px;min-width:240px;}
+.placeholder{color:var(--o-gray-400);font-style:italic;}
+.badge{display:inline-block;padding:3px 10px;border-radius:50rem;font-size:12px;font-weight:normal;color:#fff;}
+.text-bg-success{background:var(--o-success);}
+.o_list_table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+.o_list_table th{padding:8px 12px;text-align:left;font-weight:600;color:var(--o-gray-700);border-bottom:2px solid var(--o-gray-300);}
+.o_list_table td{padding:8px 12px;border-bottom:1px solid var(--o-gray-200);}
+.o_notebook{margin-top:24px;}
+.nav-tabs{display:flex;list-style:none;padding:0;margin:0;border-bottom:1px solid var(--o-gray-300);}
+.nav-tabs .nav-link{display:block;padding:8px 16px;font-size:14px;font-weight:500;color:var(--o-gray-600);border-radius:0;}
+.nav-tabs .nav-link.active{color:var(--o-gray-900);font-weight:600;border-bottom:2px solid var(--o-brand-odoo);border-top:3px solid var(--o-brand-odoo);background:#fff;}
+.o_notebook_content{padding:14px 4px;}
+.mono-map{font-size:11px;color:var(--o-gray-500);}
+/* nav */
+.mockup-nav{position:sticky;top:0;z-index:100;background:var(--o-brand-primary);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#fff;}
+.mockup-nav a{color:#fff;text-decoration:none;}.mockup-nav a.clickable{font-weight:600;}
+.mockup-nav .nav-sep{opacity:.5;margin:0 8px;}
+.mockup-nav .nav-legend{background:rgba(255,255,255,.15);padding:4px 12px;border-radius:4px;font-size:11px;}
+.clickable{position:relative;border:2px dashed var(--o-action)!important;border-radius:6px;cursor:pointer;}
+.clickable:hover{background:rgba(1,126,132,.08);}
+.clickable::after{content:"\f25a";font-family:"Font Awesome 6 Free";font-weight:900;font-size:10px;color:#fff;background:var(--o-action);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-8px;right:-8px;z-index:30;}
+.mockup-new .field-label{color:var(--o-success)!important;}
+.btn.mockup-new{color:var(--o-success)!important;border-color:var(--o-success)!important;background:#fff;}
+.mockup-change-legend{max-width:1040px;margin:12px auto 0;font-size:11.5px;color:var(--o-gray-600);padding:0 16px;}
+.mockup-change-legend .mockup-legend-new{color:var(--o-success);font-weight:600;}
+.mockup-annotations-layer{display:flex;gap:16px;padding:18px 20px 0;flex-wrap:wrap;}
+.mockup-annotation{padding:12px 14px;border-radius:6px;border-left:5px solid;font-size:13px;line-height:1.5;flex:1;min-width:230px;}
+.mockup-annotation strong{font-weight:700;}
+.mockup-annotation.info{background:#d1ecf1;border-color:#17a2b8;color:#0c5460;}
+.mockup-annotation.warning{background:#fff3cd;border-color:#ffac00;color:#6b4f00;}
+.mockup-annotation.success{background:#d4edda;border-color:#28a745;color:#155724;}
+.mockup-annotation.danger{background:#f8d7da;border-color:#dc3545;color:#721c24;}
+</style>
+</head>
+<body>
+
+<div class="mockup-nav">
+  <div style="display:flex;align-items:center;">
+    <a class="clickable" href="index.html"><i class="fa fa-home"></i> Home</a>
+    <span class="nav-sep">›</span>
+    <span style="opacity:.8;">SCR-004 · Participation (submission)</span>
+  </div>
+  <div class="nav-legend"><i class="fa fa-hand-pointer"></i> = Clickable link</div>
+</div>
+
+<div class="mockup-change-legend">
+  <span class="mockup-legend-new">■ NEW — element added by ACCT-08</span>
+</div>
+
+<div class="mockup-page">
+
+  <div class="o_control_panel">
+    <div class="o_breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Surveys</a></li>
+        <li class="breadcrumb-item"><a href="#">Participations</a></li>
+        <li class="breadcrumb-item active">Aurora Media LLC — 07/17/2026</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="o_form_statusbar">
+    <div class="o_statusbar_buttons">
+      <button class="btn mockup-new clickable" onclick="location.href='ACCT-08-mockup-vendor-profile.html'"><i class="fa fa-user-plus"></i> Create Contact</button>
+      <button class="btn btn-disabled mockup-new" title="Disabled — a Contact is not set"><i class="fa fa-user-pen"></i> Update Contact</button>
+    </div>
+    <div class="o_statusbar_status">
+      <button class="o_arrow_button o_first">New</button>
+      <button class="o_arrow_button">In Progress</button>
+      <button class="o_arrow_button o_arrow_button_current o_last">Completed</button>
+    </div>
+  </div>
+
+  <div class="o_form_sheet_bg">
+    <div class="o_form_sheet">
+
+      <div class="o_group">
+        <div class="o_inner_group">
+          <div class="o_cell"><label class="o_form_label">Survey</label><div class="o_field_widget"><a href="#">Vendor Intake Form</a></div></div>
+          <div class="o_cell"><label class="o_form_label">Respondent</label><div class="o_field_widget">Aurora Media LLC</div></div>
+          <div class="o_cell"><label class="o_form_label">Email</label><div class="o_field_widget">ap@auroramedia.example</div></div>
+        </div>
+        <div class="o_inner_group">
+          <div class="o_cell"><label class="o_form_label">Status</label><div class="o_field_widget"><span class="badge text-bg-success">Completed</span></div></div>
+          <div class="o_cell"><label class="o_form_label">Submitted</label><div class="o_field_widget">07/17/2026 10:24</div></div>
+          <div class="o_cell"><label class="o_form_label">Test Entry</label><div class="o_field_widget">No</div></div>
+          <div class="o_cell mockup-new">
+            <span class="field-label">Contact</span>
+            <div class="o_field_widget">
+              <span class="o_input"><span class="placeholder">— no match — pick a contact or Create —</span> <i class="fa fa-caret-down" style="color:var(--o-gray-400);margin-left:auto;"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="o_notebook">
+        <ul class="nav-tabs">
+          <li class="nav-item"><a class="nav-link active">Submitted Answers</a></li>
+        </ul>
+        <div class="o_notebook_content">
+          <table class="o_list_table">
+            <thead><tr><th>Question</th><th>Answer</th><th>Mapped to contact field</th></tr></thead>
+            <tbody>
+              <tr><td>Vendor / Company Name</td><td>Aurora Media LLC</td><td class="mono-map">name</td></tr>
+              <tr><td>Email</td><td>ap@auroramedia.example</td><td class="mono-map">email</td></tr>
+              <tr><td>Address — Street</td><td>1200 Harbor Blvd</td><td class="mono-map">street</td></tr>
+              <tr><td>Address — Country</td><td>United States</td><td class="mono-map">country_id (by name)</td></tr>
+              <tr><td>Which US tax form applies?</td><td>W-9 — US / Domestic</td><td class="mono-map">—</td></tr>
+              <tr><td>Part I — TIN (SSN or EIN)</td><td>•••••••1234 <span style="font-size:11px;color:var(--o-gray-400);">(masked)</span></td><td class="mono-map">vat</td></tr>
+              <tr><td>Payment method</td><td>ACH</td><td class="mono-map">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mockup-annotations-layer">
+    <div class="mockup-annotation info">
+      <strong>Email match (BR-009 / R06)</strong> — Odoo pre-fills <em>Contact</em> when exactly one vendor matches the submitted email. Here there was <em>no / ambiguous</em> match, so Contact is blank and AP chooses or creates one.
+    </div>
+    <div class="mockup-annotation success">
+      <strong>Create Contact (R04)</strong> — Enabled because Contact is <em>blank</em>. Creates a vendor from mapped answers, flags Supplier, adds "Intake – To Review", and links it back here. Click it to see the new Vendor Profile.
+    </div>
+    <div class="mockup-annotation warning">
+      <strong>Update Contact (R05 / BR-006)</strong> — Disabled here because no Contact is set. When a Contact <em>is</em> set, Update overwrites its mapped fields — blank answers are skipped. The two buttons are mutually exclusive.
+    </div>
+    <div class="mockup-annotation danger">
+      <strong>Guards</strong> — Create needs a mapped, non-empty Name (BR-008). Country/State that cannot be matched by name triggers a warning to set it manually (BR-012). Sensitive tax IDs shown masked.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

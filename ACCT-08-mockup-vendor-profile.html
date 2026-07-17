@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>[ACCT-08] Mockup — Vendor Profile (created from intake)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--o-enterprise-color:#714B67;--o-brand-odoo:#714B67;--o-brand-primary:#714B67;--o-action:#017e84;--o-gray-100:#F9FAFB;--o-gray-200:#e7e9ed;--o-gray-300:#d8dadd;--o-gray-400:#9a9ca5;--o-gray-500:#7c7f89;--o-gray-600:#5f636f;--o-gray-700:#374151;--o-gray-800:#1F2937;--o-gray-900:#111827;--o-success:#28a745;--o-info:#17a2b8;--o-warning:#ffac00;--o-danger:#dc3545;--o-border-radius:4px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,"Noto Sans",Arial,sans-serif;font-size:14px;line-height:1.5;color:var(--o-gray-900);background:#f0f0f0;padding:0 0 24px;}
+.mockup-page{position:relative;width:1040px;margin:0 auto;background:var(--o-gray-100);border-radius:6px;padding-bottom:20px;}
+.o_control_panel{display:flex;flex-direction:column;gap:12px;padding:12px 16px;}
+.breadcrumb{display:flex;list-style:none;padding:0;margin:0;font-size:15px;color:var(--o-gray-700);}
+.breadcrumb-item a{color:var(--o-gray-600);text-decoration:none;}
+.breadcrumb-item+.breadcrumb-item::before{content:">";padding:0 6px;color:var(--o-gray-400);}
+.breadcrumb-item.active{font-weight:600;color:var(--o-gray-900);}
+.o_form_sheet_bg{padding:0 16px;}
+.o_form_sheet{background:#fff;border-radius:var(--o-border-radius);box-shadow:0 1px 4px rgba(48,48,48,.12);padding:20px 24px 28px;position:relative;overflow:hidden;}
+.o-form-buttonbox{display:flex;justify-content:flex-end;gap:0;margin-bottom:16px;border-bottom:1px solid var(--o-gray-200);padding-bottom:12px;}
+.oe_stat_button{display:flex;align-items:center;gap:8px;padding:8px 16px;font-size:13px;color:var(--o-gray-700);border-right:1px solid var(--o-gray-200);background:transparent;border-top:none;border-bottom:none;border-left:none;}
+.oe_stat_button:last-child{border-right:none;}
+.o_button_icon{font-size:18px;color:var(--o-gray-400);}
+.o_stat_info{display:flex;flex-direction:column;text-align:left;}
+.o_stat_value{font-weight:600;font-size:15px;line-height:1.2;}
+.o_stat_text{font-size:12px;color:var(--o-gray-500);}
+.o_field_char_title{font-size:26px;font-weight:700;color:var(--o-gray-900);border:none;margin-bottom:2px;}
+.co-type{display:flex;gap:18px;margin-bottom:16px;font-size:13px;color:var(--o-gray-600);}
+.co-type .sel{color:var(--o-gray-900);font-weight:600;}
+.co-type .dot{color:var(--o-action);}
+.o_group{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;margin-top:8px;}
+.o_inner_group{display:flex;flex-direction:column;gap:12px;}
+.o_cell{display:flex;align-items:baseline;gap:12px;}
+.o_form_label,.field-label{font-weight:600;font-size:13px;color:var(--o-gray-800);min-width:130px;flex-shrink:0;}
+.o_field_widget{font-size:14px;color:var(--o-gray-900);}
+.o_field_widget a{color:var(--o-action);text-decoration:none;}
+.badge{display:inline-block;padding:3px 10px;border-radius:50rem;font-size:12px;font-weight:normal;color:#fff;}
+.text-bg-warning{background:var(--o-warning);color:var(--o-gray-900);}
+.text-bg-secondary{background:var(--o-gray-400);}
+.text-bg-success{background:var(--o-success);}
+.o_notebook{margin-top:24px;}
+.o_notebook_headers{border-bottom:1px solid var(--o-gray-300);}
+.nav-tabs{display:flex;list-style:none;padding:0;margin:0;}
+.nav-tabs .nav-link{display:block;padding:8px 16px;font-size:14px;font-weight:500;color:var(--o-gray-600);border-radius:0;}
+.nav-tabs .nav-link.active{color:var(--o-gray-900);font-weight:600;border-bottom:2px solid var(--o-brand-odoo);border-top:3px solid var(--o-brand-odoo);background:#fff;}
+.o_notebook_content{padding:16px 4px;font-size:13px;color:var(--o-gray-600);}
+/* ribbon */
+.ribbon{position:absolute;top:0;right:0;width:150px;height:150px;overflow:hidden;}
+.ribbon span{position:absolute;display:block;width:141.421%;padding:6px 0;font-size:12px;font-weight:700;letter-spacing:1.2px;text-align:center;color:#fff;transform:rotate(45deg);transform-origin:left bottom;top:26px;left:-6px;box-shadow:0 2px 6px rgba(0,0,0,.18);background:var(--o-success);}
+/* nav */
+.mockup-nav{position:sticky;top:0;z-index:100;background:var(--o-brand-primary);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#fff;}
+.mockup-nav a{color:#fff;text-decoration:none;}.mockup-nav a.clickable{font-weight:600;}
+.mockup-nav .nav-sep{opacity:.5;margin:0 8px;}
+.mockup-nav .nav-legend{background:rgba(255,255,255,.15);padding:4px 12px;border-radius:4px;font-size:11px;}
+.clickable{position:relative;border:2px dashed var(--o-action)!important;border-radius:6px;cursor:pointer;}
+.clickable:hover{background:rgba(1,126,132,.08);}
+.clickable::after{content:"\f25a";font-family:"Font Awesome 6 Free";font-weight:900;font-size:10px;color:#fff;background:var(--o-action);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-8px;right:-8px;z-index:30;}
+.mockup-new .field-label{color:var(--o-success)!important;}
+.mockup-change-legend{max-width:1040px;margin:12px auto 0;font-size:11.5px;color:var(--o-gray-600);padding:0 16px;}
+.mockup-change-legend .mockup-legend-new{color:var(--o-success);font-weight:600;}
+.mockup-annotations-layer{display:flex;gap:16px;padding:18px 20px 0;flex-wrap:wrap;}
+.mockup-annotation{padding:12px 14px;border-radius:6px;border-left:5px solid;font-size:13px;line-height:1.5;flex:1;min-width:240px;}
+.mockup-annotation strong{font-weight:700;}
+.mockup-annotation.success{background:#d4edda;border-color:#28a745;color:#155724;}
+.mockup-annotation.info{background:#d1ecf1;border-color:#17a2b8;color:#0c5460;}
+.mockup-annotation.warning{background:#fff3cd;border-color:#ffac00;color:#6b4f00;}
+</style>
+</head>
+<body>
+
+<div class="mockup-nav">
+  <div style="display:flex;align-items:center;">
+    <a class="clickable" href="index.html"><i class="fa fa-home"></i> Home</a>
+    <span class="nav-sep">›</span>
+    <a class="clickable" href="ACCT-08-mockup-participation-form.html">Participation</a>
+    <span class="nav-sep">›</span>
+    <span style="opacity:.8;">SCR-003 · Vendor Profile</span>
+  </div>
+  <div class="nav-legend"><i class="fa fa-hand-pointer"></i> = Clickable link</div>
+</div>
+
+<div class="mockup-change-legend">
+  <span class="mockup-legend-new">■ NEW — element added / set by ACCT-08 (Create Contact)</span>
+</div>
+
+<div class="mockup-page">
+
+  <div class="o_control_panel">
+    <div class="o_breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Contacts</a></li>
+        <li class="breadcrumb-item"><a href="#">Vendors</a></li>
+        <li class="breadcrumb-item active">Aurora Media LLC</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="o_form_sheet_bg">
+    <div class="o_form_sheet">
+
+      <div class="ribbon"><span>SUPPLIER</span></div>
+
+      <div class="o-form-buttonbox">
+        <button class="oe_stat_button">
+          <i class="fa fa-dollar-sign o_button_icon"></i>
+          <div class="o_stat_info"><span class="o_stat_value">0</span><span class="o_stat_text">Purchases</span></div>
+        </button>
+        <button class="oe_stat_button">
+          <i class="fa fa-file-invoice o_button_icon"></i>
+          <div class="o_stat_info"><span class="o_stat_value">0</span><span class="o_stat_text">Vendor Bills</span></div>
+        </button>
+      </div>
+
+      <div class="co-type">
+        <span class="sel"><i class="fa fa-circle-dot dot"></i> Company</span>
+        <span><i class="fa fa-circle" style="color:var(--o-gray-300);"></i> Individual</span>
+      </div>
+      <div class="o_field_char_title">Aurora Media LLC</div>
+
+      <div class="o_group">
+        <div class="o_inner_group">
+          <div class="o_cell"><label class="o_form_label">Address</label><div class="o_field_widget">1200 Harbor Blvd<br>Austin, TX 78701<br>United States</div></div>
+          <div class="o_cell"><label class="o_form_label">Tax ID (VAT)</label><div class="o_field_widget">•••••••1234 <span style="font-size:11px;color:var(--o-gray-400);">(masked)</span></div></div>
+        </div>
+        <div class="o_inner_group">
+          <div class="o_cell"><label class="o_form_label">Email</label><div class="o_field_widget"><a href="#">ap@auroramedia.example</a></div></div>
+          <div class="o_cell"><label class="o_form_label">Phone</label><div class="o_field_widget">+1 (512) 555-0142</div></div>
+          <div class="o_cell mockup-new">
+            <span class="field-label">Tags</span>
+            <div class="o_field_widget">
+              <span class="badge text-bg-warning"><i class="fa fa-tag"></i> Intake – To Review</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="o_notebook">
+        <div class="o_notebook_headers">
+          <ul class="nav-tabs">
+            <li class="nav-item"><a class="nav-link active">Contacts &amp; Addresses</a></li>
+            <li class="nav-item"><a class="nav-link">Sales &amp; Purchase</a></li>
+            <li class="nav-item"><a class="nav-link">Accounting</a></li>
+            <li class="nav-item"><a class="nav-link">Internal Notes</a></li>
+          </ul>
+        </div>
+        <div class="o_notebook_content">
+          <i class="fa fa-circle-info"></i> Child contacts (content-creator, other contacts) and royalty-report emails are added here by AP after review. Payment/bank details recorded under Accounting.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mockup-annotations-layer">
+    <div class="mockup-annotation success">
+      <strong>Create result (R04 / R08 / BR-010)</strong> — Create Contact produced this vendor from the mapped answers (Name, Email, Address, Country). It is flagged a <em>Supplier</em> and carries the <em>Intake – To Review</em> tag, then linked back to the Participation.
+    </div>
+    <div class="mockup-annotation warning">
+      <strong>Review state</strong> — The <em>Intake – To Review</em> tag is the de-facto review flag. AP removes it once the bank account is verified and documents are attached.
+    </div>
+    <div class="mockup-annotation info">
+      <strong>Mapped fields only</strong> — Only questions mapped on SCR-002 populate here. Sensitive tax IDs shown masked per data-handling policy.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

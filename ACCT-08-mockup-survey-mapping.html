@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>[ACCT-08] Mockup — Survey ▸ Contact Mapping (Questions table)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--o-enterprise-color:#714B67;--o-brand-odoo:#714B67;--o-brand-primary:#714B67;--o-action:#017e84;--o-gray-100:#F9FAFB;--o-gray-200:#e7e9ed;--o-gray-300:#d8dadd;--o-gray-400:#9a9ca5;--o-gray-500:#7c7f89;--o-gray-600:#5f636f;--o-gray-700:#374151;--o-gray-800:#1F2937;--o-gray-900:#111827;--o-success:#28a745;--o-info:#17a2b8;--o-warning:#ffac00;--o-danger:#dc3545;--o-border-radius:4px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,"Noto Sans",Arial,sans-serif;font-size:14px;line-height:1.5;color:var(--o-gray-900);background:#f0f0f0;padding:0 0 24px;}
+.mockup-page{position:relative;width:1040px;margin:0 auto;background:var(--o-gray-100);border-radius:6px;padding-bottom:20px;}
+.o_control_panel{display:flex;flex-direction:column;gap:12px;padding:12px 16px;}
+.breadcrumb{display:flex;list-style:none;padding:0;margin:0;font-size:15px;color:var(--o-gray-700);}
+.breadcrumb-item a{color:var(--o-gray-600);text-decoration:none;}
+.breadcrumb-item+.breadcrumb-item::before{content:">";padding:0 6px;color:var(--o-gray-400);}
+.breadcrumb-item.active{font-weight:600;color:var(--o-gray-900);}
+.o_form_sheet_bg{padding:0 16px;}
+.o_form_sheet{background:#fff;border-radius:var(--o-border-radius);box-shadow:0 1px 4px rgba(48,48,48,.12);padding:20px 24px 28px;position:relative;overflow:visible;}
+.o_field_char_title{font-size:24px;font-weight:700;color:var(--o-gray-900);margin-bottom:14px;}
+.o_group{display:grid;grid-template-columns:1fr 1fr;gap:16px 40px;}
+.o_inner_group{display:flex;flex-direction:column;gap:12px;}
+.o_cell{display:flex;align-items:flex-start;gap:12px;}
+.o_form_label,.field-label{font-weight:600;font-size:13px;color:var(--o-gray-800);min-width:150px;flex-shrink:0;}
+.o_field_widget{font-size:14px;color:var(--o-gray-900);}
+.o_checkbox{width:16px;height:16px;border:2px solid var(--o-gray-300);border-radius:3px;display:inline-block;position:relative;vertical-align:middle;flex-shrink:0;}
+.o_checkbox.checked{background:var(--o-action);border-color:var(--o-action);}
+.o_checkbox.checked::after{content:"\2713";color:#fff;font-size:11px;font-weight:700;position:absolute;top:-1px;left:2px;}
+.help-txt{font-size:12px;color:var(--o-gray-500);margin-top:2px;}
+/* notebook */
+.o_notebook{margin-top:22px;}
+.o_notebook_headers{border-bottom:1px solid var(--o-gray-300);}
+.nav-tabs{display:flex;list-style:none;padding:0;margin:0;}
+.nav-tabs .nav-link{display:block;padding:8px 16px;font-size:14px;font-weight:500;color:var(--o-gray-600);border-radius:0;}
+.nav-tabs .nav-link.active{color:var(--o-gray-900);font-weight:600;border-bottom:2px solid var(--o-brand-odoo);border-top:3px solid var(--o-brand-odoo);background:#fff;}
+.o_notebook_content{padding:16px 0;}
+/* list table */
+.o_list_table{width:100%;border-collapse:collapse;font-size:13px;}
+.o_list_table thead th{padding:9px 12px;text-align:left;font-weight:600;color:var(--o-gray-700);border-bottom:2px solid var(--o-gray-300);background:#fff;}
+.o_list_table tbody td{padding:8px 12px;border-bottom:1px solid var(--o-gray-200);vertical-align:middle;}
+.o_data_row:hover{background:rgba(1,126,132,.04);}
+.sec-row td{background:var(--o-gray-100);font-weight:700;font-size:11px;letter-spacing:.5px;color:var(--o-action);text-transform:uppercase;}
+.badge{display:inline-block;padding:2px 9px;border-radius:50rem;font-size:11px;font-weight:normal;color:#fff;}
+.text-bg-secondary{background:var(--o-gray-400);}
+.text-bg-danger{background:var(--o-danger);}
+.req-dot{color:var(--o-danger);font-weight:700;}
+.pii{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--o-danger);background:#f8d7da;padding:0 6px;border-radius:8px;font-weight:600;}
+/* Contact field cell + picker trigger */
+.cf-trigger{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--o-gray-300);border-radius:var(--o-border-radius);padding:4px 8px;min-width:220px;background:#fff;font-size:13px;color:var(--o-gray-800);cursor:pointer;justify-content:space-between;}
+.cf-trigger.empty{color:var(--o-gray-400);font-style:italic;}
+.cf-trigger .fa-caret-down{color:var(--o-gray-400);}
+.cf-cell{position:relative;}
+/* Export-style field tree */
+.field-tree{position:absolute;top:100%;left:0;z-index:60;width:300px;background:#fff;border:1px solid var(--o-gray-300);border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.18);margin-top:4px;overflow:hidden;}
+.field-tree .ft-search{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--o-gray-200);}
+.field-tree .ft-search input{border:none;outline:none;font-size:13px;flex:1;color:var(--o-gray-700);}
+.field-tree .ft-search i{color:var(--o-gray-400);}
+.ft-list{max-height:280px;overflow-y:auto;padding:4px 0;}
+.ft-item{display:flex;align-items:center;gap:8px;padding:5px 12px;font-size:13px;color:var(--o-gray-800);cursor:pointer;}
+.ft-item:hover{background:rgba(1,126,132,.08);}
+.ft-item .tw{width:12px;color:var(--o-gray-400);font-size:11px;text-align:center;}
+.ft-item.child{padding-left:34px;}
+.ft-item.sel{background:rgba(1,126,132,.12);font-weight:600;color:var(--o-action);}
+.ft-item.disabled{color:var(--o-gray-400);cursor:not-allowed;}
+.ft-item .tag{margin-left:auto;font-size:10px;color:var(--o-gray-400);}
+.ft-foot{padding:6px 12px;border-top:1px solid var(--o-gray-200);font-size:11px;color:var(--o-gray-500);background:var(--o-gray-100);}
+/* nav / clickable / markers / annotations */
+.mockup-nav{position:sticky;top:0;z-index:100;background:var(--o-brand-primary);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#fff;}
+.mockup-nav a{color:#fff;text-decoration:none;}.mockup-nav a.clickable{font-weight:600;}
+.mockup-nav .nav-sep{opacity:.5;margin:0 8px;}
+.mockup-nav .nav-legend{background:rgba(255,255,255,.15);padding:4px 12px;border-radius:4px;font-size:11px;}
+.clickable{position:relative;border:2px dashed var(--o-action)!important;border-radius:6px;cursor:pointer;}
+.clickable:hover{background:rgba(1,126,132,.08);}
+.clickable::after{content:"\f25a";font-family:"Font Awesome 6 Free";font-weight:900;font-size:10px;color:#fff;background:var(--o-action);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-8px;right:-8px;z-index:30;}
+.mockup-new .field-label{color:var(--o-success)!important;}
+th.mockup-new{color:var(--o-success)!important;}
+.mockup-change-legend{max-width:1040px;margin:12px auto 0;font-size:11.5px;color:var(--o-gray-600);padding:0 16px;}
+.mockup-change-legend .mockup-legend-new{color:var(--o-success);font-weight:600;}
+.mockup-annotations-layer{display:flex;gap:16px;padding:18px 20px 0;flex-wrap:wrap;}
+.mockup-annotation{padding:12px 14px;border-radius:6px;border-left:5px solid;font-size:13px;line-height:1.5;flex:1;min-width:230px;}
+.mockup-annotation strong{font-weight:700;}
+.mockup-annotation.info{background:#d1ecf1;border-color:#17a2b8;color:#0c5460;}
+.mockup-annotation.success{background:#d4edda;border-color:#28a745;color:#155724;}
+.mockup-annotation.warning{background:#fff3cd;border-color:#ffac00;color:#6b4f00;}
+.mockup-annotation.danger{background:#f8d7da;border-color:#dc3545;color:#721c24;}
+</style>
+</head>
+<body>
+
+<div class="mockup-nav">
+  <div style="display:flex;align-items:center;">
+    <a class="clickable" href="index.html"><i class="fa fa-home"></i> Home</a>
+    <span class="nav-sep">›</span>
+    <span style="opacity:.8;">SCR-002 · Survey ▸ Contact Mapping</span>
+  </div>
+  <div class="nav-legend"><i class="fa fa-hand-pointer"></i> = Clickable link</div>
+</div>
+
+<div class="mockup-change-legend">
+  <span class="mockup-legend-new">■ NEW — element added by ACCT-08</span>
+</div>
+
+<div class="mockup-page">
+
+  <div class="o_control_panel">
+    <div class="o_breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Surveys</a></li>
+        <li class="breadcrumb-item"><a href="#">Surveys</a></li>
+        <li class="breadcrumb-item active">Vendor Intake Form</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="o_form_sheet_bg">
+    <div class="o_form_sheet">
+
+      <div class="o_field_char_title">Vendor Intake Form</div>
+
+      <div class="o_group">
+        <div class="o_inner_group">
+          <div class="o_cell"><label class="o_form_label">Responsible</label><div class="o_field_widget">Summer Vale</div></div>
+          <div class="o_cell"><label class="o_form_label">Access Mode</label><div class="o_field_widget">Anyone with the link</div></div>
+        </div>
+        <div class="o_inner_group">
+          <div class="o_cell mockup-new">
+            <span class="field-label">Create Contact</span>
+            <div class="o_field_widget">
+              <span class="o_checkbox checked"></span>
+              <div class="help-txt">Map submitted answers to vendor (Contact) fields. When on, the <strong>Contact field</strong> column below is shown; AP then runs Create / Update Contact on each submission.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="o_notebook">
+        <div class="o_notebook_headers">
+          <ul class="nav-tabs">
+            <li class="nav-item"><a class="nav-link active">Questions</a></li>
+            <li class="nav-item"><a class="nav-link">Options</a></li>
+            <li class="nav-item"><a class="nav-link">Description</a></li>
+            <li class="nav-item"><a class="nav-link">End Message</a></li>
+          </ul>
+        </div>
+        <div class="o_notebook_content">
+
+          <table class="o_list_table">
+            <thead>
+              <tr>
+                <th style="width:34px;"></th>
+                <th>Question</th>
+                <th style="width:150px;">Type</th>
+                <th style="width:90px;text-align:center;">Mandatory</th>
+                <th class="mockup-new" style="width:250px;">Contact field</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="sec-row"><td></td><td colspan="4">A · Vendor Information</td></tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Vendor / Company Name <span class="req-dot">*</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
+                <td class="cf-cell"><span class="cf-trigger">Name <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Vendor type (Company / Individual) <span class="req-dot">*</span></td>
+                <td><span class="badge text-bg-secondary">Multiple choice</span></td>
+                <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Email <span class="req-dot">*</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
+                <td class="cf-cell"><span class="cf-trigger">Email <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Phone / Mobile</td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger">Phone <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Address — Street</td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger">Street <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <!-- ===== Row with the export-style field tree OPEN ===== -->
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Address — Country</td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell">
+                  <span class="cf-trigger" style="border-color:var(--o-action);">Country <i class="fa fa-caret-down"></i></span>
+                  <div class="field-tree">
+                    <div class="ft-search"><i class="fa fa-magnifying-glass"></i><input placeholder="Search a contact field..." value=""></div>
+                    <div class="ft-list">
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> Name <span class="tag">Char</span></div>
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> Email <span class="tag">Char</span></div>
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> Phone <span class="tag">Char</span></div>
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> Street <span class="tag">Char</span></div>
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> City <span class="tag">Char</span></div>
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> ZIP <span class="tag">Char</span></div>
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-down" style="color:var(--o-action);"></i></span> Country <span class="tag">Many2one</span></div>
+                      <div class="ft-item child sel"><i class="fa fa-check" style="color:var(--o-action);font-size:11px;"></i> Country › Name (by name) <span class="tag">match</span></div>
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> State <span class="tag">Many2one</span></div>
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> VAT / Tax ID <span class="tag">Char</span></div>
+                      <div class="ft-item disabled" title="Not selectable in v1 — AP sets manually"><span class="tw"><i class="fa fa-ban"></i></span> Company Type <span class="tag">Selection</span></div>
+                      <div class="ft-item disabled" title="Not selectable in v1 — AP sets manually"><span class="tw"><i class="fa fa-ban"></i></span> Tags <span class="tag">Many2many</span></div>
+                    </div>
+                    <div class="ft-foot"><i class="fa fa-circle-info"></i> Text-like fields + Country/State (by name). Relational drill-down like Odoo's Export dialog.</div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="sec-row"><td></td><td colspan="4">B · Tax Form</td></tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Which US tax form applies? <span class="req-dot">*</span></td>
+                <td><span class="badge text-bg-secondary">Multiple choice</span></td>
+                <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="sec-row"><td></td><td colspan="4">B1 · W-9 (shown when W-9 selected)</td></tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Part I — TIN (SSN or EIN) <span class="req-dot">*</span> <span class="pii"><i class="fa fa-lock"></i> PII</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
+                <td class="cf-cell"><span class="cf-trigger">VAT / Tax ID <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="sec-row"><td></td><td colspan="4">C · Payment</td></tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Payment method (Wire / ACH / PayPal)</td>
+                <td><span class="badge text-bg-secondary">Multiple choice</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="font-size:12px;color:var(--o-gray-500);padding:8px 12px;"><i class="fa fa-circle-info"></i> Rows left blank in the <strong>Contact field</strong> column are not written to the vendor (e.g. Vendor type, Tax form, Payment method — AP sets these manually in v1).</div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mockup-annotations-layer">
+    <div class="mockup-annotation success">
+      <strong>No-code mapping (R07)</strong> — Turn on <em>Create Contact</em> to reveal the <em>Contact field</em> column. Pick a target vendor field per question from the tree — no developer change. Create/Update Contact on each submission writes each answer to its mapped field.
+    </div>
+    <div class="mockup-annotation info">
+      <strong>Export-style picker</strong> — The field tree mirrors Odoo's Export dialog: search + expandable, relational drill-down (Country ▸ Name). Only text-like fields and Country/State (matched by name) are selectable in v1; other relational/selection targets are greyed (D-007).
+    </div>
+    <div class="mockup-annotation warning">
+      <strong>Guards</strong> — If no question maps to a contact field, Create/Update writes nothing (BR-013). A Name mapping is required to Create (BR-008). A Country/State value that can't be matched by name is left blank with a note (BR-012).
+    </div>
+    <div class="mockup-annotation danger">
+      <strong>Diverges from FDD v0.2 (D-006)</strong> — The current FDD configures mapping <em>per question</em> on each question's Options tab, not as this survey-level table. This mockup reflects the requested redesign; <strong>FDD update is pending</strong> and requires BA approval before build.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

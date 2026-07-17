@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>[ACCT-08] Mockup — Vendor Intake Survey (Home)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --o-enterprise-color: #714B67;
+  --o-brand-primary: #714B67;
+  --o-action: #017e84;
+  --o-gray-100: #F9FAFB;
+  --o-gray-200: #e7e9ed;
+  --o-gray-300: #d8dadd;
+  --o-gray-400: #9a9ca5;
+  --o-gray-500: #7c7f89;
+  --o-gray-600: #5f636f;
+  --o-gray-700: #374151;
+  --o-gray-800: #1F2937;
+  --o-gray-900: #111827;
+  --o-success: #28a745;
+  --o-info: #17a2b8;
+  --o-warning: #ffac00;
+  --o-danger: #dc3545;
+  --o-border-radius: 4px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, "Noto Sans", Arial, sans-serif;
+  font-size: 14px; line-height: 1.5; color: var(--o-gray-900); background: #f0f0f0; padding: 0;
+}
+.mockup-nav {
+  position: sticky; top: 0; z-index: 100; background: var(--o-brand-primary);
+  padding: 8px 20px; display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; color: #fff;
+}
+.mockup-nav a { color: #fff; text-decoration: none; }
+.mockup-nav a.clickable { font-weight: 600; }
+.mockup-nav .nav-legend { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 4px; font-size: 11px; }
+.home-wrap { max-width: 1040px; margin: 0 auto; padding: 32px 24px 60px; }
+.home-header { text-align: center; margin-bottom: 8px; }
+.home-header h1 { font-size: 26px; color: var(--o-gray-900); font-weight: 700; }
+.home-header .sub { color: var(--o-gray-600); font-size: 14px; margin-top: 6px; }
+.home-header .doc-meta { color: var(--o-gray-500); font-size: 12px; margin-top: 4px; }
+.flow-strip {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
+  background: #fff; border-radius: 8px; padding: 16px; margin: 24px 0 28px;
+  box-shadow: 0 1px 4px rgba(48,48,48,0.1);
+}
+.flow-step { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--o-gray-700); }
+.flow-step .dot { width: 26px; height: 26px; border-radius: 50%; background: var(--o-action); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+.flow-arrow { color: var(--o-gray-400); font-size: 14px; }
+.tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.tile {
+  background: #fff; border-radius: 8px; padding: 20px; text-decoration: none;
+  box-shadow: 0 1px 4px rgba(48,48,48,0.12); display: flex; gap: 16px; align-items: flex-start;
+  border: 1px solid var(--o-gray-200); transition: box-shadow .15s, transform .1s; position: relative;
+}
+.tile:hover { box-shadow: 0 6px 18px rgba(48,48,48,0.18); transform: translateY(-2px); }
+.tile .ic { width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; }
+.tile .ic.public { background: var(--o-action); }
+.tile .ic.cfg { background: var(--o-brand-primary); }
+.tile .ic.vendor { background: var(--o-success); }
+.tile .ic.part { background: var(--o-info); }
+.tile h3 { font-size: 15px; color: var(--o-gray-900); margin-bottom: 4px; }
+.tile .scr { font-size: 11px; font-weight: 700; letter-spacing: .5px; color: var(--o-gray-400); }
+.tile p { font-size: 13px; color: var(--o-gray-600); margin-top: 4px; }
+.tile .role { display: inline-block; margin-top: 8px; font-size: 11px; background: var(--o-gray-100); color: var(--o-gray-600); border: 1px solid var(--o-gray-200); padding: 2px 8px; border-radius: 10px; }
+.clickable::after {
+  content: "\f25a"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 10px; color: #fff;
+  background: var(--o-action); width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; position: absolute; top: -8px; right: -8px;
+}
+.note-box { background: #fff3cd; border-left: 5px solid var(--o-warning); color: #6b4f00; font-size: 12.5px; padding: 12px 14px; border-radius: 6px; margin-top: 28px; }
+.note-box.info { background: #d1ecf1; border-color: var(--o-info); color: #0c5460; }
+.note-box strong { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="mockup-nav">
+  <div style="display:flex;align-items:center;">
+    <a href="index.html"><i class="fa fa-home"></i> Home</a>
+    <span style="opacity:.5;margin:0 8px;">›</span>
+    <span style="opacity:.8;">Vendor Intake Survey — Overview</span>
+  </div>
+  <div class="nav-legend"><i class="fa fa-hand-pointer"></i> = Clickable link</div>
+</div>
+
+<div class="home-wrap">
+  <div class="home-header">
+    <h1>Vendor Intake Survey</h1>
+    <div class="sub">ACCT-08 — anonymous vendor onboarding via public survey, then AP creates/updates the vendor contact</div>
+    <div class="doc-meta">FDD v0.2 (Draft) · Target: Odoo 18.0 Enterprise · Interactive mockup (5 screens)</div>
+  </div>
+
+  <div class="flow-strip">
+    <div class="flow-step"><span class="dot">1</span> Vendor fills public form</div>
+    <span class="flow-arrow"><i class="fa fa-arrow-right"></i></span>
+    <div class="flow-step"><span class="dot">2</span> Submit → Accounting emailed</div>
+    <span class="flow-arrow"><i class="fa fa-arrow-right"></i></span>
+    <div class="flow-step"><span class="dot">3</span> AP opens Participation</div>
+    <span class="flow-arrow"><i class="fa fa-arrow-right"></i></span>
+    <div class="flow-step"><span class="dot">4</span> Create / Update vendor</div>
+  </div>
+
+  <div class="tiles">
+    <a class="tile clickable" href="ACCT-08-mockup-intake-survey.html">
+      <div class="ic public"><i class="fa fa-clipboard-list"></i></div>
+      <div>
+        <div class="scr">SCR-001 · PUBLIC SURVEY</div>
+        <h3>Vendor Intake Form</h3>
+        <p>Anonymous website survey. Vendor + tax form (W-9 / W-8BEN conditional branch) + payment details.</p>
+        <span class="role"><i class="fa fa-globe"></i> Anonymous vendor</span>
+      </div>
+    </a>
+
+    <a class="tile clickable" href="ACCT-08-mockup-survey-mapping.html">
+      <div class="ic cfg"><i class="fa fa-sliders"></i></div>
+      <div>
+        <div class="scr">SCR-002 · SURVEYS ▸ SURVEY</div>
+        <h3>Survey → Contact Mapping</h3>
+        <p>Tick "Create Contact" on the survey to reveal a Contact field column beside the question list; pick each target field via an export-style tree.</p>
+        <span class="role"><i class="fa fa-user-gear"></i> Survey Manager</span>
+      </div>
+    </a>
+
+    <a class="tile clickable" href="ACCT-08-mockup-participation-form.html">
+      <div class="ic part"><i class="fa fa-file-lines"></i></div>
+      <div>
+        <div class="scr">SCR-004 · SURVEYS ▸ PARTICIPATIONS</div>
+        <h3>Participation (submission)</h3>
+        <p>AP reviews one submission. Contact field + Create Contact / Update Contact buttons.</p>
+        <span class="role"><i class="fa fa-user"></i> AP / Survey user</span>
+      </div>
+    </a>
+
+    <a class="tile clickable" href="ACCT-08-mockup-vendor-profile.html">
+      <div class="ic vendor"><i class="fa fa-building"></i></div>
+      <div>
+        <div class="scr">SCR-003 · CONTACTS ▸ VENDORS</div>
+        <h3>Vendor Profile</h3>
+        <p>Vendor created from mapped answers — Supplier flag + "Intake – To Review" tag.</p>
+        <span class="role"><i class="fa fa-user"></i> AP / Accounting</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="note-box info">
+    <strong>Suggested walkthrough</strong> — Open the <em>Vendor Intake Form</em>, choose a tax form to see the W-9/W-8BEN branch, then click <em>Submit</em>. That lands on the <em>Participation</em> form where <em>Create Contact</em> opens the new <em>Vendor Profile</em>.
+  </div>
+  <div class="note-box">
+    <strong>Not final UI</strong> — FDD states the real survey is built on Staging (per Summer); question layout/placement defers to that build. These mockups show intended content and behavior, not pixel-final screens. Sensitive tax IDs (TIN/SSN/EIN, DOB) are shown masked.
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>[ACCT-08] Mockup — Vendor Intake Form (Public Survey)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --o-brand-primary: #714B67;
+  --o-action: #017e84;
+  --o-gray-100: #F9FAFB;
+  --o-gray-200: #e7e9ed;
+  --o-gray-300: #d8dadd;
+  --o-gray-400: #9a9ca5;
+  --o-gray-500: #7c7f89;
+  --o-gray-600: #5f636f;
+  --o-gray-700: #374151;
+  --o-gray-900: #111827;
+  --o-success: #28a745;
+  --o-info: #17a2b8;
+  --o-warning: #ffac00;
+  --o-danger: #dc3545;
+  --o-border-radius: 4px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, "Noto Sans", Arial, sans-serif;
+  font-size: 14px; line-height: 1.5; color: var(--o-gray-900); background: #f0f0f0;
+}
+/* ===== Sticky mockup nav ===== */
+.mockup-nav {
+  position: sticky; top: 0; z-index: 100; background: var(--o-brand-primary);
+  padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #fff;
+}
+.mockup-nav a { color: #fff; text-decoration: none; }
+.mockup-nav a.clickable { font-weight: 600; }
+.mockup-nav .nav-sep { opacity: .5; margin: 0 8px; }
+.mockup-nav .nav-legend { background: rgba(255,255,255,.15); padding: 4px 12px; border-radius: 4px; font-size: 11px; }
+/* ===== Website survey chrome ===== */
+.web-header { background: #fff; border-bottom: 1px solid var(--o-gray-200); padding: 10px 24px; display: flex; align-items: center; gap: 10px; }
+.web-header .brand { font-weight: 700; color: var(--o-brand-primary); font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.web-header .brand .logo { width: 26px; height: 26px; border-radius: 6px; background: var(--o-brand-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.survey-wrap { max-width: 820px; margin: 0 auto; padding: 28px 20px 70px; }
+.survey-card { background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(48,48,48,.12); overflow: hidden; }
+.survey-title { padding: 22px 28px 8px; }
+.survey-title h1 { font-size: 22px; color: var(--o-gray-900); }
+.survey-title p { color: var(--o-gray-600); font-size: 13px; margin-top: 4px; }
+.progress-row { padding: 0 28px 16px; }
+.progress-bar-bg { height: 8px; background: var(--o-gray-200); border-radius: 6px; overflow: hidden; }
+.progress-bar-fill { height: 100%; width: 60%; background: var(--o-action); }
+.progress-label { font-size: 12px; color: var(--o-gray-500); margin-top: 4px; }
+.survey-body { padding: 8px 28px 24px; }
+.sec-head { font-size: 13px; font-weight: 700; letter-spacing: .5px; color: var(--o-action); text-transform: uppercase; margin: 22px 0 6px; border-bottom: 2px solid var(--o-gray-100); padding-bottom: 6px; }
+.q { margin: 16px 0; }
+.q-label { font-weight: 600; font-size: 14px; color: var(--o-gray-800); margin-bottom: 6px; display: block; }
+.q-label .req { color: var(--o-danger); margin-left: 3px; }
+.q-help { font-size: 12px; color: var(--o-gray-500); margin-bottom: 6px; }
+.s-input { width: 100%; border: 1px solid var(--o-gray-300); border-radius: var(--o-border-radius); padding: 8px 10px; font-size: 14px; background: #fff; color: var(--o-gray-700); }
+.s-input::placeholder { color: var(--o-gray-400); }
+.s-input.short { max-width: 320px; }
+textarea.s-input { min-height: 60px; resize: vertical; }
+.addr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.choice { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--o-gray-300); border-radius: var(--o-border-radius); margin-bottom: 6px; cursor: pointer; }
+.choice.sel { border-color: var(--o-action); background: rgba(1,126,132,.06); }
+.radio-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--o-gray-400); flex-shrink: 0; position: relative; }
+.choice.sel .radio-dot { border-color: var(--o-action); }
+.choice.sel .radio-dot::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--o-action); }
+.pii { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--o-danger); background: #f8d7da; padding: 1px 8px; border-radius: 10px; margin-left: 6px; font-weight: 600; }
+/* Branch tabs */
+.branch-tabs { display: flex; gap: 0; margin-top: 8px; border-bottom: 1px solid var(--o-gray-300); }
+.branch-tab {
+  padding: 9px 18px; font-size: 13px; font-weight: 600; color: var(--o-gray-600); cursor: pointer; background: #fff;
+  border: 1px solid transparent; border-bottom: 2px dashed var(--o-action); position: relative;
+}
+.branch-tab.active { color: var(--o-gray-900); border-bottom: 2px solid var(--o-brand-primary); border-top: 3px solid var(--o-brand-primary); background: #fff; }
+.branch-tab::after {
+  content: "\f25a"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 8px; color: #fff; background: var(--o-action);
+  width: 14px; height: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: -4px; right: -4px;
+}
+.branch-pane { display: none; padding: 14px 4px 4px; }
+.branch-pane.active { display: block; }
+.nested-note { font-size: 12px; color: var(--o-gray-600); background: var(--o-gray-100); border-left: 3px solid var(--o-gray-400); padding: 6px 10px; border-radius: 4px; margin-top: 4px; }
+.cert-box { display: flex; gap: 8px; align-items: flex-start; padding: 10px; border: 1px dashed var(--o-gray-300); border-radius: 6px; background: var(--o-gray-100); margin-top: 8px; }
+.cbx { width: 16px; height: 16px; border: 2px solid var(--o-gray-400); border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+.survey-footer { padding: 18px 28px 26px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--o-gray-200); }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 20px; border-radius: var(--o-border-radius); font-size: 14px; font-weight: 600; border: 1px solid transparent; cursor: pointer; }
+.btn-submit { background: var(--o-action); color: #fff; border-color: var(--o-action); position: relative; }
+.btn-ghost { background: transparent; color: var(--o-gray-500); }
+.clickable::after {
+  content: "\f25a"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 10px; color: #fff; background: var(--o-action);
+  width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: -8px; right: -8px;
+}
+.btn-submit.clickable { border: 2px dashed #fff; }
+/* Annotations */
+.mockup-annotations-layer { max-width: 820px; margin: 0 auto; display: flex; gap: 16px; padding: 18px 20px 0; flex-wrap: wrap; }
+.mockup-annotation { padding: 12px 14px; border-radius: 6px; border-left: 5px solid; font-size: 13px; line-height: 1.5; flex: 1; min-width: 240px; }
+.mockup-annotation strong { font-weight: 700; }
+.mockup-annotation.info { background: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+.mockup-annotation.warning { background: #fff3cd; border-color: #ffac00; color: #6b4f00; }
+.mockup-annotation.success { background: #d4edda; border-color: #28a745; color: #155724; }
+.mockup-annotation.danger { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+</style>
+</head>
+<body>
+
+<div class="mockup-nav">
+  <div style="display:flex;align-items:center;">
+    <a class="clickable" href="index.html"><i class="fa fa-home"></i> Home</a>
+    <span class="nav-sep">›</span>
+    <span style="opacity:.8;">SCR-001 · Vendor Intake Form (public survey)</span>
+  </div>
+  <div class="nav-legend"><i class="fa fa-hand-pointer"></i> = Clickable link</div>
+</div>
+
+<div class="web-header">
+  <div class="brand"><span class="logo"><i class="fa fa-building"></i></span> WJ — Vendor Onboarding</div>
+  <span style="color:var(--o-gray-400);font-size:12px;margin-left:auto;"><i class="fa fa-lock"></i> Public link · no login required</span>
+</div>
+
+<div class="survey-wrap">
+  <div class="survey-card">
+    <div class="survey-title">
+      <h1>Vendor Intake Form</h1>
+      <p>Please provide your business, tax, and payment details so we can set you up as a vendor.</p>
+    </div>
+    <div class="progress-row">
+      <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+      <div class="progress-label">Section 2 of 3</div>
+    </div>
+
+    <div class="survey-body">
+
+      <!-- ===== A. Vendor Info ===== -->
+      <div class="sec-head">A · Vendor Information</div>
+
+      <div class="q">
+        <label class="q-label">Vendor / Company Name<span class="req">*</span></label>
+        <input class="s-input" placeholder="e.g. Aurora Media LLC">
+      </div>
+
+      <div class="q">
+        <label class="q-label">Vendor type<span class="req">*</span></label>
+        <div class="choice sel"><span class="radio-dot"></span> Company</div>
+        <div class="choice"><span class="radio-dot"></span> Individual</div>
+      </div>
+
+      <div class="q">
+        <label class="q-label">Email<span class="req">*</span></label>
+        <div class="q-help"><i class="fa fa-circle-info"></i> Must be a valid email address — also used to match you to an existing record.</div>
+        <input class="s-input short" placeholder="name@company.com">
+      </div>
+
+      <div class="q">
+        <label class="q-label">Phone / Mobile</label>
+        <input class="s-input short" placeholder="+1 (555) 000-0000">
+      </div>
+
+      <div class="q">
+        <label class="q-label">Address</label>
+        <div class="addr-grid">
+          <input class="s-input" placeholder="Street" style="grid-column:1 / -1;">
+          <input class="s-input" placeholder="City">
+          <input class="s-input" placeholder="State / Province">
+          <input class="s-input" placeholder="ZIP / Postal code">
+          <input class="s-input" placeholder="Country">
+        </div>
+      </div>
+
+      <div class="q">
+        <label class="q-label">Content-creator name (if any)</label>
+        <input class="s-input short" placeholder="Optional">
+      </div>
+      <div class="q">
+        <label class="q-label">Other contacts (names, emails, titles)</label>
+        <textarea class="s-input" placeholder="One contact per line"></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label">Royalty-report email(s)</label>
+        <input class="s-input short" placeholder="Optional">
+      </div>
+      <div class="q">
+        <label class="q-label">Additional information</label>
+        <textarea class="s-input" placeholder="Anything else we should know"></textarea>
+      </div>
+
+      <!-- ===== B. Tax form selector ===== -->
+      <div class="sec-head">B · Tax Form</div>
+      <div class="q">
+        <label class="q-label">Which US tax form applies?<span class="req">*</span></label>
+        <div class="q-help"><i class="fa fa-circle-info"></i> Your choice reveals only the matching set of questions below.</div>
+        <div class="choice sel" onclick="showBranch('w9')"><span class="radio-dot"></span> <strong>W-9</strong> — US / Domestic vendor</div>
+        <div class="choice" onclick="showBranch('w8')"><span class="radio-dot"></span> <strong>W-8BEN</strong> — International vendor</div>
+      </div>
+
+      <!-- Branch preview tabs (mockup-only aid to preview both branches) -->
+      <div class="branch-tabs">
+        <div class="branch-tab active" id="tab-w9" onclick="showBranch('w9')">W-9 questions</div>
+        <div class="branch-tab" id="tab-w8" onclick="showBranch('w8')">W-8BEN questions</div>
+      </div>
+
+      <!-- ---- W-9 branch ---- -->
+      <div class="branch-pane active" id="pane-w9">
+        <div class="q"><label class="q-label">L1 — Name (entity / individual)<span class="req">*</span></label><input class="s-input"></div>
+        <div class="q"><label class="q-label">L2 — Business / disregarded-entity name</label><input class="s-input"></div>
+        <div class="q">
+          <label class="q-label">L3a — Federal tax classification<span class="req">*</span></label>
+          <div class="choice"><span class="radio-dot"></span> Individual / sole proprietor</div>
+          <div class="choice"><span class="radio-dot"></span> C corporation</div>
+          <div class="choice"><span class="radio-dot"></span> S corporation</div>
+          <div class="choice"><span class="radio-dot"></span> Partnership</div>
+          <div class="choice"><span class="radio-dot"></span> Trust / estate</div>
+          <div class="choice sel"><span class="radio-dot"></span> LLC</div>
+          <div class="choice"><span class="radio-dot"></span> Other</div>
+          <div class="nested-note"><i class="fa fa-turn-up fa-rotate-90"></i> Because <strong>LLC</strong> is selected, an extra question appears: <em>LLC tax classification (C / S / P)</em>.</div>
+        </div>
+        <div class="q"><label class="q-label">L3a — LLC tax classification (C / S / P)</label><input class="s-input short" placeholder="C, S or P"></div>
+        <div class="q">
+          <label class="q-label">L3b — Foreign partners / owners / beneficiaries?</label>
+          <div class="choice"><span class="radio-dot"></span> Yes</div>
+          <div class="choice"><span class="radio-dot"></span> No</div>
+        </div>
+        <div class="q"><label class="q-label">L4 — Exempt payee code / FATCA exemption code</label><input class="s-input short"></div>
+        <div class="q"><label class="q-label">L5–L6 — Address / City, State, ZIP<span class="req">*</span></label><input class="s-input" placeholder="Street"><input class="s-input" style="margin-top:8px;" placeholder="City, State ZIP"></div>
+        <div class="q"><label class="q-label">L7 — Account number(s)</label><input class="s-input short"></div>
+        <div class="q">
+          <label class="q-label">Part I — Taxpayer Identification Number (SSN or EIN)<span class="req">*</span><span class="pii"><i class="fa fa-lock"></i> Sensitive PII</span></label>
+          <input class="s-input short" placeholder="___ – __ – ____" style="letter-spacing:2px;">
+        </div>
+        <div class="cert-box">
+          <span class="cbx"></span>
+          <div><strong>Part II — Certification</strong><br><span style="font-size:12px;color:var(--o-gray-600);">I certify the information above is correct. (Acknowledgement checkbox — not a legal e-signature.)</span></div>
+        </div>
+      </div>
+
+      <!-- ---- W-8BEN branch ---- -->
+      <div class="branch-pane" id="pane-w8">
+        <div class="q"><label class="q-label">L1 — Name of beneficial owner<span class="req">*</span></label><input class="s-input"></div>
+        <div class="q"><label class="q-label">L2 — Country of citizenship<span class="req">*</span></label><input class="s-input short"></div>
+        <div class="q"><label class="q-label">L3 — Permanent residence address<span class="req">*</span></label><input class="s-input" placeholder="Street, city, state/province, country, postal code"></div>
+        <div class="q"><label class="q-label">L4 — Mailing address (if different)</label><input class="s-input"></div>
+        <div class="q"><label class="q-label">L5 — US TIN (SSN / ITIN)<span class="pii"><i class="fa fa-lock"></i> Sensitive PII</span></label><input class="s-input short" placeholder="___ – __ – ____" style="letter-spacing:2px;"></div>
+        <div class="q"><label class="q-label">L6a — Foreign TIN<span class="pii"><i class="fa fa-lock"></i> Sensitive PII</span></label><input class="s-input short"></div>
+        <div class="q"><label class="q-label">L6b — FTIN not legally required</label><div class="choice"><span class="cbx"></span> Check if a foreign TIN is not legally required</div></div>
+        <div class="q"><label class="q-label">L7 — Reference number(s)</label><input class="s-input short"></div>
+        <div class="q"><label class="q-label">L8 — Date of birth<span class="req">*</span><span class="pii"><i class="fa fa-lock"></i> Sensitive PII</span></label><input class="s-input short" placeholder="MM / DD / YYYY"></div>
+        <div class="q"><label class="q-label">L9 — Treaty country</label><input class="s-input short"></div>
+        <div class="q"><label class="q-label">L10 — Special rates & conditions</label><textarea class="s-input" placeholder="Article/paragraph, rate, income type, reasons"></textarea></div>
+        <div class="cert-box">
+          <span class="cbx"></span>
+          <div><strong>Part III — Certification</strong><br><span style="font-size:12px;color:var(--o-gray-600);">I certify the information above is correct. (Acknowledgement checkbox — not a legal e-signature.)</span></div>
+        </div>
+      </div>
+
+      <!-- ===== C. Payment ===== -->
+      <div class="sec-head">C · Payment</div>
+      <div class="q">
+        <label class="q-label">Payment method</label>
+        <div class="choice"><span class="radio-dot"></span> Wire</div>
+        <div class="choice sel"><span class="radio-dot"></span> ACH</div>
+        <div class="choice"><span class="radio-dot"></span> PayPal</div>
+      </div>
+      <div class="q">
+        <label class="q-label">Payment instructions</label>
+        <div class="q-help"><i class="fa fa-circle-info"></i> Routing/account or SWIFT/BIC/IBAN. AP records a validated bank account — this text is not auto-parsed.</div>
+        <textarea class="s-input"></textarea>
+      </div>
+    </div>
+
+    <div class="survey-footer">
+      <button class="btn btn-ghost"><i class="fa fa-arrow-left"></i> Previous</button>
+      <button class="btn btn-submit clickable" onclick="location.href='ACCT-08-mockup-participation-form.html'"><i class="fa fa-paper-plane"></i> Submit</button>
+    </div>
+  </div>
+</div>
+
+<div class="mockup-annotations-layer">
+  <div class="mockup-annotation warning">
+    <strong>Conditional branch (R02)</strong> — The tax-form choice reveals only its own questions via native <em>triggering answers</em>. W-9 and W-8BEN are never shown together to the vendor. The two tabs above are a mockup aid to preview both.
+  </div>
+  <div class="mockup-annotation danger">
+    <strong>Sensitive PII (Q-001)</strong> — TIN/SSN/EIN, ITIN, foreign TIN and Date of birth are captured as plain survey answers. Access to these should be restricted. Values are shown masked in this mockup.
+  </div>
+  <div class="mockup-annotation info">
+    <strong>Submit (R01 / R09)</strong> — Anyone with the link can submit anonymously. On completion of a non-test entry, Accounting is emailed a link to the Participation record. Click Submit to jump to that Participation form.
+  </div>
+</div>
+
+<script>
+function showBranch(which){
+  var w9 = which === 'w9';
+  document.getElementById('pane-w9').classList.toggle('active', w9);
+  document.getElementById('pane-w8').classList.toggle('active', !w9);
+  document.getElementById('tab-w9').classList.toggle('active', w9);
+  document.getElementById('tab-w8').classList.toggle('active', !w9);
+}
+</script>
+
+</body>
+</html>
