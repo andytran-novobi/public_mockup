@@ -120,14 +120,14 @@ th.mockup-new{color:var(--o-success)!important;}
       <div class="o_group">
         <div class="o_inner_group">
           <div class="o_cell"><label class="o_form_label">Responsible</label><div class="o_field_widget">Summer Vale</div></div>
-          <div class="o_cell"><label class="o_form_label">Access Mode</label><div class="o_field_widget">Anyone with the link</div></div>
+          <div class="o_cell"><label class="o_form_label">Access Mode</label><div class="o_field_widget">Invited people only</div></div>
         </div>
         <div class="o_inner_group">
           <div class="o_cell mockup-new">
-            <span class="field-label">Create Contact</span>
+            <span class="field-label">Update contact from submissions</span>
             <div class="o_field_widget">
               <span class="o_checkbox checked"></span>
-              <div class="help-txt">Map submitted answers to vendor (Contact) fields. When on, the <strong>Contact field</strong> column below is shown; AP then runs Create / Update Contact on each submission.</div>
+              <div class="help-txt">Map submitted answers to vendor (Contact) fields. When on, the <strong>Contact field</strong> column below is shown, the Share wizard offers <strong>Recipients only</strong> (no loose emails, BR-014), and AP runs <strong>Update Contact</strong> on each submission.</div>
             </div>
           </div>
         </div>
@@ -244,17 +244,80 @@ th.mockup-new{color:var(--o-success)!important;}
                 <td class="cf-cell"><span class="cf-trigger">VAT / Tax ID <i class="fa fa-caret-down"></i></span></td>
               </tr>
 
-              <tr class="sec-row"><td></td><td colspan="4">C · Payment</td></tr>
+              <tr class="sec-row"><td></td><td colspan="4">C · Payment (structured — D-008)</td></tr>
               <tr class="o_data_row">
                 <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
-                <td>Payment method (Wire / ACH / PayPal)</td>
+                <td>Payment method (Wire / ACH / PayPal) <span class="req-dot">*</span></td>
                 <td><span class="badge text-bg-secondary">Multiple choice</span></td>
+                <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Bank Name <span style="font-size:11px;color:var(--o-gray-400);">(Wire/ACH)</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Account Holder Name <span style="font-size:11px;color:var(--o-gray-400);">(Wire/ACH)</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Account Number <span class="pii"><i class="fa fa-lock"></i> PII</span> <span style="font-size:11px;color:var(--o-gray-400);">(Wire/ACH)</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>ABA / Routing Number <span class="pii"><i class="fa fa-lock"></i> PII</span> <span style="font-size:11px;color:var(--o-gray-400);">(Wire/ACH)</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Account Type (Checking / Savings) <span style="font-size:11px;color:var(--o-gray-400);">(ACH)</span></td>
+                <td><span class="badge text-bg-secondary">Multiple choice</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>SWIFT / BIC <span style="font-size:11px;color:var(--o-gray-400);">(Wire)</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>IBAN <span class="pii"><i class="fa fa-lock"></i> PII</span> <span style="font-size:11px;color:var(--o-gray-400);">(Wire)</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>PayPal email <span style="font-size:11px;color:var(--o-gray-400);">(PayPal)</span></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Other payment notes</td>
+                <td><span class="badge text-bg-secondary">Multiple Lines Text</span></td>
                 <td style="text-align:center;"><span class="o_checkbox"></span></td>
                 <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
               </tr>
             </tbody>
           </table>
-          <div style="font-size:12px;color:var(--o-gray-500);padding:8px 12px;"><i class="fa fa-circle-info"></i> Rows left blank in the <strong>Contact field</strong> column are not written to the vendor (e.g. Vendor type, Tax form, Payment method — AP sets these manually in v1).</div>
+          <div style="font-size:12px;color:var(--o-gray-500);padding:8px 12px;"><i class="fa fa-circle-info"></i> Rows left blank in the <strong>Contact field</strong> column are not written to the vendor (e.g. Vendor type, Tax form, and <strong>all bank-detail questions</strong> — the bank answers stay on the submission and AP keys the verified bank account manually, D-008).</div>
 
         </div>
       </div>
@@ -264,16 +327,16 @@ th.mockup-new{color:var(--o-success)!important;}
 
   <div class="mockup-annotations-layer">
     <div class="mockup-annotation success">
-      <strong>No-code mapping (R07)</strong> — Turn on <em>Create Contact</em> to reveal the <em>Contact field</em> column. Pick a target vendor field per question from the tree — no developer change. Create/Update Contact on each submission writes each answer to its mapped field.
+      <strong>No-code mapping (R07)</strong> — Turn on <em>Update contact from submissions</em> to reveal the <em>Contact field</em> column. Pick a target vendor field per question from the tree — no developer change. <strong>Update Contact</strong> on each submission writes each answer to its mapped field.
     </div>
     <div class="mockup-annotation info">
       <strong>Export-style picker</strong> — The field tree mirrors Odoo's Export dialog: search + expandable, relational drill-down (Country ▸ Name). Only text-like fields and Country/State (matched by name) are selectable in v1; other relational/selection targets are greyed (D-007).
     </div>
     <div class="mockup-annotation warning">
-      <strong>Guards</strong> — If no question maps to a contact field, Create/Update writes nothing (BR-013). A Name mapping is required to Create (BR-008). A Country/State value that can't be matched by name is left blank with a note (BR-012).
+      <strong>Guards</strong> — If no question maps to a contact field, Update writes nothing (BR-013). A Country/State value that can't be matched by name is left blank with a note (BR-012). Bank questions stay <strong>unmapped by design</strong> — never written to a bank record (D-008).
     </div>
     <div class="mockup-annotation danger">
-      <strong>Diverges from FDD v0.2 (D-006)</strong> — The current FDD configures mapping <em>per question</em> on each question's Options tab, not as this survey-level table. This mockup reflects the requested redesign; <strong>FDD update is pending</strong> and requires BA approval before build.
+      <strong>Presentation note (D-006 / D-009)</strong> — FDD v0.3 confirms the survey-level toggle shown here (<em>Update contact from submissions</em>, D-009) and keeps the mapping itself <em>per question</em> (each question's Options tab, D-006). This consolidated table is an illustrative overview of those per-question settings, not a separate config screen.
     </div>
   </div>
 

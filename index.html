@@ -91,28 +91,40 @@ body {
 <div class="home-wrap">
   <div class="home-header">
     <h1>Vendor Intake Survey</h1>
-    <div class="sub">ACCT-08 — anonymous vendor onboarding via public survey, then AP creates/updates the vendor contact</div>
-    <div class="doc-meta">FDD v0.2 (Draft) · Target: Odoo 18.0 Enterprise · Interactive mockup (5 screens)</div>
+    <div class="sub">ACCT-08 — invited vendor onboarding: AP creates the contact, sends a personal invite, then applies the submission with Update Contact</div>
+    <div class="doc-meta">FDD v0.3 (Draft) · Target: Odoo 18.0 Enterprise · Interactive mockup (6 screens)</div>
   </div>
 
   <div class="flow-strip">
-    <div class="flow-step"><span class="dot">1</span> Vendor fills public form</div>
+    <div class="flow-step"><span class="dot">1</span> AP creates contact + sends invite</div>
     <span class="flow-arrow"><i class="fa fa-arrow-right"></i></span>
-    <div class="flow-step"><span class="dot">2</span> Submit → Accounting emailed</div>
+    <div class="flow-step"><span class="dot">2</span> Vendor fills personal form</div>
     <span class="flow-arrow"><i class="fa fa-arrow-right"></i></span>
-    <div class="flow-step"><span class="dot">3</span> AP opens Participation</div>
+    <div class="flow-step"><span class="dot">3</span> Submit → Accounting emailed</div>
     <span class="flow-arrow"><i class="fa fa-arrow-right"></i></span>
-    <div class="flow-step"><span class="dot">4</span> Create / Update vendor</div>
+    <div class="flow-step"><span class="dot">4</span> AP opens Participation</div>
+    <span class="flow-arrow"><i class="fa fa-arrow-right"></i></span>
+    <div class="flow-step"><span class="dot">5</span> Update vendor</div>
   </div>
 
   <div class="tiles">
+    <a class="tile clickable" href="ACCT-08-mockup-share-wizard.html">
+      <div class="ic" style="background:var(--o-warning);"><i class="fa fa-paper-plane"></i></div>
+      <div>
+        <div class="scr">SCR-005 · SURVEYS ▸ SHARE</div>
+        <h3>Share Wizard (invite)</h3>
+        <p>AP invites the vendor: Recipients are contacts only ("Additional emails" hidden); "Create and edit" adds a brand-new vendor inline.</p>
+        <span class="role"><i class="fa fa-user"></i> AP / Survey user</span>
+      </div>
+    </a>
+
     <a class="tile clickable" href="ACCT-08-mockup-intake-survey.html">
       <div class="ic public"><i class="fa fa-clipboard-list"></i></div>
       <div>
-        <div class="scr">SCR-001 · PUBLIC SURVEY</div>
+        <div class="scr">SCR-001 · INVITED SURVEY</div>
         <h3>Vendor Intake Form</h3>
-        <p>Anonymous website survey. Vendor + tax form (W-9 / W-8BEN conditional branch) + payment details.</p>
-        <span class="role"><i class="fa fa-globe"></i> Anonymous vendor</span>
+        <p>Personal-link survey (no login). Vendor + tax form (W-9 / W-8BEN branch) + structured payment details shown by payment method.</p>
+        <span class="role"><i class="fa fa-envelope-open-text"></i> Invited vendor</span>
       </div>
     </a>
 
@@ -121,7 +133,7 @@ body {
       <div>
         <div class="scr">SCR-002 · SURVEYS ▸ SURVEY</div>
         <h3>Survey → Contact Mapping</h3>
-        <p>Tick "Create Contact" on the survey to reveal a Contact field column beside the question list; pick each target field via an export-style tree.</p>
+        <p>Turn on "Update contact from submissions" and map each question to its vendor field via an export-style tree.</p>
         <span class="role"><i class="fa fa-user-gear"></i> Survey Manager</span>
       </div>
     </a>
@@ -131,7 +143,7 @@ body {
       <div>
         <div class="scr">SCR-004 · SURVEYS ▸ PARTICIPATIONS</div>
         <h3>Participation (submission)</h3>
-        <p>AP reviews one submission. Contact field + Create Contact / Update Contact buttons.</p>
+        <p>AP reviews one submission. Contact pre-linked at share time + the Update Contact button.</p>
         <span class="role"><i class="fa fa-user"></i> AP / Survey user</span>
       </div>
     </a>
@@ -141,17 +153,17 @@ body {
       <div>
         <div class="scr">SCR-003 · CONTACTS ▸ VENDORS</div>
         <h3>Vendor Profile</h3>
-        <p>Vendor created from mapped answers — Supplier flag + "Intake – To Review" tag.</p>
+        <p>Vendor updated from mapped answers — Supplier flag + "Intake – To Review" tag applied by Update Contact.</p>
         <span class="role"><i class="fa fa-user"></i> AP / Accounting</span>
       </div>
     </a>
   </div>
 
   <div class="note-box info">
-    <strong>Suggested walkthrough</strong> — Open the <em>Vendor Intake Form</em>, choose a tax form to see the W-9/W-8BEN branch, then click <em>Submit</em>. That lands on the <em>Participation</em> form where <em>Create Contact</em> opens the new <em>Vendor Profile</em>.
+    <strong>Suggested walkthrough</strong> — Start at the <em>Share Wizard</em> to see how AP invites a vendor. Then open the <em>Vendor Intake Form</em>, choose a tax form and a payment method to see both branches, and click <em>Submit</em>. That lands on the <em>Participation</em> form where <em>Update Contact</em> opens the updated <em>Vendor Profile</em>.
   </div>
   <div class="note-box">
-    <strong>Not final UI</strong> — FDD states the real survey is built on Staging (per Summer); question layout/placement defers to that build. These mockups show intended content and behavior, not pixel-final screens. Sensitive tax IDs (TIN/SSN/EIN, DOB) are shown masked.
+    <strong>Not final UI</strong> — FDD states the real survey is built on Staging (per Summer); question layout/placement defers to that build. These mockups show intended content and behavior, not pixel-final screens. Sensitive tax IDs (TIN/SSN/EIN, DOB) and bank numbers are shown masked.
   </div>
 </div>
 

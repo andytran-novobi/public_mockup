@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1100">
-<title>[ACCT-08] Mockup — Participation (Create / Update Contact)</title>
+<title>[ACCT-08] Mockup — Participation (Update Contact)</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root{--o-enterprise-color:#714B67;--o-brand-odoo:#714B67;--o-brand-primary:#714B67;--o-action:#017e84;--o-gray-100:#F9FAFB;--o-gray-200:#e7e9ed;--o-gray-300:#d8dadd;--o-gray-400:#9a9ca5;--o-gray-500:#7c7f89;--o-gray-600:#5f636f;--o-gray-700:#374151;--o-gray-800:#1F2937;--o-gray-900:#111827;--o-success:#28a745;--o-info:#17a2b8;--o-warning:#ffac00;--o-danger:#dc3545;--o-border-radius:4px;}
@@ -97,8 +97,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 
   <div class="o_form_statusbar">
     <div class="o_statusbar_buttons">
-      <button class="btn mockup-new clickable" onclick="location.href='ACCT-08-mockup-vendor-profile.html'"><i class="fa fa-user-plus"></i> Create Contact</button>
-      <button class="btn btn-disabled mockup-new" title="Disabled — a Contact is not set"><i class="fa fa-user-pen"></i> Update Contact</button>
+      <button class="btn mockup-new clickable" onclick="location.href='ACCT-08-mockup-vendor-profile.html'"><i class="fa fa-user-pen"></i> Update Contact</button>
     </div>
     <div class="o_statusbar_status">
       <button class="o_arrow_button o_first">New</button>
@@ -123,7 +122,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
           <div class="o_cell mockup-new">
             <span class="field-label">Contact</span>
             <div class="o_field_widget">
-              <span class="o_input"><span class="placeholder">— no match — pick a contact or Create —</span> <i class="fa fa-caret-down" style="color:var(--o-gray-400);margin-left:auto;"></i></span>
+              <a href="ACCT-08-mockup-vendor-profile.html">Aurora Media LLC</a> <span style="font-size:11px;color:var(--o-gray-400);">(linked at share time · read-only)</span>
             </div>
           </div>
         </div>
@@ -144,6 +143,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
               <tr><td>Which US tax form applies?</td><td>W-9 — US / Domestic</td><td class="mono-map">—</td></tr>
               <tr><td>Part I — TIN (SSN or EIN)</td><td>•••••••1234 <span style="font-size:11px;color:var(--o-gray-400);">(masked)</span></td><td class="mono-map">vat</td></tr>
               <tr><td>Payment method</td><td>ACH</td><td class="mono-map">—</td></tr>
+              <tr><td>Bank Name</td><td>First Harbor Bank</td><td class="mono-map">— (AP keys the bank account)</td></tr>
+              <tr><td>Account Holder Name</td><td>Aurora Media LLC</td><td class="mono-map">—</td></tr>
+              <tr><td>Account Number</td><td>••••••7890 <span style="font-size:11px;color:var(--o-gray-400);">(masked)</span></td><td class="mono-map">—</td></tr>
+              <tr><td>ABA / Routing Number</td><td>•••••0025 <span style="font-size:11px;color:var(--o-gray-400);">(masked)</span></td><td class="mono-map">—</td></tr>
+              <tr><td>Account Type</td><td>Checking</td><td class="mono-map">—</td></tr>
             </tbody>
           </table>
         </div>
@@ -154,16 +158,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 
   <div class="mockup-annotations-layer">
     <div class="mockup-annotation info">
-      <strong>Email match (BR-009 / R06)</strong> — Odoo pre-fills <em>Contact</em> when exactly one vendor matches the submitted email. Here there was <em>no / ambiguous</em> match, so Contact is blank and AP chooses or creates one.
+      <strong>Contact bound at share time (R11 / D-009)</strong> — this submission was created when AP invited <em>Aurora Media LLC</em> from the Share wizard, so the <em>Contact</em> arrives pre-linked (read-only). No email matching, no manual picking.
     </div>
     <div class="mockup-annotation success">
-      <strong>Create Contact (R04)</strong> — Enabled because Contact is <em>blank</em>. Creates a vendor from mapped answers, flags Supplier, adds "Intake – To Review", and links it back here. Click it to see the new Vendor Profile.
+      <strong>Update Contact (R05 / R08)</strong> — the single action. Overwrites the mapped fields on the linked contact (blank answers skipped, BR-011), marks it <em>Supplier</em>, and adds "Intake – To Review" (BR-010, idempotent). Click it to see the updated Vendor Profile.
     </div>
     <div class="mockup-annotation warning">
-      <strong>Update Contact (R05 / BR-006)</strong> — Disabled here because no Contact is set. When a Contact <em>is</em> set, Update overwrites its mapped fields — blank answers are skipped. The two buttons are mutually exclusive.
+      <strong>No Create Contact (D-009)</strong> — removed in v0.3: the vendor contact is created <em>before</em> sharing, so nothing is ever created from a submission. Only test/legacy entries lack a Contact — there, Update is blocked (BR-006).
     </div>
     <div class="mockup-annotation danger">
-      <strong>Guards</strong> — Create needs a mapped, non-empty Name (BR-008). Country/State that cannot be matched by name triggers a warning to set it manually (BR-012). Sensitive tax IDs shown masked.
+      <strong>Guards & sensitive data</strong> — Country/State that cannot be matched by name triggers a warning to set it manually (BR-012). Bank answers are never auto-written — AP keys the verified bank account (D-008). Tax IDs and bank numbers shown masked.
     </div>
   </div>
 

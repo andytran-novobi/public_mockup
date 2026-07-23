@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1100">
-<title>[ACCT-08] Mockup — Vendor Intake Form (Public Survey)</title>
+<title>[ACCT-08] Mockup — Vendor Intake Form (Invited Survey)</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
@@ -108,14 +108,14 @@ textarea.s-input { min-height: 60px; resize: vertical; }
   <div style="display:flex;align-items:center;">
     <a class="clickable" href="index.html"><i class="fa fa-home"></i> Home</a>
     <span class="nav-sep">›</span>
-    <span style="opacity:.8;">SCR-001 · Vendor Intake Form (public survey)</span>
+    <span style="opacity:.8;">SCR-001 · Vendor Intake Form (invited survey)</span>
   </div>
   <div class="nav-legend"><i class="fa fa-hand-pointer"></i> = Clickable link</div>
 </div>
 
 <div class="web-header">
   <div class="brand"><span class="logo"><i class="fa fa-building"></i></span> WJ — Vendor Onboarding</div>
-  <span style="color:var(--o-gray-400);font-size:12px;margin-left:auto;"><i class="fa fa-lock"></i> Public link · no login required</span>
+  <span style="color:var(--o-gray-400);font-size:12px;margin-left:auto;"><i class="fa fa-lock"></i> Personal invite link · no login required</span>
 </div>
 
 <div class="survey-wrap">
@@ -147,7 +147,7 @@ textarea.s-input { min-height: 60px; resize: vertical; }
 
       <div class="q">
         <label class="q-label">Email<span class="req">*</span></label>
-        <div class="q-help"><i class="fa fa-circle-info"></i> Must be a valid email address — also used to match you to an existing record.</div>
+        <div class="q-help"><i class="fa fa-circle-info"></i> Must be a valid email address.</div>
         <input class="s-input short" placeholder="name@company.com">
       </div>
 
@@ -255,14 +255,55 @@ textarea.s-input { min-height: 60px; resize: vertical; }
       <!-- ===== C. Payment ===== -->
       <div class="sec-head">C · Payment</div>
       <div class="q">
-        <label class="q-label">Payment method</label>
-        <div class="choice"><span class="radio-dot"></span> Wire</div>
-        <div class="choice sel"><span class="radio-dot"></span> ACH</div>
-        <div class="choice"><span class="radio-dot"></span> PayPal</div>
+        <label class="q-label">Payment method<span class="req">*</span></label>
+        <div class="q-help"><i class="fa fa-circle-info"></i> Your choice reveals only the matching bank-detail questions below.</div>
+        <div class="choice" id="ch-wire" onclick="showPay('wire')"><span class="radio-dot"></span> Wire</div>
+        <div class="choice sel" id="ch-ach" onclick="showPay('ach')"><span class="radio-dot"></span> ACH</div>
+        <div class="choice" id="ch-paypal" onclick="showPay('paypal')"><span class="radio-dot"></span> PayPal</div>
       </div>
+
+      <!-- Branch preview tabs (mockup-only aid to preview the payment branches) -->
+      <div class="branch-tabs">
+        <div class="branch-tab" id="tab-wire" onclick="showPay('wire')">Wire questions</div>
+        <div class="branch-tab active" id="tab-ach" onclick="showPay('ach')">ACH questions</div>
+        <div class="branch-tab" id="tab-paypal" onclick="showPay('paypal')">PayPal questions</div>
+      </div>
+
+      <!-- ---- ACH branch ---- -->
+      <div class="branch-pane active" id="pane-ach">
+        <div class="q"><label class="q-label">Bank Name</label><input class="s-input short" placeholder="e.g. First Harbor Bank"></div>
+        <div class="q"><label class="q-label">Account Holder Name</label><input class="s-input short"></div>
+        <div class="q"><label class="q-label">Account Number<span class="pii"><i class="fa fa-lock"></i> Sensitive</span></label><input class="s-input short" placeholder="••••••7890" style="letter-spacing:2px;"></div>
+        <div class="q"><label class="q-label">ABA / Routing Number<span class="pii"><i class="fa fa-lock"></i> Sensitive</span></label><input class="s-input short" placeholder="9 digits" style="letter-spacing:2px;"></div>
+        <div class="q">
+          <label class="q-label">Account Type</label>
+          <div class="choice sel"><span class="radio-dot"></span> Checking</div>
+          <div class="choice"><span class="radio-dot"></span> Savings</div>
+        </div>
+      </div>
+
+      <!-- ---- Wire branch ---- -->
+      <div class="branch-pane" id="pane-wire">
+        <div class="q"><label class="q-label">Bank Name</label><input class="s-input short"></div>
+        <div class="q"><label class="q-label">Account Holder Name</label><input class="s-input short"></div>
+        <div class="q"><label class="q-label">Account Number<span class="pii"><i class="fa fa-lock"></i> Sensitive</span></label><input class="s-input short" style="letter-spacing:2px;"></div>
+        <div class="q"><label class="q-label">ABA / Routing Number<span class="pii"><i class="fa fa-lock"></i> Sensitive</span></label><input class="s-input short" style="letter-spacing:2px;"></div>
+        <div class="q"><label class="q-label">SWIFT / BIC</label><input class="s-input short" placeholder="For international wires"></div>
+        <div class="q"><label class="q-label">IBAN<span class="pii"><i class="fa fa-lock"></i> Sensitive</span></label><input class="s-input" placeholder="For international wires" style="letter-spacing:1px;max-width:420px;"></div>
+      </div>
+
+      <!-- ---- PayPal branch ---- -->
+      <div class="branch-pane" id="pane-paypal">
+        <div class="q">
+          <label class="q-label">PayPal email</label>
+          <div class="q-help"><i class="fa fa-circle-info"></i> Must be a valid email address.</div>
+          <input class="s-input short" placeholder="payments@company.com">
+        </div>
+      </div>
+
       <div class="q">
-        <label class="q-label">Payment instructions</label>
-        <div class="q-help"><i class="fa fa-circle-info"></i> Routing/account or SWIFT/BIC/IBAN. AP records a validated bank account — this text is not auto-parsed.</div>
+        <label class="q-label">Other payment notes</label>
+        <div class="q-help"><i class="fa fa-circle-info"></i> Always shown. Anything the structured fields above don't cover. AP records the validated bank account from these answers — nothing is auto-written.</div>
         <textarea class="s-input"></textarea>
       </div>
     </div>
@@ -276,13 +317,13 @@ textarea.s-input { min-height: 60px; resize: vertical; }
 
 <div class="mockup-annotations-layer">
   <div class="mockup-annotation warning">
-    <strong>Conditional branch (R02)</strong> — The tax-form choice reveals only its own questions via native <em>triggering answers</em>. W-9 and W-8BEN are never shown together to the vendor. The two tabs above are a mockup aid to preview both.
+    <strong>Conditional branches (R02 / R10)</strong> — The tax-form choice reveals only its own questions via native <em>triggering answers</em>; the required Payment method drives the bank-detail questions the same way (D-008). The preview tabs are a mockup aid to see every branch.
   </div>
   <div class="mockup-annotation danger">
-    <strong>Sensitive PII (Q-001)</strong> — TIN/SSN/EIN, ITIN, foreign TIN and Date of birth are captured as plain survey answers. Access to these should be restricted. Values are shown masked in this mockup.
+    <strong>Sensitive PII (Q-001)</strong> — TIN/SSN/EIN, ITIN, foreign TIN, Date of birth, and bank routing/account numbers are captured as plain survey answers. Access to these should be restricted. Values are shown masked in this mockup. Bank answers are never auto-written to a bank record — AP keys the validated account (D-008).
   </div>
   <div class="mockup-annotation info">
-    <strong>Submit (R01 / R09)</strong> — Anyone with the link can submit anonymously. On completion of a non-test entry, Accounting is emailed a link to the Participation record. Click Submit to jump to that Participation form.
+    <strong>Submit (R01 / R09 / R11)</strong> — The form is reached only via a <em>personal invite link</em>; the submission is already linked to the invited contact. On completion of a non-test entry, Accounting is emailed a link to the Participation record. Click Submit to jump to that Participation form.
   </div>
 </div>
 
@@ -293,6 +334,13 @@ function showBranch(which){
   document.getElementById('pane-w8').classList.toggle('active', !w9);
   document.getElementById('tab-w9').classList.toggle('active', w9);
   document.getElementById('tab-w8').classList.toggle('active', !w9);
+}
+function showPay(which){
+  ['wire','ach','paypal'].forEach(function(k){
+    document.getElementById('pane-'+k).classList.toggle('active', k===which);
+    document.getElementById('tab-'+k).classList.toggle('active', k===which);
+    document.getElementById('ch-'+k).classList.toggle('sel', k===which);
+  });
 }
 </script>
 

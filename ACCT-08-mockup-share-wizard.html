@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>[ACCT-08] Mockup — Share Wizard (Recipients only)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--o-enterprise-color:#714B67;--o-brand-odoo:#714B67;--o-brand-primary:#714B67;--o-action:#017e84;--o-gray-100:#F9FAFB;--o-gray-200:#e7e9ed;--o-gray-300:#d8dadd;--o-gray-400:#9a9ca5;--o-gray-500:#7c7f89;--o-gray-600:#5f636f;--o-gray-700:#374151;--o-gray-800:#1F2937;--o-gray-900:#111827;--o-success:#28a745;--o-info:#17a2b8;--o-warning:#ffac00;--o-danger:#dc3545;--o-border-radius:4px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,"Noto Sans",Arial,sans-serif;font-size:14px;line-height:1.5;color:var(--o-gray-900);background:#f0f0f0;padding:0 0 24px;}
+.mockup-stage{position:relative;width:1040px;margin:0 auto;background:var(--o-gray-300);border-radius:6px;padding:36px 0 44px;min-height:560px;}
+.stage-hint{text-align:center;font-size:12px;color:var(--o-gray-600);margin-bottom:14px;}
+/* modal */
+.o_dialog{width:640px;margin:0 auto;background:#fff;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.28);overflow:visible;position:relative;}
+.o_dialog_header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--o-gray-200);}
+.o_dialog_header h2{font-size:17px;font-weight:700;color:var(--o-gray-900);}
+.o_dialog_header .close{color:var(--o-gray-400);font-size:16px;}
+.o_dialog_body{padding:18px 20px 8px;}
+.o_cell{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.o_form_label,.field-label{font-weight:600;font-size:13px;color:var(--o-gray-800);min-width:130px;flex-shrink:0;padding-top:4px;}
+.o_field_widget{font-size:14px;color:var(--o-gray-900);flex:1;}
+.o_checkbox{width:16px;height:16px;border:2px solid var(--o-gray-300);border-radius:3px;display:inline-block;position:relative;vertical-align:middle;flex-shrink:0;}
+.o_checkbox.checked{background:var(--o-action);border-color:var(--o-action);}
+.o_checkbox.checked::after{content:"\2713";color:#fff;font-size:11px;font-weight:700;position:absolute;top:-1px;left:2px;}
+.help-txt{font-size:12px;color:var(--o-gray-500);margin-top:2px;}
+/* tags widget */
+.m2m-box{border:1px solid var(--o-gray-300);border-radius:var(--o-border-radius);padding:6px 8px;background:#fff;display:flex;flex-wrap:wrap;gap:6px;align-items:center;position:relative;}
+.tag-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(1,126,132,.1);color:var(--o-gray-800);border-radius:14px;padding:3px 10px;font-size:13px;}
+.tag-chip .rm{color:var(--o-gray-400);font-size:11px;}
+.m2m-box .type-hint{color:var(--o-gray-400);font-style:italic;font-size:13px;}
+/* dropdown */
+.dd{position:absolute;top:100%;left:0;z-index:60;width:340px;background:#fff;border:1px solid var(--o-gray-300);border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.18);margin-top:4px;overflow:hidden;}
+.dd-item{display:flex;align-items:center;gap:8px;padding:7px 12px;font-size:13px;color:var(--o-gray-800);cursor:pointer;}
+.dd-item:hover{background:rgba(1,126,132,.08);}
+.dd-item .sub{color:var(--o-gray-400);font-size:11px;margin-left:auto;}
+.dd-item.action{color:var(--o-action);font-weight:600;border-top:1px solid var(--o-gray-200);}
+.dd-item.disabled{color:var(--o-gray-400);}
+/* removed native element ghost */
+.removed-ghost{border:1px dashed var(--o-danger);border-radius:6px;padding:8px 12px;color:var(--o-gray-500);background:#fff5f5;position:relative;}
+.removed-ghost .field-label{color:var(--o-danger)!important;text-decoration:line-through;}
+.removed-ghost .ghost-note{font-size:12px;color:var(--o-danger);font-weight:600;}
+/* email preview */
+.mail-preview{border:1px solid var(--o-gray-200);border-radius:6px;background:var(--o-gray-100);padding:12px 14px;font-size:13px;color:var(--o-gray-700);}
+.mail-preview .subj{font-weight:700;color:var(--o-gray-900);margin-bottom:6px;}
+.mail-preview .link{display:inline-block;background:var(--o-action);color:#fff;border-radius:4px;padding:5px 14px;font-size:12.5px;margin-top:8px;}
+.o_dialog_footer{display:flex;gap:8px;padding:14px 20px 18px;border-top:1px solid var(--o-gray-200);margin-top:10px;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--o-border-radius);font-size:13px;font-weight:600;border:1px solid transparent;cursor:default;position:relative;}
+.btn-primary{background:var(--o-brand-primary);color:#fff;border-color:var(--o-brand-primary);}
+.btn-secondary{background:var(--o-gray-200);color:var(--o-gray-900);border-color:var(--o-gray-300);}
+/* nav / markers / annotations */
+.mockup-nav{position:sticky;top:0;z-index:100;background:var(--o-brand-primary);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#fff;}
+.mockup-nav a{color:#fff;text-decoration:none;}.mockup-nav a.clickable{font-weight:600;}
+.mockup-nav .nav-sep{opacity:.5;margin:0 8px;}
+.mockup-nav .nav-legend{background:rgba(255,255,255,.15);padding:4px 12px;border-radius:4px;font-size:11px;}
+.clickable{position:relative;border:2px dashed var(--o-action)!important;border-radius:6px;cursor:pointer;}
+.clickable:hover{background:rgba(1,126,132,.08);}
+.clickable::after{content:"\f25a";font-family:"Font Awesome 6 Free";font-weight:900;font-size:10px;color:#fff;background:var(--o-action);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-8px;right:-8px;z-index:30;}
+.mockup-new .field-label{color:var(--o-success)!important;}
+.mockup-change-legend{max-width:1040px;margin:12px auto 0;font-size:11.5px;color:var(--o-gray-600);padding:0 16px;display:flex;gap:18px;}
+.mockup-change-legend .mockup-legend-new{color:var(--o-success);font-weight:600;}
+.mockup-change-legend .mockup-legend-removed{color:var(--o-danger);font-weight:600;}
+.mockup-annotations-layer{max-width:1040px;margin:0 auto;display:flex;gap:16px;padding:18px 20px 0;flex-wrap:wrap;}
+.mockup-annotation{padding:12px 14px;border-radius:6px;border-left:5px solid;font-size:13px;line-height:1.5;flex:1;min-width:230px;}
+.mockup-annotation strong{font-weight:700;}
+.mockup-annotation.info{background:#d1ecf1;border-color:#17a2b8;color:#0c5460;}
+.mockup-annotation.success{background:#d4edda;border-color:#28a745;color:#155724;}
+.mockup-annotation.warning{background:#fff3cd;border-color:#ffac00;color:#6b4f00;}
+.mockup-annotation.danger{background:#f8d7da;border-color:#dc3545;color:#721c24;}
+</style>
+</head>
+<body>
+
+<div class="mockup-nav">
+  <div style="display:flex;align-items:center;">
+    <a class="clickable" href="index.html"><i class="fa fa-home"></i> Home</a>
+    <span class="nav-sep">›</span>
+    <span style="opacity:.8;">SCR-005 · Share wizard (invite a vendor)</span>
+  </div>
+  <div class="nav-legend"><i class="fa fa-hand-pointer"></i> = Clickable link</div>
+</div>
+
+<div class="mockup-change-legend">
+  <span class="mockup-legend-new">■ NEW / changed behavior — ACCT-08</span>
+  <span class="mockup-legend-removed">■ HIDDEN — native element removed by ACCT-08</span>
+</div>
+
+<div style="height:12px;"></div>
+
+<div class="mockup-stage">
+  <div class="stage-hint"><i class="fa fa-circle-info"></i> Opened from <strong>Surveys ▸ Vendor Intake Form ▸ Share</strong> — the survey's Access Mode is <strong>Invited people only</strong>, so "Send by email" is on by default.</div>
+
+  <div class="o_dialog">
+    <div class="o_dialog_header">
+      <h2>Share a Survey — Vendor Intake Form</h2>
+      <span class="close"><i class="fa fa-xmark"></i></span>
+    </div>
+    <div class="o_dialog_body">
+
+      <div class="o_cell">
+        <span class="field-label">Send by Email</span>
+        <div class="o_field_widget">
+          <span class="o_checkbox checked"></span>
+          <div class="help-txt">Default on — the survey is <strong>Invited people only</strong>; each recipient receives a personal link.</div>
+        </div>
+      </div>
+
+      <div class="o_cell mockup-new">
+        <span class="field-label">Recipients <span style="color:var(--o-danger);">*</span></span>
+        <div class="o_field_widget">
+          <div class="m2m-box">
+            <span class="tag-chip"><i class="fa fa-user" style="color:var(--o-action);font-size:11px;"></i> Aurora Media LLC &lt;ap@auroramedia.example&gt; <span class="rm"><i class="fa fa-xmark"></i></span></span>
+            <span class="type-hint">Add existing contacts…</span>
+            <div class="dd">
+              <div class="dd-item"><i class="fa fa-user" style="color:var(--o-gray-400);"></i> Bright Loom Studio <span class="sub">vendor@brightloom.example</span></div>
+              <div class="dd-item"><i class="fa fa-user" style="color:var(--o-gray-400);"></i> Cedar & Pine Crafts <span class="sub">hello@cedarpine.example</span></div>
+              <div class="dd-item disabled"><i class="fa fa-ban"></i> No quick-create from typed text <span class="sub">native</span></div>
+              <div class="dd-item action"><i class="fa fa-plus"></i> Create and edit… <span class="sub">opens the contact form</span></div>
+            </div>
+          </div>
+          <div class="help-txt" style="margin-top:52px;">Existing contacts only. A brand-new vendor is created via <strong>Create and edit…</strong> (simplified contact form) — that is the "create the contact first" step.</div>
+        </div>
+      </div>
+
+      <div class="o_cell">
+        <span class="field-label" style="visibility:hidden;">—</span>
+        <div class="o_field_widget">
+          <div class="removed-ghost">
+            <span class="field-label">Additional emails</span>
+            <span class="ghost-note"> — hidden by ACCT-08 (BR-014).</span>
+            <div class="help-txt">The native raw-email input is not shown on surveys with "Update contact from submissions" enabled: no invite can go out without a contact, so every submission arrives pre-linked.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="o_cell">
+        <span class="field-label">Answer deadline</span>
+        <div class="o_field_widget"><span style="color:var(--o-gray-400);font-style:italic;">Optional</span></div>
+      </div>
+
+      <div class="o_cell">
+        <span class="field-label">Email preview</span>
+        <div class="o_field_widget">
+          <div class="mail-preview">
+            <div class="subj">Participate to Vendor Intake Form</div>
+            Dear Aurora Media LLC,<br>
+            Please fill in your company, tax, and payment information so we can set you up as a vendor.<br>
+            <span class="link"><i class="fa fa-arrow-up-right-from-square"></i> Start the survey (personal link)</span>
+            <div class="help-txt" style="margin-top:6px;">The button carries a <strong>unique token per recipient</strong> — the bare survey URL without it is refused.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="o_dialog_footer">
+      <button class="btn btn-primary clickable" onclick="location.href='ACCT-08-mockup-intake-survey.html'"><i class="fa fa-paper-plane"></i> Send</button>
+      <button class="btn btn-secondary">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="mockup-annotations-layer">
+  <div class="mockup-annotation info">
+    <strong>Contact-first (R11 / D-009)</strong> — Recipients are existing contacts; typing a loose name cannot quick-create one (native). A new vendor is created via <em>Create and edit…</em> before the invite goes out — so the contact always exists first.
+  </div>
+  <div class="mockup-annotation danger">
+    <strong>"Additional emails" hidden (BR-014)</strong> — the native raw-email invite path would create submissions with <em>no</em> linked contact (and there is no Create Contact anymore). The module hides it on toggle-enabled surveys.
+  </div>
+  <div class="mockup-annotation success">
+    <strong>On Send</strong> — Odoo creates <em>one Participation per recipient with the Contact already linked</em> and emails each a personal token link. Click <em>Send</em> to preview the form the vendor receives.
+  </div>
+  <div class="mockup-annotation warning">
+    <strong>Reminders & redos</strong> — there are no automatic reminders; re-share to the same contact to remind or to issue a fresh link after a mistake. Each invite is a new Participation; repeating <em>Update Contact</em> is safe (BR-010).
+  </div>
+</div>
+
+</body>
+</html>
