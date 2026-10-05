@@ -83,6 +83,10 @@ textarea.s-input { min-height: 60px; resize: vertical; }
 .nested-note { font-size: 12px; color: var(--o-gray-600); background: var(--o-gray-100); border-left: 3px solid var(--o-gray-400); padding: 6px 10px; border-radius: 4px; margin-top: 4px; }
 .cert-box { display: flex; gap: 8px; align-items: flex-start; padding: 10px; border: 1px dashed var(--o-gray-300); border-radius: 6px; background: var(--o-gray-100); margin-top: 8px; }
 .cbx { width: 16px; height: 16px; border: 2px solid var(--o-gray-400); border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+.upload-box { display: flex; align-items: center; gap: 10px; border: 2px dashed var(--o-action); border-radius: 8px; padding: 16px 14px; color: var(--o-gray-600); background: rgba(1,126,132,.04); font-size: 13px; }
+.upload-box i { font-size: 20px; color: var(--o-action); }
+.upload-box .upload-hint { margin-left: auto; font-size: 11px; color: var(--o-gray-500); }
+.gate-hint { font-size: 12px; color: var(--o-brand-primary); background: rgba(113,75,103,.07); border-left: 3px solid var(--o-brand-primary); padding: 6px 10px; border-radius: 4px; margin-bottom: 6px; }
 .survey-footer { padding: 18px 28px 26px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--o-gray-200); }
 .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 20px; border-radius: var(--o-border-radius); font-size: 14px; font-weight: 600; border: 1px solid transparent; cursor: pointer; }
 .btn-submit { background: var(--o-action); color: #fff; border-color: var(--o-action); position: relative; }
@@ -140,6 +144,17 @@ textarea.s-input { min-height: 60px; resize: vertical; }
       </div>
 
       <div class="q">
+        <label class="q-label">Are you signing on behalf of another party?</label>
+        <div class="choice sel" id="ch-sob-yes" onclick="toggleSob(true)"><span class="radio-dot"></span> Yes</div>
+        <div class="choice" id="ch-sob-no" onclick="toggleSob(false)"><span class="radio-dot"></span> No</div>
+      </div>
+      <div class="q" id="q-sob-name">
+        <div class="gate-hint"><i class="fa fa-turn-up fa-rotate-90"></i> Shown &amp; required only when the answer above is <strong>Yes</strong>.</div>
+        <label class="q-label">Name of the party you are signing on behalf of<span class="req">*</span></label>
+        <input class="s-input" placeholder="Company or individual you represent">
+      </div>
+
+      <div class="q">
         <label class="q-label">Vendor type<span class="req">*</span></label>
         <div class="choice sel"><span class="radio-dot"></span> Company</div>
         <div class="choice"><span class="radio-dot"></span> Individual</div>
@@ -149,6 +164,23 @@ textarea.s-input { min-height: 60px; resize: vertical; }
         <label class="q-label">Email<span class="req">*</span></label>
         <div class="q-help"><i class="fa fa-circle-info"></i> Must be a valid email address.</div>
         <input class="s-input short" placeholder="name@company.com">
+      </div>
+
+      <div class="q">
+        <label class="q-label">Are you a Content Creator?</label>
+        <div class="choice sel" id="ch-cc-yes" onclick="toggleCc(true)"><span class="radio-dot"></span> Yes</div>
+        <div class="choice" id="ch-cc-no" onclick="toggleCc(false)"><span class="radio-dot"></span> No</div>
+      </div>
+      <div id="cc-fields">
+        <div class="gate-hint"><i class="fa fa-turn-up fa-rotate-90"></i> Both shown &amp; required only when <strong>Content Creator = Yes</strong>. Answering <strong>Yes</strong> also switches on <strong>Shopify Creator</strong> on the vendor record when AP runs Update Contact (R15 / D-017).</div>
+        <div class="q">
+          <label class="q-label">Content-creator name<span class="req">*</span></label>
+          <input class="s-input short">
+        </div>
+        <div class="q">
+          <label class="q-label">Royalty-report email(s)<span class="req">*</span></label>
+          <input class="s-input short" placeholder="One or more emails">
+        </div>
       </div>
 
       <div class="q">
@@ -168,87 +200,43 @@ textarea.s-input { min-height: 60px; resize: vertical; }
       </div>
 
       <div class="q">
-        <label class="q-label">Content-creator name (if any)</label>
-        <input class="s-input short" placeholder="Optional">
-      </div>
-      <div class="q">
         <label class="q-label">Other contacts (names, emails, titles)</label>
         <textarea class="s-input" placeholder="One contact per line"></textarea>
-      </div>
-      <div class="q">
-        <label class="q-label">Royalty-report email(s)</label>
-        <input class="s-input short" placeholder="Optional">
       </div>
       <div class="q">
         <label class="q-label">Additional information</label>
         <textarea class="s-input" placeholder="Anything else we should know"></textarea>
       </div>
 
-      <!-- ===== B. Tax form selector ===== -->
-      <div class="sec-head">B · Tax Form</div>
+      <!-- ===== B. Tax Documents (mandatory selector reveals one required upload) ===== -->
+      <div class="sec-head">B · Tax Documents</div>
+      <div class="q-help" style="margin:10px 0;"><i class="fa fa-circle-info"></i> Tell us which tax form applies to you — this is <strong>required</strong> — then attach that completed, signed form. Only the matching upload appears, and it is <strong>required</strong> too. No line-by-line questions to type. <span class="pii"><i class="fa fa-lock"></i> The uploaded PDF holds sensitive PII</span></div>
+
       <div class="q">
-        <label class="q-label">Which US tax form applies?<span class="req">*</span></label>
-        <div class="q-help"><i class="fa fa-circle-info"></i> Your choice reveals only the matching set of questions below.</div>
-        <div class="choice sel" onclick="showBranch('w9')"><span class="radio-dot"></span> <strong>W-9</strong> — US / Domestic vendor</div>
-        <div class="choice" onclick="showBranch('w8')"><span class="radio-dot"></span> <strong>W-8BEN</strong> — International vendor</div>
+        <label class="q-label">Which tax form applies to you?<span class="req">*</span></label>
+        <div class="choice" id="ch-tax-w9" onclick="toggleTax('w9')"><span class="radio-dot"></span> W-9 — US / Domestic vendor</div>
+        <div class="choice" id="ch-tax-w8ben" onclick="toggleTax('w8ben')"><span class="radio-dot"></span> W-8BEN — International <strong>Individual</strong> vendor</div>
+        <div class="choice" id="ch-tax-w8bene" onclick="toggleTax('w8bene')"><span class="radio-dot"></span> W-8BEN-E — International <strong>Entity</strong> vendor</div>
       </div>
 
-      <!-- Branch preview tabs (mockup-only aid to preview both branches) -->
-      <div class="branch-tabs">
-        <div class="branch-tab active" id="tab-w9" onclick="showBranch('w9')">W-9 questions</div>
-        <div class="branch-tab" id="tab-w8" onclick="showBranch('w8')">W-8BEN questions</div>
-      </div>
+      <div class="gate-hint"><i class="fa fa-turn-up fa-rotate-90"></i> Pick one above and its upload appears below, <strong>required</strong> to submit. Nothing is pre-selected — the vendor must choose (BR-018 / BR-019).</div>
 
-      <!-- ---- W-9 branch ---- -->
-      <div class="branch-pane active" id="pane-w9">
-        <div class="q"><label class="q-label">L1 — Name (entity / individual)<span class="req">*</span></label><input class="s-input"></div>
-        <div class="q"><label class="q-label">L2 — Business / disregarded-entity name</label><input class="s-input"></div>
+      <div class="branch-pane" id="pane-tax-w9">
         <div class="q">
-          <label class="q-label">L3a — Federal tax classification<span class="req">*</span></label>
-          <div class="choice"><span class="radio-dot"></span> Individual / sole proprietor</div>
-          <div class="choice"><span class="radio-dot"></span> C corporation</div>
-          <div class="choice"><span class="radio-dot"></span> S corporation</div>
-          <div class="choice"><span class="radio-dot"></span> Partnership</div>
-          <div class="choice"><span class="radio-dot"></span> Trust / estate</div>
-          <div class="choice sel"><span class="radio-dot"></span> LLC</div>
-          <div class="choice"><span class="radio-dot"></span> Other</div>
-          <div class="nested-note"><i class="fa fa-turn-up fa-rotate-90"></i> Because <strong>LLC</strong> is selected, an extra question appears: <em>LLC tax classification (C / S / P)</em>.</div>
-        </div>
-        <div class="q"><label class="q-label">L3a — LLC tax classification (C / S / P)</label><input class="s-input short" placeholder="C, S or P"></div>
-        <div class="q">
-          <label class="q-label">L3b — Foreign partners / owners / beneficiaries?</label>
-          <div class="choice"><span class="radio-dot"></span> Yes</div>
-          <div class="choice"><span class="radio-dot"></span> No</div>
-        </div>
-        <div class="q"><label class="q-label">L4 — Exempt payee code / FATCA exemption code</label><input class="s-input short"></div>
-        <div class="q"><label class="q-label">L5–L6 — Address / City, State, ZIP<span class="req">*</span></label><input class="s-input" placeholder="Street"><input class="s-input" style="margin-top:8px;" placeholder="City, State ZIP"></div>
-        <div class="q"><label class="q-label">L7 — Account number(s)</label><input class="s-input short"></div>
-        <div class="q">
-          <label class="q-label">Part I — Taxpayer Identification Number (SSN or EIN)<span class="req">*</span><span class="pii"><i class="fa fa-lock"></i> Sensitive PII</span></label>
-          <input class="s-input short" placeholder="___ – __ – ____" style="letter-spacing:2px;">
-        </div>
-        <div class="cert-box">
-          <span class="cbx"></span>
-          <div><strong>Part II — Certification</strong><br><span style="font-size:12px;color:var(--o-gray-600);">I certify the information above is correct. (Acknowledgement checkbox — not a legal e-signature.)</span></div>
+          <label class="q-label">W-9 (US / Domestic) — upload<span class="req">*</span></label>
+          <div class="upload-box"><i class="fa fa-cloud-arrow-up"></i> <span>Drop your <strong>W-9</strong> here or <strong>browse</strong></span><span class="upload-hint">Required · PDF / JPG / PNG</span></div>
         </div>
       </div>
-
-      <!-- ---- W-8BEN branch ---- -->
-      <div class="branch-pane" id="pane-w8">
-        <div class="q"><label class="q-label">L1 — Name of beneficial owner<span class="req">*</span></label><input class="s-input"></div>
-        <div class="q"><label class="q-label">L2 — Country of citizenship<span class="req">*</span></label><input class="s-input short"></div>
-        <div class="q"><label class="q-label">L3 — Permanent residence address<span class="req">*</span></label><input class="s-input" placeholder="Street, city, state/province, country, postal code"></div>
-        <div class="q"><label class="q-label">L4 — Mailing address (if different)</label><input class="s-input"></div>
-        <div class="q"><label class="q-label">L5 — US TIN (SSN / ITIN)<span class="pii"><i class="fa fa-lock"></i> Sensitive PII</span></label><input class="s-input short" placeholder="___ – __ – ____" style="letter-spacing:2px;"></div>
-        <div class="q"><label class="q-label">L6a — Foreign TIN<span class="pii"><i class="fa fa-lock"></i> Sensitive PII</span></label><input class="s-input short"></div>
-        <div class="q"><label class="q-label">L6b — FTIN not legally required</label><div class="choice"><span class="cbx"></span> Check if a foreign TIN is not legally required</div></div>
-        <div class="q"><label class="q-label">L7 — Reference number(s)</label><input class="s-input short"></div>
-        <div class="q"><label class="q-label">L8 — Date of birth<span class="req">*</span><span class="pii"><i class="fa fa-lock"></i> Sensitive PII</span></label><input class="s-input short" placeholder="MM / DD / YYYY"></div>
-        <div class="q"><label class="q-label">L9 — Treaty country</label><input class="s-input short"></div>
-        <div class="q"><label class="q-label">L10 — Special rates & conditions</label><textarea class="s-input" placeholder="Article/paragraph, rate, income type, reasons"></textarea></div>
-        <div class="cert-box">
-          <span class="cbx"></span>
-          <div><strong>Part III — Certification</strong><br><span style="font-size:12px;color:var(--o-gray-600);">I certify the information above is correct. (Acknowledgement checkbox — not a legal e-signature.)</span></div>
+      <div class="branch-pane" id="pane-tax-w8ben">
+        <div class="q">
+          <label class="q-label">W-8BEN (International Individual) — upload<span class="req">*</span></label>
+          <div class="upload-box"><i class="fa fa-cloud-arrow-up"></i> <span>Drop your <strong>W-8BEN</strong> here or <strong>browse</strong></span><span class="upload-hint">Required · PDF / JPG / PNG</span></div>
+        </div>
+      </div>
+      <div class="branch-pane" id="pane-tax-w8bene">
+        <div class="q">
+          <label class="q-label">W-8BEN-E (International Entity) — upload<span class="req">*</span></label>
+          <div class="upload-box"><i class="fa fa-cloud-arrow-up"></i> <span>Drop your <strong>W-8BEN-E</strong> here or <strong>browse</strong></span><span class="upload-hint">Required · PDF / JPG / PNG</span></div>
         </div>
       </div>
 
@@ -256,17 +244,17 @@ textarea.s-input { min-height: 60px; resize: vertical; }
       <div class="sec-head">C · Payment</div>
       <div class="q">
         <label class="q-label">Payment method<span class="req">*</span></label>
-        <div class="q-help"><i class="fa fa-circle-info"></i> Your choice reveals only the matching bank-detail questions below.</div>
-        <div class="choice" id="ch-wire" onclick="showPay('wire')"><span class="radio-dot"></span> Wire</div>
-        <div class="choice sel" id="ch-ach" onclick="showPay('ach')"><span class="radio-dot"></span> ACH</div>
-        <div class="choice" id="ch-paypal" onclick="showPay('paypal')"><span class="radio-dot"></span> PayPal</div>
+        <div class="q-help"><i class="fa fa-circle-info"></i> Select one or more. Each selected method reveals its own bank-detail block below.</div>
+        <div class="choice sel" id="ch-wire" onclick="showPay('wire')"><span class="cbx">&#9745;</span> Wire</div>
+        <div class="choice sel" id="ch-ach" onclick="showPay('ach')"><span class="cbx">&#9745;</span> ACH</div>
+        <div class="choice" id="ch-other" onclick="showPay('other')"><span class="cbx">&#9744;</span> Other Payment Method</div>
       </div>
 
-      <!-- Branch preview tabs (mockup-only aid to preview the payment branches) -->
+      <!-- Branch tabs — click to toggle each method's block on/off independently (multi-select) -->
       <div class="branch-tabs">
-        <div class="branch-tab" id="tab-wire" onclick="showPay('wire')">Wire questions</div>
-        <div class="branch-tab active" id="tab-ach" onclick="showPay('ach')">ACH questions</div>
-        <div class="branch-tab" id="tab-paypal" onclick="showPay('paypal')">PayPal questions</div>
+        <div class="branch-tab active" id="tab-wire" onclick="showPay('wire')">Wire block</div>
+        <div class="branch-tab active" id="tab-ach" onclick="showPay('ach')">ACH block</div>
+        <div class="branch-tab" id="tab-other" onclick="showPay('other')">Other block</div>
       </div>
 
       <!-- ---- ACH branch ---- -->
@@ -283,7 +271,7 @@ textarea.s-input { min-height: 60px; resize: vertical; }
       </div>
 
       <!-- ---- Wire branch ---- -->
-      <div class="branch-pane" id="pane-wire">
+      <div class="branch-pane active" id="pane-wire">
         <div class="q"><label class="q-label">Bank Name</label><input class="s-input short"></div>
         <div class="q"><label class="q-label">Account Holder Name</label><input class="s-input short"></div>
         <div class="q"><label class="q-label">Account Number<span class="pii"><i class="fa fa-lock"></i> Sensitive</span></label><input class="s-input short" style="letter-spacing:2px;"></div>
@@ -292,19 +280,13 @@ textarea.s-input { min-height: 60px; resize: vertical; }
         <div class="q"><label class="q-label">IBAN<span class="pii"><i class="fa fa-lock"></i> Sensitive</span></label><input class="s-input" placeholder="For international wires" style="letter-spacing:1px;max-width:420px;"></div>
       </div>
 
-      <!-- ---- PayPal branch ---- -->
-      <div class="branch-pane" id="pane-paypal">
+      <!-- ---- Other Payment Method branch ---- -->
+      <div class="branch-pane" id="pane-other">
         <div class="q">
-          <label class="q-label">PayPal email</label>
-          <div class="q-help"><i class="fa fa-circle-info"></i> Must be a valid email address.</div>
-          <input class="s-input short" placeholder="payments@company.com">
+          <label class="q-label">Other payment notes</label>
+          <div class="q-help"><i class="fa fa-circle-info"></i> Shown only when <strong>Other Payment Method</strong> is selected. Describe the method and its details. AP records the validated bank account from these answers — nothing is auto-written.</div>
+          <textarea class="s-input"></textarea>
         </div>
-      </div>
-
-      <div class="q">
-        <label class="q-label">Other payment notes</label>
-        <div class="q-help"><i class="fa fa-circle-info"></i> Always shown. Anything the structured fields above don't cover. AP records the validated bank account from these answers — nothing is auto-written.</div>
-        <textarea class="s-input"></textarea>
       </div>
     </div>
 
@@ -317,10 +299,10 @@ textarea.s-input { min-height: 60px; resize: vertical; }
 
 <div class="mockup-annotations-layer">
   <div class="mockup-annotation warning">
-    <strong>Conditional branches (R02 / R10)</strong> — The tax-form choice reveals only its own questions via native <em>triggering answers</em>; the required Payment method drives the bank-detail questions the same way (D-008). The preview tabs are a mockup aid to see every branch.
+    <strong>Conditional fields (R12 / R13 / R10)</strong> — The <em>sign-on-behalf</em> and <em>Content Creator</em> gates reveal (and require) their fields only on <strong>Yes</strong>, via native <em>triggering answers</em>; the required, <em>multi-select</em> Payment method reveals a separate block per selected method the same way — here Wire + ACH are both on, so both blocks show (D-008/D-011/D-015). Tax forms are a <strong>mandatory 3-way selector</strong> revealing exactly one <strong>required</strong> upload — W-9 / W-8BEN / W-8BEN-E (R14 / BR-018 / BR-019 / D-016); the upload question type comes from the third-party app <em>bi_survey_files_upload</em>, not custom code (D-018). The tax choices are single-select; the payment branch tabs toggle each block independently as a mockup aid.
   </div>
   <div class="mockup-annotation danger">
-    <strong>Sensitive PII (Q-001)</strong> — TIN/SSN/EIN, ITIN, foreign TIN, Date of birth, and bank routing/account numbers are captured as plain survey answers. Access to these should be restricted. Values are shown masked in this mockup. Bank answers are never auto-written to a bank record — AP keys the validated account (D-008).
+    <strong>Sensitive PII (Q-001)</strong> — Structured tax IDs are no longer typed as answers; the <strong>uploaded W-9 / W-8BEN / W-8BEN-E PDF</strong> holds SSN/EIN, ITIN, foreign TIN and date of birth. Bank routing/account numbers are still captured as answers. Restrict access to submissions <em>and attachments</em>. Bank answers are never auto-written to a bank record — AP keys the validated account (D-008). On <strong>Update Contact</strong> an answers PDF plus the uploaded tax form are filed into a <strong>restricted section of the vendor's Invoicing tab</strong> — readable only at Bookkeeper level and above, and deliberately <em>not</em> in chatter, which anyone who can read the vendor could see (R16 / D-019).
   </div>
   <div class="mockup-annotation info">
     <strong>Submit (R01 / R09 / R11)</strong> — The form is reached only via a <em>personal invite link</em>; the submission is already linked to the invited contact. On completion of a non-test entry, Accounting is emailed a link to the Participation record. Click Submit to jump to that Participation form.
@@ -328,19 +310,33 @@ textarea.s-input { min-height: 60px; resize: vertical; }
 </div>
 
 <script>
-function showBranch(which){
-  var w9 = which === 'w9';
-  document.getElementById('pane-w9').classList.toggle('active', w9);
-  document.getElementById('pane-w8').classList.toggle('active', !w9);
-  document.getElementById('tab-w9').classList.toggle('active', w9);
-  document.getElementById('tab-w8').classList.toggle('active', !w9);
+function toggleSob(yes){
+  document.getElementById('ch-sob-yes').classList.toggle('sel', yes);
+  document.getElementById('ch-sob-no').classList.toggle('sel', !yes);
+  document.getElementById('q-sob-name').style.display = yes ? 'block' : 'none';
+}
+function toggleCc(yes){
+  document.getElementById('ch-cc-yes').classList.toggle('sel', yes);
+  document.getElementById('ch-cc-no').classList.toggle('sel', !yes);
+  document.getElementById('cc-fields').style.display = yes ? 'block' : 'none';
+}
+function toggleTax(which){
+  // Single-select: exactly one tax form applies, so picking one clears the others.
+  ['w9','w8ben','w8bene'].forEach(function(k){
+    document.getElementById('ch-tax-'+k).classList.toggle('sel', k === which);
+    document.getElementById('pane-tax-'+k).classList.toggle('active', k === which);
+  });
 }
 function showPay(which){
-  ['wire','ach','paypal'].forEach(function(k){
-    document.getElementById('pane-'+k).classList.toggle('active', k===which);
-    document.getElementById('tab-'+k).classList.toggle('active', k===which);
-    document.getElementById('ch-'+k).classList.toggle('sel', k===which);
-  });
+  // Multi-select: toggle each method's block independently.
+  var pane = document.getElementById('pane-'+which);
+  var on = !pane.classList.contains('active');
+  pane.classList.toggle('active', on);
+  document.getElementById('tab-'+which).classList.toggle('active', on);
+  var ch = document.getElementById('ch-'+which);
+  ch.classList.toggle('sel', on);
+  var box = ch.querySelector('.cbx');
+  if (box) { box.innerHTML = on ? '&#9745;' : '&#9744;'; }
 }
 </script>
 

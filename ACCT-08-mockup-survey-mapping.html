@@ -167,8 +167,24 @@ th.mockup-new{color:var(--o-success)!important;}
 
               <tr class="o_data_row">
                 <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Are you signing on behalf of another party?</td>
+                <td><span class="badge text-bg-secondary">Single choice</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">— gate only, not mapped</span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Name of the party you are signing on behalf of <span class="req-dot">*</span> <em style="font-size:11px;color:var(--o-gray-500);">shown when Yes</em></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">— AP records manually</span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
                 <td>Vendor type (Company / Individual) <span class="req-dot">*</span></td>
-                <td><span class="badge text-bg-secondary">Multiple choice</span></td>
+                <td><span class="badge text-bg-secondary">Single choice</span></td>
                 <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
                 <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
               </tr>
@@ -179,6 +195,30 @@ th.mockup-new{color:var(--o-success)!important;}
                 <td><span class="badge text-bg-secondary">Single Line Text</span></td>
                 <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
                 <td class="cf-cell"><span class="cf-trigger">Email <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Are you a Content Creator?</td>
+                <td><span class="badge text-bg-secondary">Single choice</span></td>
+                <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
+                <td class="cf-cell"><span class="cf-trigger" style="border-color:var(--o-success);">Shopify Creator <i class="fa fa-caret-down"></i></span> <em style="font-size:11px;color:var(--o-gray-500);">Boolean — the one exception to D-007 (D-017)</em></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Content-creator name <span class="req-dot">*</span> <em style="font-size:11px;color:var(--o-gray-500);">shown when Yes</em></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">— AP links as child contact</span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Royalty-report email(s) <span class="req-dot">*</span> <em style="font-size:11px;color:var(--o-gray-500);">shown when Yes</em></td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">— stored as a note, no native field</span></td>
               </tr>
 
               <tr class="o_data_row">
@@ -195,6 +235,30 @@ th.mockup-new{color:var(--o-success)!important;}
                 <td><span class="badge text-bg-secondary">Single Line Text</span></td>
                 <td style="text-align:center;"><span class="o_checkbox"></span></td>
                 <td class="cf-cell"><span class="cf-trigger">Street <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Address — City</td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger">City <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Address — State / Province</td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger">State › Name (by name) <i class="fa fa-caret-down"></i></span></td>
+              </tr>
+
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>Address — ZIP</td>
+                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger">ZIP <i class="fa fa-caret-down"></i></span></td>
               </tr>
 
               <!-- ===== Row with the export-style field tree OPEN ===== -->
@@ -218,36 +282,49 @@ th.mockup-new{color:var(--o-success)!important;}
                       <div class="ft-item child sel"><i class="fa fa-check" style="color:var(--o-action);font-size:11px;"></i> Country › Name (by name) <span class="tag">match</span></div>
                       <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> State <span class="tag">Many2one</span></div>
                       <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> VAT / Tax ID <span class="tag">Char</span></div>
+                      <div class="ft-item"><span class="tw"><i class="fa fa-caret-right"></i></span> Shopify Creator <span class="tag">Boolean</span></div>
                       <div class="ft-item disabled" title="Not selectable in v1 — AP sets manually"><span class="tw"><i class="fa fa-ban"></i></span> Company Type <span class="tag">Selection</span></div>
                       <div class="ft-item disabled" title="Not selectable in v1 — AP sets manually"><span class="tw"><i class="fa fa-ban"></i></span> Tags <span class="tag">Many2many</span></div>
                     </div>
-                    <div class="ft-foot"><i class="fa fa-circle-info"></i> Text-like fields + Country/State (by name). Relational drill-down like Odoo's Export dialog.</div>
+                    <div class="ft-foot"><i class="fa fa-circle-info"></i> Text-like fields + Country/State (by name) + one Boolean — <strong>Shopify Creator</strong> (D-017). Relational drill-down like Odoo's Export dialog.</div>
                   </div>
                 </td>
               </tr>
 
-              <tr class="sec-row"><td></td><td colspan="4">B · Tax Form</td></tr>
+              <tr class="sec-row"><td></td><td colspan="4">B · Tax Documents (mandatory selector + one required upload — D-016; uploads filed on the contact, not mapped)</td></tr>
               <tr class="o_data_row">
                 <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
-                <td>Which US tax form applies? <span class="req-dot">*</span></td>
-                <td><span class="badge text-bg-secondary">Multiple choice</span></td>
-                <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
-                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
+                <td>Which tax form applies to you? <span class="req-dot">*</span></td>
+                <td><span class="badge text-bg-secondary">Single choice</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">— gate only, not mapped</span></td>
               </tr>
-
-              <tr class="sec-row"><td></td><td colspan="4">B1 · W-9 (shown when W-9 selected)</td></tr>
               <tr class="o_data_row">
                 <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
-                <td>Part I — TIN (SSN or EIN) <span class="req-dot">*</span> <span class="pii"><i class="fa fa-lock"></i> PII</span></td>
-                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
-                <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
-                <td class="cf-cell"><span class="cf-trigger">VAT / Tax ID <i class="fa fa-caret-down"></i></span></td>
+                <td>W-9 (US / Domestic) — upload <span class="req-dot">*</span> <em style="font-size:11px;color:var(--o-gray-500);">shown when W-9</em> <span class="pii"><i class="fa fa-lock"></i> PII in file</span></td>
+                <td><span class="badge text-bg-secondary">File upload</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">— filed on the contact by Update (D-019)</span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>W-8BEN (International Individual) — upload <span class="req-dot">*</span> <em style="font-size:11px;color:var(--o-gray-500);">shown when W-8BEN</em> <span class="pii"><i class="fa fa-lock"></i> PII in file</span></td>
+                <td><span class="badge text-bg-secondary">File upload</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">— filed on the contact by Update (D-019)</span></td>
+              </tr>
+              <tr class="o_data_row">
+                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
+                <td>W-8BEN-E (International Entity) — upload <span class="req-dot">*</span> <em style="font-size:11px;color:var(--o-gray-500);">shown when W-8BEN-E</em> <span class="pii"><i class="fa fa-lock"></i> PII in file</span></td>
+                <td><span class="badge text-bg-secondary">File upload</span></td>
+                <td style="text-align:center;"><span class="o_checkbox"></span></td>
+                <td class="cf-cell"><span class="cf-trigger empty">— filed on the contact by Update (D-019)</span></td>
               </tr>
 
               <tr class="sec-row"><td></td><td colspan="4">C · Payment (structured — D-008)</td></tr>
               <tr class="o_data_row">
                 <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
-                <td>Payment method (Wire / ACH / PayPal) <span class="req-dot">*</span></td>
+                <td>Payment method (Wire / ACH / Other Payment Method) <span class="req-dot">*</span></td>
                 <td><span class="badge text-bg-secondary">Multiple choice</span></td>
                 <td style="text-align:center;"><span class="o_checkbox checked"></span></td>
                 <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
@@ -303,21 +380,14 @@ th.mockup-new{color:var(--o-success)!important;}
               </tr>
               <tr class="o_data_row">
                 <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
-                <td>PayPal email <span style="font-size:11px;color:var(--o-gray-400);">(PayPal)</span></td>
-                <td><span class="badge text-bg-secondary">Single Line Text</span></td>
-                <td style="text-align:center;"><span class="o_checkbox"></span></td>
-                <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
-              </tr>
-              <tr class="o_data_row">
-                <td><i class="fa fa-bars" style="color:var(--o-gray-300);"></i></td>
-                <td>Other payment notes</td>
+                <td>Other payment notes <span style="font-size:11px;color:var(--o-gray-400);">(Other)</span></td>
                 <td><span class="badge text-bg-secondary">Multiple Lines Text</span></td>
                 <td style="text-align:center;"><span class="o_checkbox"></span></td>
                 <td class="cf-cell"><span class="cf-trigger empty">Select a field <i class="fa fa-caret-down"></i></span></td>
               </tr>
             </tbody>
           </table>
-          <div style="font-size:12px;color:var(--o-gray-500);padding:8px 12px;"><i class="fa fa-circle-info"></i> Rows left blank in the <strong>Contact field</strong> column are not written to the vendor (e.g. Vendor type, Tax form, and <strong>all bank-detail questions</strong> — the bank answers stay on the submission and AP keys the verified bank account manually, D-008).</div>
+          <div style="font-size:12px;color:var(--o-gray-500);padding:8px 12px;"><i class="fa fa-circle-info"></i> Rows left blank in the <strong>Contact field</strong> column are not written to the vendor (e.g. Vendor type, the tax-form selector, the conditional gate questions, and <strong>all bank-detail questions</strong> — the bank answers stay on the submission and AP keys the verified bank account manually, D-008). The three tax <strong>uploads</strong> are not mapped either, but they are no longer left behind: Update Contact files the selected form onto the vendor's restricted document section (D-019). Exactly one row now writes a non-text field — <strong>Are you a Content Creator? → Shopify Creator</strong> (D-017).</div>
 
         </div>
       </div>
@@ -333,7 +403,7 @@ th.mockup-new{color:var(--o-success)!important;}
       <strong>Export-style picker</strong> — The field tree mirrors Odoo's Export dialog: search + expandable, relational drill-down (Country ▸ Name). Only text-like fields and Country/State (matched by name) are selectable in v1; other relational/selection targets are greyed (D-007).
     </div>
     <div class="mockup-annotation warning">
-      <strong>Guards</strong> — If no question maps to a contact field, Update writes nothing (BR-013). A Country/State value that can't be matched by name is left blank with a note (BR-012). Bank questions stay <strong>unmapped by design</strong> — never written to a bank record (D-008).
+      <strong>Guards</strong> — If no question maps to a contact field, Update writes nothing (BR-013). A Country/State value that can't be matched by name is left blank with a note (BR-012). Bank questions stay <strong>unmapped by design</strong> — never written to a bank record (D-008). Mapping the Content Creator answer to the Boolean <strong>Shopify Creator</strong> is the single agreed exception to the text-only rule, and clearing that flag on a vendor who already has Shopify accounting data warns AP first (BR-021).
     </div>
     <div class="mockup-annotation danger">
       <strong>Presentation note (D-006 / D-009)</strong> — FDD v0.3 confirms the survey-level toggle shown here (<em>Update contact from submissions</em>, D-009) and keeps the mapping itself <em>per question</em> (each question's Options tab, D-006). This consolidated table is an illustrative overview of those per-question settings, not a separate config screen.

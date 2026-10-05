@@ -140,8 +140,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
               <tr><td>Email</td><td>ap@auroramedia.example</td><td class="mono-map">email</td></tr>
               <tr><td>Address — Street</td><td>1200 Harbor Blvd</td><td class="mono-map">street</td></tr>
               <tr><td>Address — Country</td><td>United States</td><td class="mono-map">country_id (by name)</td></tr>
-              <tr><td>Which US tax form applies?</td><td>W-9 — US / Domestic</td><td class="mono-map">—</td></tr>
-              <tr><td>Part I — TIN (SSN or EIN)</td><td>•••••••1234 <span style="font-size:11px;color:var(--o-gray-400);">(masked)</span></td><td class="mono-map">vat</td></tr>
+              <tr><td>Are you a Content Creator?</td><td>Yes</td><td class="mono-map">is_shopify_creator</td></tr>
+              <tr><td>Content-creator name</td><td>Aurora Vale</td><td class="mono-map">— AP links as child contact</td></tr>
+              <tr><td>Royalty-report email(s)</td><td>royalties@auroramedia.example</td><td class="mono-map">— stored as a note</td></tr>
+              <tr><td>Which tax form applies to you?</td><td>W-9 — US / Domestic vendor</td><td class="mono-map">— gate only</td></tr>
+              <tr><td>W-9 (US / Domestic) — upload</td><td><i class="fa fa-file-pdf" style="color:#c0392b;"></i> Aurora-W9-signed.pdf <span style="font-size:11px;color:var(--o-gray-400);">(attachment · PII)</span></td><td class="mono-map">— filed on the contact by Update</td></tr>
+              <tr><td>W-8BEN (International Individual) — upload</td><td><span style="color:var(--o-gray-400);">— not shown (W-9 was selected)</span></td><td class="mono-map">—</td></tr>
+              <tr><td>W-8BEN-E (International Entity) — upload</td><td><span style="color:var(--o-gray-400);">— not shown (W-9 was selected)</span></td><td class="mono-map">—</td></tr>
               <tr><td>Payment method</td><td>ACH</td><td class="mono-map">—</td></tr>
               <tr><td>Bank Name</td><td>First Harbor Bank</td><td class="mono-map">— (AP keys the bank account)</td></tr>
               <tr><td>Account Holder Name</td><td>Aurora Media LLC</td><td class="mono-map">—</td></tr>
@@ -161,13 +166,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
       <strong>Contact bound at share time (R11 / D-009)</strong> — this submission was created when AP invited <em>Aurora Media LLC</em> from the Share wizard, so the <em>Contact</em> arrives pre-linked (read-only). No email matching, no manual picking.
     </div>
     <div class="mockup-annotation success">
-      <strong>Update Contact (R05 / R08)</strong> — the single action. Overwrites the mapped fields on the linked contact (blank answers skipped, BR-011), marks it <em>Supplier</em>, and adds "Intake – To Review" (BR-010, idempotent). Click it to see the updated Vendor Profile.
+      <strong>Update Contact (R05 / R08)</strong> — the single action. Overwrites the mapped fields on the linked contact (blank answers skipped, BR-011), marks it <em>Supplier</em>, and adds "Intake – To Review" (BR-010, idempotent). In v0.6 it also switches <em>Shopify Creator</em> on or off to match the Content Creator answer (BR-020/021) and files <strong>two documents</strong> onto the vendor — an Intake Summary PDF of these answers plus the uploaded W-9 — into a restricted section of the Invoicing tab, <strong>written once</strong> so re-running Update never duplicates them (BR-022 / D-019). Click it to see the updated Vendor Profile.
     </div>
     <div class="mockup-annotation warning">
       <strong>No Create Contact (D-009)</strong> — removed in v0.3: the vendor contact is created <em>before</em> sharing, so nothing is ever created from a submission. Only test/legacy entries lack a Contact — there, Update is blocked (BR-006).
     </div>
     <div class="mockup-annotation danger">
-      <strong>Guards & sensitive data</strong> — Country/State that cannot be matched by name triggers a warning to set it manually (BR-012). Bank answers are never auto-written — AP keys the verified bank account (D-008). Tax IDs and bank numbers shown masked.
+      <strong>Guards & sensitive data</strong> — Country/State that cannot be matched by name triggers a warning to set it manually (BR-012). Bank answers are never auto-written — AP keys the verified bank account (D-008). Tax IDs live inside the uploaded tax PDF (restrict attachment access, Q-001); bank numbers shown masked. The Intake Summary PDF generated from these answers carries the bank details too, which is why it is filed behind a Bookkeeper-and-above restriction on the contact rather than into chatter (D-019 / BR-023).
     </div>
   </div>
 

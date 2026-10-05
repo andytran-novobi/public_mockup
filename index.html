@@ -123,7 +123,7 @@ body {
       <div>
         <div class="scr">SCR-001 · INVITED SURVEY</div>
         <h3>Vendor Intake Form</h3>
-        <p>Personal-link survey (no login). Vendor + tax form (W-9 / W-8BEN branch) + structured payment details shown by payment method.</p>
+        <p>Personal-link survey (no login). Vendor info + sign-on-behalf &amp; content-creator gates, a <strong>required</strong> tax-form choice (W-9 / W-8BEN / W-8BEN-E) revealing one <strong>required</strong> upload, and structured payment details shown by payment method (Wire / ACH / Other).</p>
         <span class="role"><i class="fa fa-envelope-open-text"></i> Invited vendor</span>
       </div>
     </a>
@@ -153,17 +153,17 @@ body {
       <div>
         <div class="scr">SCR-003 · CONTACTS ▸ VENDORS</div>
         <h3>Vendor Profile</h3>
-        <p>Vendor updated from mapped answers — Supplier flag + "Intake – To Review" tag applied by Update Contact.</p>
+        <p>Vendor updated from mapped answers — Supplier flag + "Intake – To Review" tag applied by Update Contact, plus <strong>Shopify Creator</strong> and the new access-restricted <strong>intake document section</strong> on the Invoicing tab.</p>
         <span class="role"><i class="fa fa-user"></i> AP / Accounting</span>
       </div>
     </a>
   </div>
 
   <div class="note-box info">
-    <strong>Suggested walkthrough</strong> — Start at the <em>Share Wizard</em> to see how AP invites a vendor. Then open the <em>Vendor Intake Form</em>, choose a tax form and a payment method to see both branches, and click <em>Submit</em>. That lands on the <em>Participation</em> form where <em>Update Contact</em> opens the updated <em>Vendor Profile</em>.
+    <strong>Suggested walkthrough</strong> — Start at the <em>Share Wizard</em> to see how AP invites a vendor. Then open the <em>Vendor Intake Form</em>, try the sign-on-behalf / content-creator gates, pick each of the three tax forms in turn to watch only the matching upload appear, choose a payment method, and click <em>Submit</em>. That lands on the <em>Participation</em> form where <em>Update Contact</em> opens the updated <em>Vendor Profile</em> — look at the <em>Invoicing</em> tab there for the restricted intake documents.
   </div>
   <div class="note-box">
-    <strong>Not final UI</strong> — FDD states the real survey is built on Staging (per Summer); question layout/placement defers to that build. These mockups show intended content and behavior, not pixel-final screens. Sensitive tax IDs (TIN/SSN/EIN, DOB) and bank numbers are shown masked.
+    <strong>Not final UI</strong> — FDD states the real survey is built on Staging (per Summer); question layout/placement defers to that build. These mockups show intended content and behavior, not pixel-final screens. Sensitive tax IDs live inside the uploaded tax PDF; bank numbers are shown masked. The upload question type is <strong>not custom</strong> — it comes from the third-party app <em>bi_survey_files_upload</em>, since Survey 18 has no native upload (D-018, closing Q-010). Whether that app enforces a <em>required</em> upload is still to be confirmed on Staging (Q-013).
   </div>
 </div>
 
