@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>INV-013 Mockup — Work Center Form</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --o-enterprise-color: #714B67; --o-enterprise-action-color: #017e84; --o-brand-odoo: #714B67;
+  --o-brand-primary: #714B67; --o-action: #017e84;
+  --o-gray-100: #F9FAFB; --o-gray-200: #e7e9ed; --o-gray-300: #d8dadd; --o-gray-400: #9a9ca5;
+  --o-gray-500: #7c7f89; --o-gray-600: #5f636f; --o-gray-700: #374151; --o-gray-800: #1F2937; --o-gray-900: #111827;
+  --o-success: #28a745; --o-info: #17a2b8; --o-warning: #ffac00; --o-danger: #dc3545;
+  --o-border-radius: 4px; --o-spacer: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, "Noto Sans", Arial, sans-serif;
+  font-size: 14px; line-height: 1.5; color: var(--o-gray-900); background: #f0f0f0; padding: 24px; }
+.mockup-page { position: relative; width: 1040px; background: var(--o-gray-100); border-radius: 6px; overflow: visible; padding-bottom: 20px; }
+.o_control_panel { display: flex; flex-direction: column; gap: 12px; padding: 8px 16px 12px; }
+.o_breadcrumb { display: flex; align-items: center; }
+.breadcrumb { display: flex; list-style: none; padding: 0; margin: 0; font-size: 15px; color: var(--o-gray-700); }
+.breadcrumb-item + .breadcrumb-item::before { content: ">"; padding: 0 6px; color: var(--o-gray-400); }
+.breadcrumb-item.active { font-weight: 600; color: var(--o-gray-900); }
+.o_form_sheet_bg { padding: 0 16px; }
+.o_form_sheet { background: #fff; border-radius: var(--o-border-radius); box-shadow: 0 1px 4px rgba(48, 48, 48, 0.12); padding: 20px 24px 28px; position: relative; overflow: visible; }
+.btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: var(--o-border-radius); font-size: 13px; font-weight: 500; border: 1px solid transparent; cursor: default; white-space: nowrap; transition: none; }
+.btn-primary { background: var(--o-brand-primary); color: #fff; border-color: var(--o-brand-primary); }
+.btn-secondary { background: var(--o-gray-200); color: var(--o-gray-900); border-color: var(--o-gray-300); }
+.o_group { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; }
+.o_inner_group { display: flex; flex-direction: column; gap: 10px; }
+.o_cell { display: flex; align-items: baseline; gap: 12px; }
+.o_form_label { font-weight: 600; font-size: 13px; color: var(--o-gray-800); min-width: 160px; flex-shrink: 0; }
+.o_field_widget { font-size: 14px; color: var(--o-gray-900); }
+.o_field_widget .o_input, .o_input { border: 1px solid var(--o-gray-200); padding: 4px 8px; border-radius: var(--o-border-radius); font-size: 14px; background: #fff; }
+.o_required { border-left: 3px solid #000 !important; }
+.o_field_widget a, .o_field_many2one a { color: var(--o-action); text-decoration: none; }
+.o_notebook { margin-top: 20px; }
+.o_notebook_headers { border-bottom: 1px solid var(--o-gray-300); }
+.nav-tabs { display: flex; list-style: none; padding: 0; margin: 0; gap: 0; }
+.nav-tabs .nav-item { flex-shrink: 0; }
+.nav-tabs .nav-link { display: block; padding: 8px 16px; font-size: 14px; font-weight: 500; color: var(--o-gray-600); text-decoration: none; border: 1px solid transparent; border-radius: 0; cursor: default; }
+.nav-tabs .nav-link.active { color: var(--o-gray-900); font-weight: 600; border-bottom: 2px solid var(--o-brand-odoo); border-top: 3px solid var(--o-brand-odoo); background: #fff; }
+.o_notebook_content { padding: 16px 0; }
+.mockup-annotations-layer { display: flex; gap: 16px; padding: 16px 20px 0; flex-wrap: wrap; }
+.mockup-annotation { padding: 12px 14px; border-radius: 6px; border-left: 5px solid; font-size: 13px; line-height: 1.5; flex: 1; min-width: 240px; }
+.mockup-annotation strong { font-weight: 700; }
+.mockup-annotation.info { background: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+.mockup-annotation.warning { background: #fff3cd; border-color: #ffac00; color: #6b4f00; }
+.mockup-annotation.success { background: #d4edda; border-color: #28a745; color: #155724; }
+.mockup-annotation.danger { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.mockup-highlight { border: 2px dashed var(--o-warning); border-radius: 6px; padding: 2px 4px; display: inline-block; }
+.clickable { position: relative; border: 2px dashed var(--o-action) !important; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
+.clickable:hover { background: rgba(1,126,132,0.08); }
+.clickable::after { content: "\f25a"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 10px; color: #fff; background: var(--o-action);
+  width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: -8px; right: -8px; z-index: 30; }
+.mockup-navbar { position: sticky; top: 0; z-index: 100; background: var(--o-gray-900); padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; row-gap: 8px; }
+.mockup-navbar .nav-left { display: flex; align-items: center; gap: 16px; }
+.mockup-navbar .nav-home { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.mockup-navbar .nav-home:hover { color: var(--o-action); }
+.mockup-navbar .nav-breadcrumb { color: var(--o-gray-400); font-size: 13px; }
+.mockup-navbar .nav-breadcrumb span { color: var(--o-gray-500); margin: 0 4px; }
+.mockup-navbar .legend-box { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--o-gray-400); }
+.mockup-navbar .legend-item { display: flex; align-items: center; gap: 4px; }
+.mockup-navbar .legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; }
+.mockup-navbar .nav-menu { width: 100%; display: flex; align-items: center; gap: 18px; }
+.mockup-navbar .nav-menu .menu-label { font-size: 12px; color: var(--o-gray-400); }
+.mockup-navbar .nav-menu a { color: #fff; font-size: 13px; text-decoration: none; padding: 1px 8px; }
+.mockup-navbar .nav-menu .current { color: #fff; font-size: 13px; font-weight: 600; padding: 1px 8px; border-bottom: 2px solid var(--o-action); }
+.mockup-new .field-label { color: var(--o-success) !important; }
+.o_field_help { font-size: 12px; color: var(--o-gray-500); margin-top: 3px; }
+.value-new { color: #008818; font-weight: 600; }
+.dropdown-preview { margin-top: 6px; width: 300px; background: #fff; border: 1px solid var(--o-gray-200); border-radius: var(--o-border-radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.dropdown-preview div { padding: 6px 12px; font-size: 13px; }
+.dropdown-preview .sel { background: rgba(1,126,132,0.08); font-weight: 500; }
+.dropdown-preview .more { color: var(--o-action); border-top: 1px solid var(--o-gray-200); }
+.group-title { font-weight: 600; color: var(--o-gray-700); border-bottom: 1px solid var(--o-gray-200); padding-bottom: 4px; }
+</style>
+</head>
+<body>
+<nav class="mockup-navbar">
+  <div class="nav-left">
+    <a href="INV-013-mockup-overview.html" class="nav-home clickable"><i class="fa fa-house"></i> Home</a>
+    <div class="nav-breadcrumb"><span>&gt;</span> Manufacturing <span>&gt;</span> Configuration <span>&gt;</span> Work Centers <span>&gt;</span> <strong>MyData Pick and Place</strong></div>
+  </div>
+  <div class="legend-box">
+    <span class="legend-item"><span class="legend-swatch" style="border: 2px dashed var(--o-action);"></span> <i class="fa fa-hand-pointer" style="color: var(--o-action); font-size: 11px;"></i> = Clickable link</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: var(--o-success);"></span> NEW in INV-013</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: var(--o-warning);"></span> CHANGED value</span>
+  </div>
+  <div class="nav-menu">
+    <span class="menu-label">Screens:</span>
+    <span class="current">Work Centers</span>
+    <a class="clickable" href="INV-013-mockup-mo-form.html">Manufacturing Orders</a>
+    <a class="clickable" href="INV-013-mockup-replenishment.html">Replenishment</a>
+    <a class="clickable" href="INV-013-mockup-transfers.html">Transfers</a>
+  </div>
+</nav>
+
+<div class="mockup-page" id="mockupPage">
+
+  <div class="o_control_panel">
+    <div class="o_breadcrumb"><ol class="breadcrumb">
+      <li class="breadcrumb-item"><a class="clickable" href="INV-013-mockup-overview.html" style="padding: 0 6px; color: var(--o-action); text-decoration: none;">Work Centers</a></li>
+      <li class="breadcrumb-item active">MyData Pick and Place</li>
+    </ol></div>
+  </div>
+
+  <div class="o_form_sheet_bg">
+    <div class="o_form_sheet">
+      <div class="o_group">
+        <div class="o_inner_group">
+          <div class="o_cell"><label class="o_form_label field-label">Work Center Name</label><div class="o_field_widget"><span class="o_input o_required" style="display: inline-block; min-width: 240px;">MyData Pick and Place</span></div></div>
+          <div class="o_cell"><label class="o_form_label field-label">Tags</label><div class="o_field_widget"><span class="o_input" style="display: inline-block; min-width: 240px;">&nbsp;</span></div></div>
+          <div class="o_cell"><label class="o_form_label field-label">Alternative Workcenters</label><div class="o_field_widget"><span class="o_input" style="display: inline-block; min-width: 240px;">&nbsp;</span></div></div>
+        </div>
+        <div class="o_inner_group">
+          <div class="o_cell"><label class="o_form_label field-label">Code</label><div class="o_field_widget"><span class="o_input" style="display: inline-block; min-width: 260px;">&nbsp;</span></div></div>
+          <div class="o_cell mockup-new">
+            <label class="o_form_label field-label">Components Location</label>
+            <div class="o_field_widget o_field_many2one">
+              <div class="mockup-highlight"><span class="o_input" style="display: inline-flex; gap: 6px; align-items: center; min-width: 260px;"><a href="#"><span class="value-new">WH/SMT</span></a> <i class="fa fa-caret-down" style="color: var(--o-gray-400); margin-left: auto;"></i></span></div>
+              <div class="o_field_help">Parts consumed at this work center's steps come from this location.</div>
+              <div class="dropdown-preview">
+                <div class="sel">WH/SMT</div>
+                <div>WH/WIP-Pre-Production</div>
+                <div>WH/Input (QA)</div>
+                <div class="more">Search More...</div>
+              </div>
+            </div>
+          </div>
+          <div class="o_cell"><label class="o_form_label field-label">Working Hours</label><div class="o_field_widget o_field_many2one"><a href="#">Standard 40 hours/week</a></div></div>
+        </div>
+      </div>
+
+      <div class="o_notebook">
+        <div class="o_notebook_headers"><ul class="nav-tabs">
+          <li class="nav-item"><a class="nav-link active">General Information</a></li>
+          <li class="nav-item"><a class="nav-link">Specific Capacities</a></li>
+          <li class="nav-item"><a class="nav-link">Description</a></li>
+        </ul></div>
+        <div class="o_notebook_content">
+          <div class="o_group">
+            <div class="o_inner_group">
+              <div class="group-title">Production Information</div>
+              <div class="o_cell"><label class="o_form_label field-label">Time Efficiency</label><div class="o_field_widget">100.00 %</div></div>
+              <div class="o_cell"><label class="o_form_label field-label">Capacity</label><div class="o_field_widget">1.00</div></div>
+              <div class="o_cell"><label class="o_form_label field-label">OEE Target</label><div class="o_field_widget">90.00 %</div></div>
+              <div class="o_cell"><label class="o_form_label field-label">Setup Time</label><div class="o_field_widget">00:15 minutes</div></div>
+              <div class="o_cell"><label class="o_form_label field-label">Cleanup Time</label><div class="o_field_widget">00:15 minutes</div></div>
+            </div>
+            <div class="o_inner_group">
+              <div class="group-title">Costing Information</div>
+              <div class="o_cell"><label class="o_form_label field-label">Cost per hour</label><div class="o_field_widget">$ 0.00 per workcenter</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-annotations-layer">
+
+    <div class="mockup-annotation success"><strong>NEW field: Components Location (R02, D-008)</strong> — Top section, right column, after Code. Set to WH/SMT on "MyData Pick and Place" only. Empty on every other work center = standard Odoo: parts come from the MO's own Components Location (WH/WIP-Pre-Production).</div>
+    <div class="mockup-annotation danger"><strong>BR-001 (BLOCK)</strong> — Only internal locations outside WH/Stock are accepted, on the screen, by import or by API. Any other value is refused on save with: "Components Location must be an internal location outside WH/Stock."</div>
+    <div class="mockup-annotation warning"><strong>Administrators only (FDD §7)</strong> — Only Manufacturing Administrators can set it (standard access rights). A Manufacturing User gets the standard Odoo access-rights error.</div>
+    <div class="mockup-annotation info"><strong>Draft MOs only (BR-008)</strong> — Setting or changing the value updates the From of Draft MOs only. Confirmed, in-progress and done MOs keep their lines (132 open MOs had an unfinished MyData step on 20 Oct 2026).</div>
+    <div class="mockup-annotation info"><strong>One SMT work center (D-014, A-002)</strong> — Both machines share this work center, so Alternative Workcenters stays empty. The 4 unused copies with the same name are archived before go-live (MFG-010). Time Efficiency 200% for two machines: open, NEL confirms later (Q-016).</div>
+
+  </div>
+</div>
+</body>
+</html>

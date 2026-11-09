@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>INV-013 Mockup — Option A Overview</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --o-enterprise-color: #714B67; --o-enterprise-action-color: #017e84; --o-brand-odoo: #714B67;
+  --o-brand-primary: #714B67; --o-action: #017e84;
+  --o-gray-100: #F9FAFB; --o-gray-200: #e7e9ed; --o-gray-300: #d8dadd; --o-gray-400: #9a9ca5;
+  --o-gray-500: #7c7f89; --o-gray-600: #5f636f; --o-gray-700: #374151; --o-gray-800: #1F2937; --o-gray-900: #111827;
+  --o-success: #28a745; --o-info: #17a2b8; --o-warning: #ffac00; --o-danger: #dc3545;
+  --o-border-radius: 4px; --o-spacer: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, "Noto Sans", Arial, sans-serif;
+  font-size: 14px; line-height: 1.5; color: var(--o-gray-900); background: #f0f0f0; padding: 24px; }
+.mockup-page { position: relative; width: 1040px; background: var(--o-gray-100); border-radius: 6px; overflow: visible; padding-bottom: 20px; }
+.o_list_table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.o_list_table thead th { padding: 10px 14px; text-align: left; font-weight: 600; font-size: 13px; color: var(--o-gray-700); border-bottom: 2px solid var(--o-gray-300); background: #fff; }
+.o_list_table tbody td { padding: 10px 14px; border-bottom: 1px solid var(--o-gray-200); vertical-align: middle; }
+.o_data_row:hover { background: rgba(1, 126, 132, 0.05); }
+.mockup-annotations-layer { display: flex; gap: 16px; padding: 16px 20px 0; flex-wrap: wrap; }
+.mockup-annotation { padding: 12px 14px; border-radius: 6px; border-left: 5px solid; font-size: 13px; line-height: 1.5; flex: 1; min-width: 240px; }
+.mockup-annotation strong { font-weight: 700; }
+.mockup-annotation.info { background: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+.mockup-annotation.warning { background: #fff3cd; border-color: #ffac00; color: #6b4f00; }
+.mockup-annotation.success { background: #d4edda; border-color: #28a745; color: #155724; }
+.mockup-annotation.danger { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.clickable { position: relative; border: 2px dashed var(--o-action) !important; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
+.clickable:hover { background: rgba(1,126,132,0.08); }
+.clickable::after { content: "\f25a"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 10px; color: #fff; background: var(--o-action);
+  width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: -8px; right: -8px; z-index: 30; }
+.mockup-navbar { position: sticky; top: 0; z-index: 100; background: var(--o-gray-900); padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; }
+.mockup-navbar .nav-left { display: flex; align-items: center; gap: 16px; }
+.mockup-navbar .nav-home { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.mockup-navbar .nav-home:hover { color: var(--o-action); }
+.mockup-navbar .nav-breadcrumb { color: var(--o-gray-400); font-size: 13px; }
+.mockup-navbar .nav-breadcrumb span { color: var(--o-gray-500); margin: 0 4px; }
+.mockup-navbar .legend-box { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--o-gray-400); }
+.mockup-navbar .legend-item { display: flex; align-items: center; gap: 4px; }
+.mockup-navbar .legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; }
+.intro { padding: 20px 24px 8px; }
+.intro h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+.intro p { color: var(--o-gray-600); font-size: 14px; }
+.section-title { font-size: 15px; font-weight: 600; padding: 16px 24px 8px; color: var(--o-gray-800); }
+.flow { padding: 8px 20px 0; }
+.flow svg { width: 1000px; height: auto; display: block; background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(48,48,48,0.12); }
+.flow a { cursor: pointer; }
+.flow a:hover rect.box { fill: #e6f2f3; }
+.screen-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 8px 24px 4px; }
+.screen-card { display: block; background: #fff; padding: 12px 14px; text-decoration: none; color: var(--o-gray-900); font-size: 13px; }
+.screen-card strong { display: block; font-size: 13px; margin-bottom: 2px; }
+.screen-card span { color: var(--o-gray-600); font-size: 12px; }
+.decisions { padding: 0 24px; }
+.decisions table { background: #fff; }
+.decisions td:first-child { font-weight: 600; white-space: nowrap; }
+.decisions td:last-child { color: var(--o-gray-600); font-size: 12px; width: 230px; }
+
+/* INV-013 Option A additions */
+.mockup-navbar { flex-wrap: wrap; row-gap: 8px; }
+.mockup-navbar .nav-menu { width: 100%; display: flex; align-items: center; gap: 18px; }
+.mockup-navbar .nav-menu .menu-label { font-size: 12px; color: var(--o-gray-400); }
+.mockup-navbar .nav-menu a { color: #fff; font-size: 13px; text-decoration: none; padding: 1px 8px; }
+.mockup-navbar .nav-menu .current { color: #fff; font-size: 13px; font-weight: 600; padding: 1px 8px; border-bottom: 2px solid var(--o-action); }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 4px 24px; }
+.kpi { background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(48,48,48,0.12); padding: 12px 14px; }
+.kpi b { display: block; font-size: 26px; line-height: 1.1; color: var(--o-brand-odoo); }
+.kpi span { font-size: 12px; color: var(--o-gray-600); }
+</style>
+</head>
+<body>
+<nav class="mockup-navbar">
+  <div class="nav-left">
+    <a href="INV-013-mockup-overview.html" class="nav-home clickable"><i class="fa fa-house"></i> Home</a>
+    <div class="nav-breadcrumb"><span>&gt;</span> INV-013 <span>&gt;</span> <strong>Option A overview</strong></div>
+  </div>
+  <div class="legend-box">
+    <span class="legend-item"><span class="legend-swatch" style="border: 2px dashed var(--o-action);"></span> <i class="fa fa-hand-pointer" style="color: var(--o-action); font-size: 11px;"></i> = Clickable link</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: var(--o-success);"></span> NEW in INV-013</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: var(--o-warning);"></span> CHANGED value</span>
+  </div>
+  <div class="nav-menu">
+    <span class="menu-label">Screens:</span>
+    <a class="clickable" href="INV-013-mockup-workcenter-form.html">Work Centers</a>
+    <a class="clickable" href="INV-013-mockup-mo-form.html">Manufacturing Orders</a>
+    <a class="clickable" href="INV-013-mockup-replenishment.html">Replenishment</a>
+    <a class="clickable" href="INV-013-mockup-transfers.html">Transfers</a>
+  </div>
+</nav>
+
+<div class="mockup-page" id="mockupPage">
+
+  <div class="intro">
+    <h1>INV-013 Option A: one SMT location and one SMT work center</h1>
+    <p>Both MyData machines share one stock location, <strong>WH/SMT</strong>, and one work center, <strong>MyData Pick and Place</strong>.
+    Parts consumed at the MyData step come from WH/SMT. All other parts of the MO still come from WH/WIP-Pre-Production.
+    Source: INV-013 FDD v0.5 (short) and v0.4, 9 Nov 2026.</p>
+  </div>
+
+  <div class="section-title">Example used on every screen</div>
+  <div class="kpis">
+    <div class="kpi"><b>100</b><span>pcs of capacitor 191-B0402102K-1 needed by WH/MO/10095 (100 × W8CB-1, 1 per board)</span></div>
+    <div class="kpi"><b>90</b><span>pcs in WH/SMT: 80 on MyData 1 + 10 on MyData 2. Odoo sees only the total.</span></div>
+    <div class="kpi"><b>90</b><span>pcs reserved in WH/SMT when the planner confirms the MO</span></div>
+    <div class="kpi"><b>10</b><span>pcs picked from WH/Stock into WH/SMT (Pick Components WH/PC/00180)</span></div>
+  </div>
+
+  <div class="section-title">Decisions (FDD Section 10)</div>
+  <div class="decisions">
+    <table class="o_list_table">
+      <thead><tr><th>ID</th><th>Decision</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr class="o_data_row"><td>D-014</td><td>Option A: one shared location, WH/SMT, and one SMT work center. Reel moves between the two machines are not recorded. Jobs are planned one after another, and the team chooses the machine.</td><td>NEL: Roger Rea, 4 Nov 2026 ("for this SOW"); Kelly Steeples, 6 Nov 2026</td></tr>
+        <tr class="o_data_row"><td>D-015</td><td>A part comes from WH/SMT only when both checks pass: 1) the MO has a work order on a work center with a Components Location; 2) the part's "Consumed in Operation" is that work order's step. Checked again on the Draft, fixed at Confirm.</td><td>Andy Tran, 9 Nov 2026</td></tr>
+        <tr class="o_data_row"><td>D-016</td><td>WH/SMT sits beside WH/WIP-Pre-Production, not inside it, and not under WH/Stock. Inside it, other MOs could reserve the machines' reels (386 of 1,223 SMT parts are also on other BoMs).</td><td>FDD v0.4</td></tr>
+        <tr class="o_data_row"><td>D-017</td><td>When parts leave WH/SMT is decided by MFG-027 (work-order close), not by INV-013.</td><td>Confirmed 9 Nov 2026 (Q-013)</td></tr>
+        <tr class="o_data_row"><td>D-008</td><td>Label "Components Location": top section, right column, after "Code". Transfer type "SMT Top-up".</td><td>v0.3 mockups, 23 Oct 2026; names updated for Option A</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">Flow (click a dashed box to open its screen)</div>
+  <div class="flow">
+<svg viewBox="0 0 1000 1256" xmlns="http://www.w3.org/2000/svg" font-size="12.5" role="img" aria-label="INV-013 Option A flow: set-up, Draft MO, From rule, Confirm, pick, MyData step, top-up and reel return">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7c7f89"/></marker></defs>
+<rect x="20" y="0" width="238" height="30" fill="#e7e9ed"/><rect x="262" y="0" width="236" height="30" fill="#e7e9ed"/>
+<rect x="502" y="0" width="236" height="30" fill="#e7e9ed"/><rect x="742" y="0" width="238" height="30" fill="#e7e9ed"/>
+<text x="139" y="20" text-anchor="middle" font-weight="600" fill="#111827">Planner</text>
+<text x="380" y="20" text-anchor="middle" font-weight="600" fill="#111827">Odoo</text>
+<text x="620" y="20" text-anchor="middle" font-weight="600" fill="#111827">Stock room</text>
+<text x="861" y="20" text-anchor="middle" font-weight="600" fill="#111827">SMT team</text>
+
+<rect x="20" y="40" width="960" height="126" rx="8" fill="#F9FAFB" stroke="#d8dadd"/>
+<text x="36" y="62" font-weight="600" font-size="13" fill="#111827">One-time set-up (before go-live)</text>
+<rect x="32" y="72" width="230" height="84" rx="6" fill="#fff" stroke="#9a9ca5"/>
+<text x="44" y="94" font-weight="600" fill="#111827">Location WH/SMT</text>
+<text x="44" y="112" fill="#374151">internal, beside</text>
+<text x="44" y="130" fill="#374151">WH/WIP-Pre-Production</text>
+<text x="44" y="148" font-weight="700" font-size="11.5" fill="#28a745">NEW (configuration)</text>
+<a href="INV-013-mockup-workcenter-form.html"><rect class="box" x="270" y="72" width="230" height="84" rx="6" fill="#fff" stroke="#017e84" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="282" y="94" font-weight="600" fill="#111827">MyData Pick and Place</text>
+<text x="282" y="112" fill="#374151">one SMT work center with</text>
+<text x="282" y="130" fill="#374151">Components Location = WH/SMT</text>
+<text x="282" y="148" font-weight="700" font-size="11.5" fill="#28a745">NEW field (custom)</text><circle cx="498" cy="74" r="9" fill="#017e84"/><text x="498" y="77" text-anchor="middle" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="9" fill="#fff">&#xf25a;</text></a>
+<rect x="508" y="72" width="230" height="84" rx="6" fill="#fff" stroke="#9a9ca5"/>
+<text x="520" y="94" font-weight="600" fill="#111827">SMT supply route</text>
+<text x="520" y="112" fill="#374151">WH/SMT → Production;</text>
+<text x="520" y="130" fill="#374151">shortfall from WH/Stock</text>
+<text x="520" y="148" font-weight="700" font-size="11.5" fill="#28a745">NEW (configuration)</text>
+<a href="INV-013-mockup-replenishment.html"><rect class="box" x="746" y="72" width="230" height="84" rx="6" fill="#fff" stroke="#017e84" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="758" y="94" font-weight="600" fill="#111827">SMT Top-up + Min/Max</text>
+<text x="758" y="112" fill="#374151">one rule per part on WH/SMT;</text>
+<text x="758" y="130" fill="#374151">NEL sends the list later</text>
+<text x="758" y="148" font-weight="700" font-size="11.5" fill="#28a745">NEW (configuration)</text><circle cx="974" cy="74" r="9" fill="#017e84"/><text x="974" y="77" text-anchor="middle" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="9" fill="#fff">&#xf25a;</text></a>
+
+<rect x="20" y="992" width="960" height="226" rx="8" fill="#F9FAFB" stroke="#d8dadd" stroke-dasharray="5 4"/>
+<text x="36" y="1014" font-weight="600" font-size="13" fill="#111827">Any time, per part (not per MO)</text>
+
+<line x1="260" y1="176" x2="260" y2="1218" stroke="#e7e9ed" stroke-width="2"/>
+<line x1="500" y1="176" x2="500" y2="1218" stroke="#e7e9ed" stroke-width="2"/>
+<line x1="740" y1="176" x2="740" y2="1218" stroke="#e7e9ed" stroke-width="2"/>
+
+<g fill="none" stroke="#7c7f89" stroke-width="1.5">
+<path d="M245 228H380V282" marker-end="url(#arr)"/>
+<path d="M275 351H140V428" marker-end="url(#arr)"/>
+<path d="M245 470H380V524" marker-end="url(#arr)"/>
+<path d="M380 622V636" marker-end="url(#arr)"/>
+<path d="M470 682H511" marker-end="url(#arr)"/>
+<path d="M380 724V796H751" marker-end="url(#arr)"/>
+<path d="M620 720V796"/>
+<path d="M861 852V925H489" marker-end="url(#arr)"/>
+<path d="M480 1074H511" marker-end="url(#arr)"/>
+<path d="M380 1116V1134"/>
+<path d="M755 1170H729" marker-end="url(#arr)"/>
+</g>
+<text x="478" y="674" font-size="11.5" fill="#5f636f">no</text>
+<text x="388" y="746" font-size="11.5" fill="#5f636f">yes</text>
+<text x="486" y="1066" font-size="11.5" fill="#5f636f">yes</text>
+<text x="380" y="1150" text-anchor="middle" font-size="11.5" fill="#5f636f">no: nothing to order</text>
+
+<a href="INV-013-mockup-mo-form.html#draft"><rect class="box" x="35" y="190" width="210" height="76" rx="8" fill="#fff" stroke="#017e84" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="47" y="212" font-weight="600" font-size="13" fill="#111827">1. Planner creates the MO</text>
+<text x="47" y="230" fill="#374151">WH/MO/10095: 100 × W8CB-1</text>
+<text x="47" y="248" fill="#374151">state Draft</text><circle cx="243" cy="192" r="9" fill="#017e84"/><text x="243" y="195" text-anchor="middle" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="9" fill="#fff">&#xf25a;</text></a>
+
+<a href="INV-013-mockup-mo-form.html#draft"><rect class="box" x="275" y="286" width="210" height="130" rx="8" fill="#fff" stroke="#017e84" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="287" y="308" font-weight="600" font-size="13" fill="#111827">2. Odoo sets From per part</text>
+<text x="287" y="327" fill="#374151">WH/SMT: part consumed at</text>
+<text x="287" y="345" fill="#374151">a step whose work center</text>
+<text x="287" y="363" fill="#374151">has a Components Location;</text>
+<text x="287" y="381" fill="#374151">else WH/WIP-Pre-Production</text>
+<text x="287" y="404" font-weight="700" font-size="11.5" fill="#28a745">NEW (custom) · BR-002</text><circle cx="483" cy="288" r="9" fill="#017e84"/><text x="483" y="291" text-anchor="middle" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="9" fill="#fff">&#xf25a;</text></a>
+
+<rect x="35" y="432" width="210" height="76" rx="8" fill="#fff" stroke="#9a9ca5" stroke-width="1.25"/>
+<text x="47" y="454" font-weight="600" font-size="13" fill="#111827">3. Planner clicks Confirm</text>
+<text x="47" y="472" fill="#374151">From is now fixed</text>
+<text x="47" y="490" fill="#374151">(BR-008)</text>
+
+<rect x="275" y="528" width="210" height="94" rx="8" fill="#fff" stroke="#9a9ca5" stroke-width="1.25"/>
+<text x="287" y="550" font-weight="600" font-size="13" fill="#111827">4. Odoo reserves the parts</text>
+<text x="287" y="569" fill="#374151">SMT parts: in WH/SMT only</text>
+<text x="287" y="587" fill="#374151">other parts: INV-011 pick</text>
+<text x="287" y="605" fill="#374151">into WH/WIP-Pre-Production</text>
+
+<polygon points="290,682 380,640 470,682 380,724" fill="#fff" stroke="#9a9ca5" stroke-width="1.25"/>
+<text x="380" y="678" text-anchor="middle" fill="#111827">Enough free</text>
+<text x="380" y="694" text-anchor="middle" fill="#111827">in WH/SMT?</text>
+
+<a href="INV-013-mockup-transfers.html#pick"><rect class="box" x="515" y="644" width="210" height="76" rx="8" fill="#fff" stroke="#017e84" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="527" y="666" font-weight="600" font-size="13" fill="#111827">5. Pick Components</text>
+<text x="527" y="684" fill="#374151">WH/Stock → WH/SMT,</text>
+<text x="527" y="702" fill="#374151">missing quantity only: 10</text><circle cx="723" cy="646" r="9" fill="#017e84"/><text x="723" y="649" text-anchor="middle" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="9" fill="#fff">&#xf25a;</text></a>
+
+<rect x="755" y="758" width="210" height="94" rx="8" fill="#fff" stroke="#9a9ca5" stroke-width="1.25"/>
+<text x="767" y="780" font-weight="600" font-size="13" fill="#111827">6. MyData step runs</text>
+<text x="767" y="799" fill="#374151">on either machine; reel</text>
+<text x="767" y="817" fill="#374151">moves between machines</text>
+<text x="767" y="835" fill="#374151">are not recorded (D-014)</text>
+
+<rect x="275" y="878" width="210" height="94" rx="8" fill="#fff" stroke="#9a9ca5" stroke-width="1.25"/>
+<text x="287" y="900" font-weight="600" font-size="13" fill="#111827">7. Parts leave WH/SMT</text>
+<text x="287" y="919" fill="#374151">today: at MO Done</text>
+<text x="287" y="937" fill="#374151">with MFG-027: when the</text>
+<text x="287" y="955" fill="#374151">MyData work order closes</text>
+
+<polygon points="280,1074 380,1032 480,1074 380,1116" fill="#fff" stroke="#9a9ca5" stroke-width="1.25"/>
+<text x="380" y="1070" text-anchor="middle" fill="#111827">Forecast in WH/SMT</text>
+<text x="380" y="1086" text-anchor="middle" fill="#111827">below Min?</text>
+
+<a href="INV-013-mockup-transfers.html#topup"><rect class="box" x="515" y="1036" width="210" height="76" rx="8" fill="#fff" stroke="#017e84" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="527" y="1058" font-weight="600" font-size="13" fill="#111827">8. SMT Top-up</text>
+<text x="527" y="1076" fill="#374151">WH/Stock → WH/SMT, up to</text>
+<text x="527" y="1094" fill="#374151">Max in full multiples</text><circle cx="723" cy="1038" r="9" fill="#017e84"/><text x="723" y="1041" text-anchor="middle" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="9" fill="#fff">&#xf25a;</text></a>
+
+<rect x="755" y="1132" width="210" height="76" rx="8" fill="#fff" stroke="#9a9ca5" stroke-width="1.25"/>
+<text x="767" y="1154" font-weight="600" font-size="13" fill="#111827">Reel at the end of FIFO</text>
+<text x="767" y="1172" fill="#374151">is pulled from a machine</text>
+<text x="767" y="1190" fill="#374151">and goes back to stock</text>
+
+<a href="INV-013-mockup-transfers.html#return"><rect class="box" x="515" y="1132" width="210" height="76" rx="8" fill="#fff" stroke="#017e84" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="527" y="1154" font-weight="600" font-size="13" fill="#111827">9. Return the reel</text>
+<text x="527" y="1172" fill="#374151">internal transfer</text>
+<text x="527" y="1190" fill="#374151">WH/SMT → WH/Stock</text><circle cx="723" cy="1134" r="9" fill="#017e84"/><text x="723" y="1137" text-anchor="middle" font-family="'Font Awesome 6 Free'" font-weight="900" font-size="9" fill="#fff">&#xf25a;</text></a>
+
+<rect x="20" y="1232" width="16" height="12" fill="#fff" stroke="#017e84" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="42" y="1242" font-size="11.5" fill="#5f636f">Click to open the screen</text>
+<text x="212" y="1242" font-size="11.5" font-weight="700" fill="#28a745">NEW</text>
+<text x="244" y="1242" font-size="11.5" fill="#5f636f">= new in INV-013 (custom or configuration)</text>
+<rect x="540" y="1232" width="16" height="12" fill="#fff" stroke="#9a9ca5"/>
+<text x="562" y="1242" font-size="11.5" fill="#5f636f">Standard Odoo</text>
+</svg>
+  </div>
+
+  <div class="section-title">Screens in this mockup</div>
+  <div class="screen-cards">
+    <a class="screen-card clickable" href="INV-013-mockup-workcenter-form.html"><strong>Work Center form (SCR-001)</strong><span>NEW field Components Location = WH/SMT</span></a>
+    <a class="screen-card clickable" href="INV-013-mockup-mo-form.html"><strong>Manufacturing Order (SCR-002)</strong><span>From per part, Draft and Confirmed</span></a>
+    <a class="screen-card clickable" href="INV-013-mockup-replenishment.html"><strong>Replenishment (SCR-003)</strong><span>Min/Max per part on WH/SMT</span></a>
+    <a class="screen-card clickable" href="INV-013-mockup-transfers.html"><strong>Transfers (SCR-004)</strong><span>Pick, SMT Top-up, return to stock</span></a>
+  </div>
+
+  <div class="mockup-annotations-layer">
+
+    <div class="mockup-annotation success"><strong>What is custom (NEW)</strong> — Only two pieces: 1) the Components Location field on the work center (R02, BR-001); 2) the From rule with 2 checks on the Draft MO (R03, BR-002, BR-003, BR-007 to BR-009, BR-011).</div>
+    <div class="mockup-annotation info"><strong>Standard configuration</strong> — Location WH/SMT (R01). SMT supply route with "Take From Stock, if unavailable, Trigger Another Rule" (R04). SMT Top-up type, route and Min/Max rules (R05). Returns with an internal transfer (R06).</div>
+    <div class="mockup-annotation warning"><strong>Open points</strong> — Q-014: which BoM lines are SMT parts (DC-01 must set "Consumed in Operation"; today 1 of 25,277 lines has it). Q-016: Time Efficiency 200% on the SMT work center (NEL confirms later). Min/Max list: NEL sends it later, then Novobi configures it (Q-005, closed).</div>
+    <div class="mockup-annotation info"><strong>Not in INV-013</strong> — When parts leave WH/SMT: MFG-027 (D-017); until then at MO Done (A-004). Which machine holds a reel: not tracked (D-014).</div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>INV-013 Mockup — Manufacturing Order Form</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --o-enterprise-color: #714B67; --o-enterprise-action-color: #017e84; --o-brand-odoo: #714B67;
+  --o-brand-primary: #714B67; --o-action: #017e84;
+  --o-gray-100: #F9FAFB; --o-gray-200: #e7e9ed; --o-gray-300: #d8dadd; --o-gray-400: #9a9ca5;
+  --o-gray-500: #7c7f89; --o-gray-600: #5f636f; --o-gray-700: #374151; --o-gray-800: #1F2937; --o-gray-900: #111827;
+  --o-success: #28a745; --o-info: #17a2b8; --o-warning: #ffac00; --o-danger: #dc3545;
+  --o-border-radius: 4px; --o-spacer: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, "Noto Sans", Arial, sans-serif;
+  font-size: 14px; line-height: 1.5; color: var(--o-gray-900); background: #f0f0f0; padding: 24px; }
+.mockup-page { position: relative; width: 1040px; background: var(--o-gray-100); border-radius: 6px; overflow: visible; padding-bottom: 20px; }
+.o_control_panel { display: flex; flex-direction: column; gap: 12px; padding: 8px 16px 12px; }
+.o_breadcrumb { display: flex; align-items: center; }
+.breadcrumb { display: flex; list-style: none; padding: 0; margin: 0; font-size: 15px; color: var(--o-gray-700); }
+.breadcrumb-item + .breadcrumb-item::before { content: ">"; padding: 0 6px; color: var(--o-gray-400); }
+.breadcrumb-item.active { font-weight: 600; color: var(--o-gray-900); }
+.breadcrumb a { color: var(--o-action); text-decoration: none; }
+.o_form_statusbar { display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 10px; gap: 8px; flex-wrap: wrap; }
+.o_statusbar_buttons { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.o_form_sheet_bg { padding: 0 16px; }
+.o_form_sheet { background: #fff; border-radius: var(--o-border-radius); box-shadow: 0 1px 4px rgba(48, 48, 48, 0.12); padding: 20px 24px 28px; position: relative; overflow: visible; }
+.btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: var(--o-border-radius); font-size: 13px; font-weight: 500; border: 1px solid transparent; cursor: default; white-space: nowrap; transition: none; }
+.btn-primary { background: var(--o-brand-primary); color: #fff; border-color: var(--o-brand-primary); }
+.btn-secondary { background: var(--o-gray-200); color: var(--o-gray-900); border-color: var(--o-gray-300); }
+.o_statusbar_status { display: flex; align-items: center; gap: 0; }
+.o_arrow_button { padding: 5px 20px 5px 28px; font-size: 12px; font-weight: 500; color: var(--o-gray-500); background: #fff; border: 1px solid var(--o-gray-300);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%); margin-left: -10px; cursor: default; }
+.o_arrow_button.o_first { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%); margin-left: 0; border-radius: var(--o-border-radius) 0 0 var(--o-border-radius); padding-left: 16px; }
+.o_arrow_button.o_last { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%); border-radius: 0 var(--o-border-radius) var(--o-border-radius) 0; padding-right: 16px; }
+.o_arrow_button_current { background: var(--o-action); color: #fff; border-color: var(--o-action); }
+.o-form-buttonbox { display: flex; justify-content: flex-end; gap: 0; margin-bottom: 16px; border-bottom: 1px solid var(--o-gray-200); padding-bottom: 12px; }
+.oe_stat_button { display: flex; align-items: center; gap: 8px; padding: 8px 16px; font-size: 13px; color: var(--o-gray-700); background: transparent; text-decoration: none; }
+.o_button_icon { font-size: 18px; color: var(--o-gray-400); }
+.o_button_icon.text-action { color: var(--o-action); }
+.o_stat_info { display: flex; flex-direction: column; }
+.o_stat_value { font-weight: 600; font-size: 15px; line-height: 1.2; }
+.o_stat_text { font-size: 12px; color: var(--o-gray-500); }
+.o_group { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; }
+.o_inner_group { display: flex; flex-direction: column; gap: 10px; }
+.o_cell { display: flex; align-items: baseline; gap: 12px; }
+.o_form_label { font-weight: 600; font-size: 13px; color: var(--o-gray-800); min-width: 160px; flex-shrink: 0; }
+.o_field_widget { font-size: 14px; color: var(--o-gray-900); }
+.o_field_widget a, .o_field_many2one a { color: var(--o-action); text-decoration: none; }
+.o_field_many2one_avatar { display: flex; align-items: center; gap: 8px; }
+.o_m2o_avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--o-action); color: #fff; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.o_notebook { margin-top: 20px; }
+.o_notebook_headers { border-bottom: 1px solid var(--o-gray-300); }
+.nav-tabs { display: flex; list-style: none; padding: 0; margin: 0; gap: 0; }
+.nav-tabs .nav-item { flex-shrink: 0; }
+.nav-tabs .nav-link { display: block; padding: 8px 16px; font-size: 14px; font-weight: 500; color: var(--o-gray-600); text-decoration: none; border: 1px solid transparent; border-radius: 0; cursor: default; }
+.nav-tabs .nav-link.active { color: var(--o-gray-900); font-weight: 600; border-bottom: 2px solid var(--o-brand-odoo); border-top: 3px solid var(--o-brand-odoo); background: #fff; }
+.o_notebook_content { padding: 16px 0 0; }
+.o_list_renderer { overflow-x: auto; }
+.o_list_table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.o_list_table thead th { padding: 10px 14px; text-align: left; font-weight: 600; font-size: 13px; color: var(--o-gray-700); border-bottom: 2px solid var(--o-gray-300); background: #fff; }
+.o_list_table tbody td { padding: 9px 14px; border-bottom: 1px solid var(--o-gray-200); vertical-align: middle; }
+.o_data_row:hover { background: rgba(1, 126, 132, 0.05); }
+.o_list_table td.num, .o_list_table th.num { text-align: right; }
+.o_list_table a:not(.clickable) { color: var(--o-action); text-decoration: none; }
+.o_checkbox { width: 16px; height: 16px; border: 2px solid var(--o-gray-300); border-radius: 3px; display: inline-block; vertical-align: middle; }
+.mockup-annotations-layer { display: flex; gap: 16px; padding: 16px 20px 0; flex-wrap: wrap; }
+.mockup-annotation { padding: 12px 14px; border-radius: 6px; border-left: 5px solid; font-size: 13px; line-height: 1.5; flex: 1; min-width: 240px; }
+.mockup-annotation strong { font-weight: 700; }
+.mockup-annotation.info { background: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+.mockup-annotation.warning { background: #fff3cd; border-color: #ffac00; color: #6b4f00; }
+.mockup-annotation.success { background: #d4edda; border-color: #28a745; color: #155724; }
+.mockup-annotation.danger { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.mockup-highlight { border: 2px dashed var(--o-warning); border-radius: 6px; padding: 2px 4px; display: inline-block; }
+.clickable { position: relative; border: 2px dashed var(--o-action) !important; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
+.clickable:hover { background: rgba(1,126,132,0.08); }
+.clickable::after { content: "\f25a"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 10px; color: #fff; background: var(--o-action);
+  width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: -8px; right: -8px; z-index: 30; }
+.nav-tabs .nav-link.tab-clickable { position: relative; border-bottom: 2px dashed var(--o-action) !important; cursor: pointer; }
+.nav-tabs .nav-link.tab-clickable.active { border-bottom: 2px solid var(--o-brand-odoo) !important; border-top: 3px solid var(--o-brand-odoo) !important; }
+.nav-tabs .nav-link.tab-clickable::after { content: "\f25a"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 8px; color: #fff; background: var(--o-action);
+  width: 14px; height: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: -4px; right: -4px; z-index: 30; }
+.nav-tabs .nav-link:hover:not(.active) { color: var(--o-brand-primary); background: rgba(113,75,103,0.04); }
+.mockup-navbar { position: sticky; top: 0; z-index: 100; background: var(--o-gray-900); padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; row-gap: 8px; }
+.mockup-navbar .nav-left { display: flex; align-items: center; gap: 16px; }
+.mockup-navbar .nav-home { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.mockup-navbar .nav-home:hover { color: var(--o-action); }
+.mockup-navbar .nav-breadcrumb { color: var(--o-gray-400); font-size: 13px; }
+.mockup-navbar .nav-breadcrumb span { color: var(--o-gray-500); margin: 0 4px; }
+.mockup-navbar .legend-box { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--o-gray-400); }
+.mockup-navbar .legend-item { display: flex; align-items: center; gap: 4px; }
+.mockup-navbar .legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; }
+.mockup-navbar .nav-menu { width: 100%; display: flex; align-items: center; gap: 18px; }
+.mockup-navbar .nav-menu .menu-label { font-size: 12px; color: var(--o-gray-400); }
+.mockup-navbar .nav-menu a { color: #fff; font-size: 13px; text-decoration: none; padding: 1px 8px; }
+.mockup-navbar .nav-menu .current { color: #fff; font-size: 13px; font-weight: 600; padding: 1px 8px; border-bottom: 2px solid var(--o-action); }
+th.mockup-modified, .mockup-modified th { color: var(--o-warning) !important; }
+.o_title { font-size: 26px; font-weight: 600; margin: 0 0 16px; }
+.o_title_label { font-size: 13px; font-weight: 600; color: var(--o-gray-600); }
+.value-modified { color: #9a6b01; font-weight: 600; }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+.example-row td { background: #fff8e1; }
+.more-row td { color: var(--o-gray-500); font-style: italic; }
+.state-switch { display: flex; align-items: center; gap: 14px; margin: 14px 16px 8px; padding: 8px 14px; background: #fff; border: 1px dashed var(--o-gray-400); border-radius: 6px; }
+.state-switch .switch-label { font-size: 12px; font-weight: 600; color: var(--o-gray-600); }
+.state-switch .nav-tabs .nav-link { padding: 4px 14px; font-size: 13px; }
+.state-pane { display: none; }
+.state-pane.active { display: block; }
+</style>
+</head>
+<body>
+<nav class="mockup-navbar">
+  <div class="nav-left">
+    <a href="INV-013-mockup-overview.html" class="nav-home clickable"><i class="fa fa-house"></i> Home</a>
+    <div class="nav-breadcrumb"><span>&gt;</span> Manufacturing <span>&gt;</span> Operations <span>&gt;</span> Manufacturing Orders <span>&gt;</span> <strong>WH/MO/10095</strong></div>
+  </div>
+  <div class="legend-box">
+    <span class="legend-item"><span class="legend-swatch" style="border: 2px dashed var(--o-action);"></span> <i class="fa fa-hand-pointer" style="color: var(--o-action); font-size: 11px;"></i> = Clickable link</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: var(--o-success);"></span> NEW in INV-013</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: var(--o-warning);"></span> CHANGED value</span>
+  </div>
+  <div class="nav-menu">
+    <span class="menu-label">Screens:</span>
+    <a class="clickable" href="INV-013-mockup-workcenter-form.html">Work Centers</a>
+    <span class="current">Manufacturing Orders</span>
+    <a class="clickable" href="INV-013-mockup-replenishment.html">Replenishment</a>
+    <a class="clickable" href="INV-013-mockup-transfers.html">Transfers</a>
+  </div>
+</nav>
+
+<div class="mockup-page" id="mockupPage">
+
+  <div class="state-switch">
+    <span class="switch-label">Mockup: show the MO as</span>
+    <ul class="nav-tabs">
+      <li class="nav-item"><a class="nav-link tab-clickable active" data-pane="state-draft" onclick="switchState(event, 'state-draft')">Draft (before Confirm)</a></li>
+      <li class="nav-item"><a class="nav-link tab-clickable" data-pane="state-confirmed" onclick="switchState(event, 'state-confirmed')">Confirmed</a></li>
+    </ul>
+  </div>
+
+  <!-- ===================== DRAFT ===================== -->
+  <div class="state-pane active" id="state-draft">
+    <div class="o_control_panel">
+      <div class="o_breadcrumb"><ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Manufacturing Orders</a></li>
+        <li class="breadcrumb-item active">WH/MO/10095</li>
+      </ol></div>
+    </div>
+    <div class="o_form_statusbar">
+      <div class="o_statusbar_buttons"><button class="btn btn-primary">Confirm</button><button class="btn btn-secondary">Cancel</button></div>
+      <div class="o_statusbar_status"><button class="o_arrow_button o_first o_arrow_button_current">Draft</button><button class="o_arrow_button">Confirmed</button><button class="o_arrow_button">In Progress</button><button class="o_arrow_button o_last">Done</button></div>
+    </div>
+    <div class="o_form_sheet_bg">
+      <div class="o_form_sheet">
+        <div class="o_title_label">Manufacturing Order</div>
+        <div class="o_title">WH/MO/10095</div>
+        <div class="o_group">
+          <div class="o_inner_group">
+            <div class="o_cell"><label class="o_form_label field-label">Product</label><div class="o_field_widget o_field_many2one"><a href="#">[SUBASM,OCXO,BOTTOM,P/Q SLOPE, LEAD FREE] W8CB-1</a></div></div>
+            <div class="o_cell"><label class="o_form_label field-label">Quantity</label><div class="o_field_widget">100.00 EA</div></div>
+            <div class="o_cell"><label class="o_form_label field-label">Bill of Material</label><div class="o_field_widget o_field_many2one"><a href="#">2501: [SUBASM,OCXO,BOTTOM,P/Q SLOPE, LEAD FREE] W8CB-1</a></div></div>
+          </div>
+          <div class="o_inner_group">
+            <div class="o_cell"><label class="o_form_label field-label">Scheduled Date</label><div class="o_field_widget">11/16/2026 08:00:00</div></div>
+            <div class="o_cell"><label class="o_form_label field-label">Responsible</label><div class="o_field_widget"><div class="o_field_many2one_avatar"><span class="o_m2o_avatar">TB</span> Tessa Butterfield</div></div></div>
+          </div>
+        </div>
+
+        <div class="o_notebook">
+          <div class="o_notebook_headers"><ul class="nav-tabs">
+            <li class="nav-item"><a class="nav-link tab-clickable active" onclick="switchTab(event, 'd-components')">Components</a></li>
+            <li class="nav-item"><a class="nav-link tab-clickable" onclick="switchTab(event, 'd-workorders')">Work Orders</a></li>
+            <li class="nav-item"><a class="nav-link tab-clickable" onclick="switchTab(event, 'd-misc')">Miscellaneous</a></li>
+          </ul></div>
+          <div class="o_notebook_content">
+            <div class="tab-pane active" id="d-components">
+              <div class="o_list_renderer"><table class="o_list_table">
+                <thead><tr><th>Product</th><th class="mockup-modified">From</th><th class="num">To Consume</th><th>UoM</th></tr></thead>
+                <tbody>
+                  <tr class="o_data_row"><td><a href="#">[PC BOARD] 061-0218</a></td><td>WH/WIP-Pre-Production</td><td class="num">100.00</td><td>EA</td></tr>
+                  <tr class="o_data_row"><td><a href="#">[CAPACITOR,47UF+/-20%,0805,TANTALUM,10V] 192-B0805476M-1</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td>EA</td></tr>
+                  <tr class="o_data_row"><td><a href="#">[CAPACITOR,1uF+/-10%,0603,X7R,16V,LF] 191-B0603105K-2</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">300.00</td><td>EA</td></tr>
+                  <tr class="o_data_row example-row"><td><a href="#">[CAP,1000PF+/-10%,0402,COG,25V,LF] 191-B0402102K-1</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td>EA</td></tr>
+                  <tr class="o_data_row"><td><a href="#">[RESISTOR,0 OHMS,0402,LEAD FREE] 243-B0402000</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td>EA</td></tr>
+                  <tr class="o_data_row"><td><a href="#">[INDUCTOR,36.0nH+/-5%,0402,SOLDERABLE(1)] 800-B0402360J</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td>EA</td></tr>
+                  <tr class="o_data_row"><td><a href="#">[IC,NC7WZU04L6X,PKGD,LF,MICROPAK,T&amp;R] 049-B0247</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">400.00</td><td>EA</td></tr>
+                  <tr class="o_data_row"><td><a href="#">[VOLTAGE REGULATOR,MAX8510EXK45+T,SC70] 049-B0323</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td>EA</td></tr>
+                  <tr class="o_data_row"><td><a href="#">[SOLDER PASTE,INDIUM 8.9,SAC305,TYPE 4,LF] 340-00083</a></td><td>WH/WIP-Pre-Production</td><td class="num">0.10</td><td>EA</td></tr>
+                  <tr class="o_data_row"><td><a href="#">[SOLDER,WIRE,LEAD FREE,0.56MM,MM01954] 105-0018</a></td><td>WH/WIP-Pre-Production</td><td class="num">0.10</td><td>EA</td></tr>
+                  <tr class="o_data_row"><td><a href="#">[SOLDER,WIRE,MULTICORE MM02108, LF] 105-0016</a></td><td>WH/WIP-Pre-Production</td><td class="num">0.10</td><td>EA</td></tr>
+                  <tr class="more-row"><td colspan="4">+ 11 more SMT parts (capacitors, resistors, inductors): From = WH/SMT</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+            <div class="tab-pane" id="d-workorders">
+              <div class="o_list_renderer"><table class="o_list_table">
+                <thead><tr><th>Operation</th><th>Work Center</th></tr></thead>
+                <tbody>
+                  <tr class="o_data_row"><td>Production Hold</td><td>Scheduling Desk</td></tr>
+                  <tr class="o_data_row"><td>Apply Solder paste to FR4</td><td>Solder Stencil</td></tr>
+                  <tr class="o_data_row example-row"><td>Attach Comp Mydata/Hand Solder</td><td><a class="clickable" href="INV-013-mockup-workcenter-form.html" style="display: inline-block; padding: 2px 8px; color: var(--o-action); text-decoration: none;">MyData Pick and Place</a></td></tr>
+                  <tr class="o_data_row"><td>In-process Vis Insp Fr4 Assy</td><td>Handwork Bench</td></tr>
+                  <tr class="o_data_row"><td>Solder Reflow</td><td>Reflow Oven</td></tr>
+                  <tr class="o_data_row"><td>Singulate Array</td><td>Singulation Station</td></tr>
+                  <tr class="o_data_row"><td>QA Visual Inspection</td><td>Quality Inspection Bench</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+            <div class="tab-pane" id="d-misc">
+              <div class="o_group"><div class="o_inner_group">
+                <div class="o_cell"><label class="o_form_label field-label">Operation Type</label><div class="o_field_widget o_field_many2one"><a href="#">NEL Frequency Controls, Inc.: Manufacturing</a></div></div>
+              </div><div class="o_inner_group">
+                <div class="o_cell"><label class="o_form_label field-label">Components Location</label><div class="o_field_widget o_field_many2one"><a href="#">WH/WIP-Pre-Production</a></div></div>
+                <div class="o_cell"><label class="o_form_label field-label">Finished Products Location</label><div class="o_field_widget o_field_many2one"><a href="#">WH/Stock</a></div></div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mockup-annotations-layer">
+      <div class="mockup-annotation success"><strong>NEW rule: From per part (R03, BR-002, D-015)</strong> — The 18 SMT parts show WH/SMT. Both checks pass: their BoM line has "Consumed in Operation" = Attach Comp Mydata/Hand Solder, and that work order runs on MyData Pick and Place (Components Location = WH/SMT).</div>
+      <div class="mockup-annotation info"><strong>Other parts keep WH/WIP-Pre-Production (BR-003)</strong> — The PC board and solder paste are consumed at Apply Solder paste to FR4 (Solder Stencil has no Components Location). The solder wires have no step. The MO's own Components Location does not change (Miscellaneous tab).</div>
+      <div class="mockup-annotation warning"><strong>Needs DC-01 first (Q-014, A-003)</strong> — Today 1 of 25,277 lines on SMT BoMs has "Consumed in Operation", so without DC-01 every part shows WH/WIP-Pre-Production. Hand soldering is part of the same MyData step: leave the solder wire without a step, or it would come from WH/SMT.</div>
+      <div class="mockup-annotation info"><strong>Draft only: checked again (BR-007)</strong> — If the planner moves Attach Comp Mydata/Hand Solder to another work center, Odoo checks that step's parts again. Example: moved to Handwork Bench → its 18 parts switch to WH/WIP-Pre-Production.</div>
+    </div>
+  </div>
+
+  <!-- ===================== CONFIRMED ===================== -->
+  <div class="state-pane" id="state-confirmed">
+    <div class="o_control_panel">
+      <div class="o_breadcrumb"><ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Manufacturing Orders</a></li>
+        <li class="breadcrumb-item active">WH/MO/10095</li>
+      </ol></div>
+    </div>
+    <div class="o_form_statusbar">
+      <div class="o_statusbar_buttons"><button class="btn btn-primary">Produce All</button><button class="btn btn-primary">Plan</button><button class="btn btn-secondary">Check availability</button><button class="btn btn-secondary">Unreserve</button><button class="btn btn-secondary">Cancel</button></div>
+      <div class="o_statusbar_status"><button class="o_arrow_button o_first">Draft</button><button class="o_arrow_button o_arrow_button_current">Confirmed</button><button class="o_arrow_button">In Progress</button><button class="o_arrow_button o_last">Done</button></div>
+    </div>
+    <div class="o_form_sheet_bg">
+      <div class="o_form_sheet">
+        <div class="o-form-buttonbox">
+          <a class="oe_stat_button clickable" href="INV-013-mockup-transfers.html#pick"><i class="fa fa-truck o_button_icon text-action"></i><span class="o_stat_info"><span class="o_stat_value">2</span><span class="o_stat_text">Transfers</span></span></a>
+        </div>
+        <div class="o_title_label">Manufacturing Order</div>
+        <div class="o_title">WH/MO/10095</div>
+        <div class="o_group">
+          <div class="o_inner_group">
+            <div class="o_cell"><label class="o_form_label field-label">Product</label><div class="o_field_widget o_field_many2one"><a href="#">[SUBASM,OCXO,BOTTOM,P/Q SLOPE, LEAD FREE] W8CB-1</a></div></div>
+            <div class="o_cell"><label class="o_form_label field-label">Quantity</label><div class="o_field_widget">100.00 EA</div></div>
+            <div class="o_cell"><label class="o_form_label field-label">Bill of Material</label><div class="o_field_widget o_field_many2one"><a href="#">2501: [SUBASM,OCXO,BOTTOM,P/Q SLOPE, LEAD FREE] W8CB-1</a></div></div>
+          </div>
+          <div class="o_inner_group">
+            <div class="o_cell"><label class="o_form_label field-label">Scheduled Date</label><div class="o_field_widget">11/16/2026 08:00:00</div></div>
+            <div class="o_cell"><label class="o_form_label field-label">Responsible</label><div class="o_field_widget"><div class="o_field_many2one_avatar"><span class="o_m2o_avatar">TB</span> Tessa Butterfield</div></div></div>
+          </div>
+        </div>
+
+        <div class="o_notebook">
+          <div class="o_notebook_headers"><ul class="nav-tabs">
+            <li class="nav-item"><a class="nav-link tab-clickable active" onclick="switchTab(event, 'c-components')">Components</a></li>
+            <li class="nav-item"><a class="nav-link tab-clickable" onclick="switchTab(event, 'c-workorders')">Work Orders</a></li>
+            <li class="nav-item"><a class="nav-link tab-clickable" onclick="switchTab(event, 'c-misc')">Miscellaneous</a></li>
+          </ul></div>
+          <div class="o_notebook_content">
+            <div class="tab-pane active" id="c-components">
+              <div class="o_list_renderer"><table class="o_list_table">
+                <thead><tr><th>Product</th><th class="mockup-modified">From</th><th class="num">To Consume</th><th class="num">Quantity</th><th>UoM</th><th>Consumed</th></tr></thead>
+                <tbody>
+                  <tr class="o_data_row"><td><a href="#">[PC BOARD] 061-0218</a></td><td>WH/WIP-Pre-Production</td><td class="num">100.00</td><td class="num">0.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row"><td><a href="#">[CAPACITOR,47UF+/-20%,0805,TANTALUM,10V] 192-B0805476M-1</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td class="num">100.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row"><td><a href="#">[CAPACITOR,1uF+/-10%,0603,X7R,16V,LF] 191-B0603105K-2</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">300.00</td><td class="num">300.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row example-row"><td><a href="#">[CAP,1000PF+/-10%,0402,COG,25V,LF] 191-B0402102K-1</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td class="num"><span class="mockup-highlight">90.00</span></td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row"><td><a href="#">[RESISTOR,0 OHMS,0402,LEAD FREE] 243-B0402000</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td class="num">100.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row"><td><a href="#">[INDUCTOR,36.0nH+/-5%,0402,SOLDERABLE(1)] 800-B0402360J</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td class="num">100.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row"><td><a href="#">[IC,NC7WZU04L6X,PKGD,LF,MICROPAK,T&amp;R] 049-B0247</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">400.00</td><td class="num">400.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row"><td><a href="#">[VOLTAGE REGULATOR,MAX8510EXK45+T,SC70] 049-B0323</a></td><td><span class="value-modified">WH/SMT</span></td><td class="num">100.00</td><td class="num">100.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row"><td><a href="#">[SOLDER PASTE,INDIUM 8.9,SAC305,TYPE 4,LF] 340-00083</a></td><td>WH/WIP-Pre-Production</td><td class="num">0.10</td><td class="num">0.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row"><td><a href="#">[SOLDER,WIRE,LEAD FREE,0.56MM,MM01954] 105-0018</a></td><td>WH/WIP-Pre-Production</td><td class="num">0.10</td><td class="num">0.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="o_data_row"><td><a href="#">[SOLDER,WIRE,MULTICORE MM02108, LF] 105-0016</a></td><td>WH/WIP-Pre-Production</td><td class="num">0.10</td><td class="num">0.00</td><td>EA</td><td><span class="o_checkbox"></span></td></tr>
+                  <tr class="more-row"><td colspan="6">+ 11 more SMT parts (capacitors, resistors, inductors): From = WH/SMT, fully reserved</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+            <div class="tab-pane" id="c-workorders">
+              <div class="o_list_renderer"><table class="o_list_table">
+                <thead><tr><th>Operation</th><th>Work Center</th></tr></thead>
+                <tbody>
+                  <tr class="o_data_row"><td>Production Hold</td><td>Scheduling Desk</td></tr>
+                  <tr class="o_data_row"><td>Apply Solder paste to FR4</td><td>Solder Stencil</td></tr>
+                  <tr class="o_data_row example-row"><td>Attach Comp Mydata/Hand Solder</td><td><a class="clickable" href="INV-013-mockup-workcenter-form.html" style="display: inline-block; padding: 2px 8px; color: var(--o-action); text-decoration: none;">MyData Pick and Place</a></td></tr>
+                  <tr class="o_data_row"><td>In-process Vis Insp Fr4 Assy</td><td>Handwork Bench</td></tr>
+                  <tr class="o_data_row"><td>Solder Reflow</td><td>Reflow Oven</td></tr>
+                  <tr class="o_data_row"><td>Singulate Array</td><td>Singulation Station</td></tr>
+                  <tr class="o_data_row"><td>QA Visual Inspection</td><td>Quality Inspection Bench</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+            <div class="tab-pane" id="c-misc">
+              <div class="o_group"><div class="o_inner_group">
+                <div class="o_cell"><label class="o_form_label field-label">Operation Type</label><div class="o_field_widget o_field_many2one"><a href="#">NEL Frequency Controls, Inc.: Manufacturing</a></div></div>
+              </div><div class="o_inner_group">
+                <div class="o_cell"><label class="o_form_label field-label">Components Location</label><div class="o_field_widget o_field_many2one"><a href="#">WH/WIP-Pre-Production</a></div></div>
+                <div class="o_cell"><label class="o_form_label field-label">Finished Products Location</label><div class="o_field_widget o_field_many2one"><a href="#">WH/Stock</a></div></div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mockup-annotations-layer">
+      <div class="mockup-annotation info"><strong>At Confirm (R04, BR-004)</strong> — 191-B0402102K-1: need 100, WH/SMT holds 90 (80 on MyData 1 + 10 on MyData 2; Odoo sees one total). Odoo reserves 90 and picks the missing 10 from WH/Stock into WH/SMT. Stock in WH/WIP-Pre-Production and WH/Stock is not counted.</div>
+      <div class="mockup-annotation success"><strong>Two picks for one SMT MO</strong> — WH/PC/00180 brings the missing SMT parts into WH/SMT. WH/PC/00181 brings the PC board, paste and wire into WH/WIP-Pre-Production (INV-011). Open them with the Transfers button.</div>
+      <div class="mockup-annotation warning"><strong>From is fixed now (BR-008, BR-009)</strong> — Changing a step's work center after Confirm keeps From. Standard Odoo (FDD §5 note): raising the quantity picks the full increase into WH/SMT (A-006); when two MOs need the same part, the one confirmed first reserves first.</div>
+      <div class="mockup-annotation info"><strong>When parts leave WH/SMT (D-017, A-004)</strong> — Today at Produce All (MO Done), a median of 63 days after the MyData step. MFG-027 will move this to the close of the MyData work order.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchState(evt, paneId) {
+  document.querySelectorAll('.state-switch .nav-link').forEach(function (link) { link.classList.remove('active'); });
+  evt.currentTarget.classList.add('active');
+  document.querySelectorAll('.state-pane').forEach(function (pane) { pane.classList.remove('active'); });
+  document.getElementById(paneId).classList.add('active');
+}
+function switchTab(evt, paneId) {
+  var notebook = evt.currentTarget.closest('.o_notebook');
+  notebook.querySelectorAll('.nav-link').forEach(function (link) { link.classList.remove('active'); });
+  evt.currentTarget.classList.add('active');
+  notebook.querySelectorAll('.tab-pane').forEach(function (pane) { pane.classList.remove('active'); });
+  document.getElementById(paneId).classList.add('active');
+}
+(function () {
+  var key = window.location.hash.replace('#', '');
+  var link = key ? document.querySelector('.state-switch .nav-link[data-pane="state-' + key + '"]') : null;
+  if (link) { link.click(); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>INV-013 Mockup — Replenishment</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --o-enterprise-color: #714B67; --o-enterprise-action-color: #017e84; --o-brand-odoo: #714B67;
+  --o-brand-primary: #714B67; --o-action: #017e84;
+  --o-gray-100: #F9FAFB; --o-gray-200: #e7e9ed; --o-gray-300: #d8dadd; --o-gray-400: #9a9ca5;
+  --o-gray-500: #7c7f89; --o-gray-600: #5f636f; --o-gray-700: #374151; --o-gray-800: #1F2937; --o-gray-900: #111827;
+  --o-success: #28a745; --o-info: #17a2b8; --o-warning: #ffac00; --o-danger: #dc3545;
+  --o-border-radius: 4px; --o-spacer: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, "Noto Sans", Arial, sans-serif;
+  font-size: 14px; line-height: 1.5; color: var(--o-gray-900); background: #f0f0f0; padding: 24px; }
+.mockup-page { position: relative; width: 1040px; background: var(--o-gray-100); border-radius: 6px; overflow: visible; padding-bottom: 20px; }
+.o_control_panel { display: flex; flex-direction: column; gap: 12px; padding: 8px 16px 12px; }
+.o_breadcrumb { display: flex; align-items: center; }
+.breadcrumb { display: flex; list-style: none; padding: 0; margin: 0; font-size: 15px; color: var(--o-gray-700); }
+.breadcrumb-item.active { font-weight: 600; color: var(--o-gray-900); }
+.btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: var(--o-border-radius); font-size: 13px; font-weight: 500; border: 1px solid transparent; cursor: default; white-space: nowrap; transition: none; }
+.btn-primary { background: var(--o-brand-primary); color: #fff; border-color: var(--o-brand-primary); }
+.o_searchview { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: #fff; border: 1px solid var(--o-gray-300); border-radius: var(--o-border-radius); }
+.o_searchview_facet { display: inline-flex; align-items: center; gap: 4px; background: var(--o-action); color: #fff; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+.o_list_renderer { overflow-x: auto; background: #fff; border-radius: var(--o-border-radius); box-shadow: 0 1px 4px rgba(48, 48, 48, 0.12); }
+.o_list_table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.o_list_table thead th { padding: 10px 10px; text-align: left; font-weight: 600; font-size: 13px; color: var(--o-gray-700); border-bottom: 2px solid var(--o-gray-300); background: #fff; }
+.o_list_table tbody td { padding: 10px 10px; border-bottom: 1px solid var(--o-gray-200); vertical-align: middle; }
+.o_data_row:hover { background: rgba(1, 126, 132, 0.05); }
+.o_list_table td.num, .o_list_table th.num { text-align: right; white-space: nowrap; }
+.o_list_table a:not(.clickable) { color: var(--o-action); text-decoration: none; }
+.mockup-annotations-layer { display: flex; gap: 16px; padding: 16px 20px 0; flex-wrap: wrap; }
+.mockup-annotation { padding: 12px 14px; border-radius: 6px; border-left: 5px solid; font-size: 13px; line-height: 1.5; flex: 1; min-width: 240px; }
+.mockup-annotation strong { font-weight: 700; }
+.mockup-annotation.info { background: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+.mockup-annotation.warning { background: #fff3cd; border-color: #ffac00; color: #6b4f00; }
+.mockup-annotation.success { background: #d4edda; border-color: #28a745; color: #155724; }
+.mockup-annotation.danger { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+.clickable { position: relative; border: 2px dashed var(--o-action) !important; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
+.clickable:hover { background: rgba(1,126,132,0.08); }
+.clickable::after { content: "\f25a"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 10px; color: #fff; background: var(--o-action);
+  width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: -8px; right: -8px; z-index: 30; }
+.mockup-navbar { position: sticky; top: 0; z-index: 100; background: var(--o-gray-900); padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; row-gap: 8px; }
+.mockup-navbar .nav-left { display: flex; align-items: center; gap: 16px; }
+.mockup-navbar .nav-home { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.mockup-navbar .nav-home:hover { color: var(--o-action); }
+.mockup-navbar .nav-breadcrumb { color: var(--o-gray-400); font-size: 13px; }
+.mockup-navbar .nav-breadcrumb span { color: var(--o-gray-500); margin: 0 4px; }
+.mockup-navbar .legend-box { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--o-gray-400); }
+.mockup-navbar .legend-item { display: flex; align-items: center; gap: 4px; }
+.mockup-navbar .legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; }
+.mockup-navbar .nav-menu { width: 100%; display: flex; align-items: center; gap: 18px; }
+.mockup-navbar .nav-menu .menu-label { font-size: 12px; color: var(--o-gray-400); }
+.mockup-navbar .nav-menu a { color: #fff; font-size: 13px; text-decoration: none; padding: 1px 8px; }
+.mockup-navbar .nav-menu .current { color: #fff; font-size: 13px; font-weight: 600; padding: 1px 8px; border-bottom: 2px solid var(--o-action); }
+.value-new { color: #008818; font-weight: 600; }
+.example-row td { background: #fff8e1; }
+.list-note { padding: 8px 12px; font-size: 12px; color: var(--o-gray-500); }
+</style>
+</head>
+<body>
+<nav class="mockup-navbar">
+  <div class="nav-left">
+    <a href="INV-013-mockup-overview.html" class="nav-home clickable"><i class="fa fa-house"></i> Home</a>
+    <div class="nav-breadcrumb"><span>&gt;</span> Inventory <span>&gt;</span> Operations <span>&gt;</span> <strong>Replenishment</strong></div>
+  </div>
+  <div class="legend-box">
+    <span class="legend-item"><span class="legend-swatch" style="border: 2px dashed var(--o-action);"></span> <i class="fa fa-hand-pointer" style="color: var(--o-action); font-size: 11px;"></i> = Clickable link</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: var(--o-success);"></span> NEW in INV-013</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: var(--o-warning);"></span> CHANGED value</span>
+  </div>
+  <div class="nav-menu">
+    <span class="menu-label">Screens:</span>
+    <a class="clickable" href="INV-013-mockup-workcenter-form.html">Work Centers</a>
+    <a class="clickable" href="INV-013-mockup-mo-form.html">Manufacturing Orders</a>
+    <span class="current">Replenishment</span>
+    <a class="clickable" href="INV-013-mockup-transfers.html">Transfers</a>
+  </div>
+</nav>
+
+<div class="mockup-page" id="mockupPage">
+
+  <div class="o_control_panel">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="o_breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item active">Replenishment</li></ol></div>
+        <button class="btn btn-primary">New</button>
+      </div>
+      <div class="o_searchview" style="width: 420px;">
+        <i class="fa fa-search" style="color: var(--o-gray-400);"></i>
+        <span class="o_searchview_facet">Location: WH/SMT</span>
+        <span class="o_searchview_facet">Trigger: Auto</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 0 16px;">
+    <div class="o_list_renderer">
+      <table class="o_list_table">
+        <thead><tr><th>Product</th><th>Location</th><th>Route</th><th class="num">On Hand</th><th class="num">Forecast</th><th class="num">Min</th><th class="num">Max</th><th class="num">Multiple Quantity</th><th class="num">To Order</th><th>Trigger</th></tr></thead>
+        <tbody>
+          <tr class="o_data_row example-row"><td><a href="#">[CAPACITOR,1uF+/-10%,0603,X7R,16V,LF] 191-B0603105K-2</a></td><td><span class="value-new">WH/SMT</span></td><td><a class="clickable" href="INV-013-mockup-transfers.html#topup" style="display: inline-block; padding: 2px 6px; text-decoration: none;"><span class="value-new">SMT Top-up</span></a></td><td class="num">1,149.00</td><td class="num">849.00</td><td class="num">2,000.00</td><td class="num">9,000.00</td><td class="num">3,000.00</td><td class="num"><strong>6,000.00</strong></td><td>Auto</td></tr>
+          <tr class="o_data_row"><td><a href="#">[RESISTOR,0 OHMS,0402,LEAD FREE] 243-B0402000</a></td><td><span class="value-new">WH/SMT</span></td><td><span class="value-new">SMT Top-up</span></td><td class="num">9,500.00</td><td class="num">9,400.00</td><td class="num">4,000.00</td><td class="num">12,000.00</td><td class="num">4,000.00</td><td class="num">0.00</td><td>Auto</td></tr>
+          <tr class="o_data_row"><td><a href="#">[IC,NC7WZU04L6X,PKGD,LF,MICROPAK,T&amp;R] 049-B0247</a></td><td><span class="value-new">WH/SMT</span></td><td><span class="value-new">SMT Top-up</span></td><td class="num">1,400.00</td><td class="num">1,000.00</td><td class="num">500.00</td><td class="num">3,000.00</td><td class="num">1,000.00</td><td class="num">0.00</td><td>Auto</td></tr>
+        </tbody>
+      </table>
+      <div class="list-note">1-3 / 3 · Example values only. Moment shown: WH/MO/10095 (100 × W8CB-1) has just been confirmed and the Auto rule has not run yet. Capacitor 191-B0402102K-1 has no rule: it is picked per MO, missing quantity only.</div>
+    </div>
+  </div>
+
+  <div class="mockup-annotations-layer">
+
+    <div class="mockup-annotation success"><strong>Rules on WH/SMT, route SMT Top-up (R05, D-008)</strong> — One rule per part, for the parts that stay loaded in the machines (Tessa's high-runner sheet). The SMT Top-up route has its own transfer type, so top-ups are listed apart from MO picks.</div>
+    <div class="mockup-annotation info"><strong>Example (BR-005)</strong> — Forecast = On Hand + incoming − demand from MOs that take the part from WH/SMT: 1,149 − 300 (WH/MO/10095: 100 boards × 3) = 849. That is below Min 2,000, so Odoo orders up to Max: 9,000 − 849 = 8,151, rounded down to full multiples of 3,000 = <strong>6,000</strong>. Trigger Auto creates the top-up at once.</div>
+    <div class="mockup-annotation warning"><strong>Max ≥ Min + one multiple (FDD §9)</strong> — If Max is lower than Min + Multiple Quantity, standard rounding can order 0. There is no system guard; the set-up checklist covers it (FDD Section 9, step 7).</div>
+    <div class="mockup-annotation warning"><strong>NEL sends the list later (Q-005, closed)</strong> — The values on this screen are examples. When NEL sends its Min/Max list, Novobi loads the rules. Until then, SMT parts are picked per MO only.</div>
+    <div class="mockup-annotation info"><strong>Pick and top-up together (standard, FDD §5 note)</strong> — A part with a rule that is also short for an MO gets both a pick (missing quantity) and a top-up (up to Max). WH/SMT may end above Max; accepted on 9 Nov 2026.</div>
+
+  </div>
+</div>
+</body>
+</html>
